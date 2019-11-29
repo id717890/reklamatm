@@ -1,0 +1,32 @@
+﻿@using System.Globalization
+@model Domain.Entity.Other.Page
+
+@{
+    Layout = "~/Views/_Layout/_Mobile.cshtml";
+}
+
+
+<div class="bg-silver">
+    <div class="main-header">
+        <div class="btn-panel mb-2 mt-2 d-inline-block">
+        </div>
+    </div>
+    <div class="main-container p-3">
+        <h1>@Model.Name</h1>
+        <div class="articleText">
+            <div class="mArtDate">
+                @Model.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+            </div>
+            @Html.Raw(Model.Description)
+        </div>
+
+        @if (User.IsInRole("Administrator"))
+        {
+            <p>
+                @Html.ActionLink("Редактировать", "PageEdit", "Admin", new { id = Model.Id }, null)
+            </p>
+        }
+    </div>
+    
+
+</div>

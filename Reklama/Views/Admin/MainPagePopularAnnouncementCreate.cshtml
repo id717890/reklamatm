@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Domain.Entity.Announcements.Announcement>
+
+@{
+    ViewBag.Title = "Шаг 2. Выберите и добавьте объявление";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Шаг2. Выберите и добавьте объявление</h2>
+
+<table style="padding: 5px; border: 1px solid #000">
+    <tr>
+        <th>
+
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="padding: 5px; border: 1px solid #000">
+                @{
+                    if (item.City != null && !string.IsNullOrEmpty(item.City.Name))
+                    {
+                        <span style="font-size: 13px;font-weight: bold;">@(item.City)</span>
+                    }
+                    else
+                    {
+                        <span style="font-size: 13px;font-weight: bold;">Регион не определен</span>
+                    }
+}
+                
+            </td>
+            <td style="padding: 5px; border: 1px solid #000">
+                @Html.ActionLink(item.Name, "Details", "Announcement", new { id = item.Id }, null)
+            </td>
+            <td style="padding: 5px; border: 1px solid #000">
+                @Html.ActionLink("Добавить", "MainPagePopularAnnouncementCreate2", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

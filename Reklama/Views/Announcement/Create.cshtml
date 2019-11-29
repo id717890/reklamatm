@@ -1,0 +1,220 @@
+﻿@using System.Globalization
+@using Domain.Entity.Announcements
+@using Domain.Entity.Common
+@using Reklama
+@model Domain.Entity.Announcements.Announcement
+
+@{
+    ViewBag.Title = "Создание нового объявления";
+}
+
+<style>
+    input.input-validation-error + label
+    {
+        border: 1px solid #E80C4D !important;
+    }
+</style>
+
+<div class="register">
+    <h1>Новое объявление</h1>
+    <div class="registerIn">
+        <div class="registerInW">
+            @using (Html.BeginForm())
+            {
+                <div class="borderReg head">
+                    <div class="fieldItem">
+                        <span class="field-title">Раздел сайта:</span>
+                        <input class="regRad" id="regRad" name="regRad" type="radio" checked="checked" value="" /><label
+                            for="regRad">объявления</label>
+                        <input class="regRad" id="regRad2" name="regRad" type="radio" value="" /><label for="regRad2">недвижимость</label>
+                    </div>
+                    <div class="fieldItem">
+                        <span class="field-title">@Html.LabelFor(c => c.CategoryId)</span>
+                        <div id="CategoryButtons">
+                            @foreach (var item in (SelectList)ViewBag.Categories)
+                            {
+                                <div class="item-container">
+                                    <div class="item">
+                                        @Html.RadioButtonFor(m => m.CategoryId, item.Value, new { id = "categoryButtom" + item.Value, name = "CategoryId", @class = "radio" })
+                                        @Html.LabelFor(m => m, item.Text, new { @for = "categoryButtom" + item.Value })
+                                    </div>
+                                </div>
+                            }
+                            @Html.ValidationMessageFor(s => s.CategoryId)
+
+                            <div style="clear: both; padding: 0; height: 0; min-height: 0;"></div>
+                        </div>
+
+                    </div>
+                    <div class="fieldItem">
+                        <input type="hidden" id="SectionId" value="0" />
+                        <input type="hidden" id="SubsectionId" value="0" />
+                        <span class="field-title">@Html.LabelFor(s => s.SectionId)</span>
+                        <select id="newSectionId" name="newSectionId" class="requared">
+                            <option value="">Выбирете раздел</option>
+                            @foreach (var item in (List<GroupedSelectList>)ViewBag.Sections)
+                            {
+                                <optgroup label="@item.Text">
+                                    @foreach (var subItem in item.Children)
+                                    {
+                                        <option value="@subItem.Value" @(subItem.IsCurrent ? "selected='selected'" : "") >@subItem.Text</option>
+                                    }
+                                </optgroup>
+                            }
+                        </select>
+                        @* @Html.DropDownList("SectionId", (SelectList)ViewBag.Sections, new { @class = "SectionList" })
+                        @Html.ValidationMessageFor(s => s.SubsectionId)*@
+                    </div>
+                    <div class="fieldItem">
+                        <span class="field-title">@Html.LabelFor(s => s.CityId)</span>
+                        @Html.DropDownList("CityId", (IList<SelectListItem>)ViewBag.Cities)
+                        @Html.ValidationMessageFor(s => s.CityId)
+                    </div>
+                </div>
+                
+                <div class="borderReg">
+                    <div class="fieldItem">
+                        @*<span class="regBrown">@Html.LabelFor(n => n.Name)</span>*@
+                        <div class="label-container">@Html.LabelFor(n => n.Name)</div>
+                        @Html.TextBoxFor(model => model.Name, new { @class = "regInp2" })
+                        <p>не более 64 символов</p>
+                        <div class="rightText">
+                            Заголовок - самая заметная часть объявления.<br />@Html.ValidationMessageFor(n => n.Name)
+                        </div>
+                    </div>
+                    <div class="fieldItem message-container">
+                        <div class="label-container">@Html.LabelFor(m => m.Description)</div>
+                        @Html.HiddenFor(m => m.Description, new { @id = "hfDesc" })
+                        <textarea class="message"></textarea>
+                        <p>не более 1800 символов</p>
+                        <div class="rightText">
+                            Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу
+                            купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление
+                            о продавце - покупатель будет спокоен.<br />
+                            @Html.ValidationMessageFor(m => m.Description)
+                        </div>
+
+                    </div>
+                    <div class="fieldItem desc-container">
+                        <div class="label-container">@Html.LabelFor(m => m.SmallDescription)</div>
+                        @Html.TextAreaFor(m => m.SmallDescription, new { @class = "desc" })
+                        <p>не более 255 символов</p>
+                        <div class="rightText">
+                            Краткое описание позволит пользователю сразу сориентироваться в сущности объявления.
+                            Старайтесь писать кратко и лаконично, не нужно путать краткое описание с подробным.<br />
+                            @Html.ValidationMessageFor(m => m.SmallDescription)
+                        </div>
+                    </div>
+                </div>
+                <div class="borderReg">
+                    <div class="fieldItem">
+                        <div class="regRed label-container">@Html.LabelFor(m => m.Price)</div>
+                        @Html.TextBoxFor(m => m.Price, new { @class = "regInp1", data_val_number = "Должно быть введено вещественное число" })&nbsp;
+                        @Html.DropDownList("CurrencyId", (SelectList)ViewBag.Currencies, new { @style = "width: 100px;" })
+                        <p class="check">
+                            @Html.CheckBoxFor(m => m.IsAuction)
+                            @Html.LabelFor(m => m.IsAuction)
+                        </p>
+                        <div class="rightText">
+                            Если вы не укажете реальную стоимость, при сортировке по цене, покупатель не найдет
+                            ваше объявление. Цена  «1 у.е.»  отпугивает покупателя своей несерьезностью.<br />
+                            @Html.ValidationMessageFor(m => m.Price)
+                        </div>
+                    </div>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.ContactName)</div>
+                        @Html.TextBoxFor(model => model.ContactName, new { @class = "regInp1" })
+                        <div class="rightText"></div>
+                    </div>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
+                        <div class="rightText"></div>
+                    </div>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.ContactEmail)</div>
+                        @Html.TextBoxFor(model => model.ContactEmail, new { @class = "regInp1" })
+                        <div class="rightText"></div>
+                    </div>
+                </div>
+                <div class="borderReg">
+                    <div class="fieldItem">
+                        <span class="field-title">Фотографии:</span>
+                        @Html.Partial("_FileUpload")
+                    </div>
+                </div>
+                <div class="borderReg">
+                    <div class="fieldItem">
+                        @Html.ValidationSummary()
+                        <div style="display: none;" id="customErrorsContainer" class="validation-summary-errors">
+                            <ul id="customErrors">
+                                <li id="sectionError">Поле 'Раздел' обязательно для заполнения</li>
+                                <li id="emailandphone">Нужно обязательно заполнить поле телефон или Email</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @Html.AntiForgeryToken()
+                <div class="regBtm">
+
+                    @*<a href="javascript:void(0)">Предварительный просмотр</a>*@
+                    <input class="regBut2" type="submit" value="" id="createSubmit" onclick="return validateForm();" />
+                    <p>
+                        Время размещения с @string.Format("{0:dd.MM.yyyy}", DateTime.Now) до @string.Format("{0:dd.MM.yyyy}", DateTime.Now.AddDays(ProjectConfiguration.Get.GetConfigValue("ExpiredAtAnnouncement").ToInt32(null)))
+                    </p>
+                </div>
+                <div class="rules">
+                    <input type="checkbox" class="checkbox-input" checked="checked" id="rules">
+                    <label class="checkbox-label" for="rules">я принимаю условия <a href="/Page/Details/2"
+                        target="_blank">пользовательского соглашения</a></label></div>
+            }
+        </div>
+    </div>
+</div>
+<div class="middleBot"></div>
+
+
+
+<script>
+    var desc = 'textarea.desc';
+    var limit = 100;
+    
+    jQuery(document).ready(function () {
+        jQuery('.message').jqte({
+            change: function () {
+                var s = jQuery(".message-container .jqte_editor").html();
+                jQuery("#hfDesc").val(s);
+              
+                if (!$(desc).hasClass('active')) {
+                    //var s = $(this).val();
+                    while (s.indexOf("\n") > -1)
+                        s = s.replace("\n", " ");
+                    s = $.removeTags(s);
+                    $(desc).val(s);
+                    var text = $(desc).val();
+                    var chars = text.length;
+                    if (chars > limit) {
+                        var new_text = text.substr(0, limit);
+                        $(desc).val(new_text);
+                    }
+                }
+
+            }
+        });     
+       
+    });
+
+    
+</script>
+@section Scripts {
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Scripts.Render("~/Scripts/Announcement.js")
+    @Scripts.Render("~/Scripts/jquery-te-1.4.0.min.js")
+    @Styles.Render("~/Content/Announcement.css")
+    @Styles.Render("~/Content/jquery-te-1.4.0.css")
+
+
+}

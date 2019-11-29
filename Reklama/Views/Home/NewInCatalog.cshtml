@@ -1,0 +1,32 @@
+﻿@*@model System.Linq.IQueryable<Domain.Entity.Admin.NewSectionInCatalog>*@
+@model IEnumerable<Reklama.Data.Entities.Category>
+@{
+    Layout = null;
+}
+
+<div class="popCatalogueRight">
+    <img class="pNewBgL" src="/Images/System/pNewBgL.png" />
+    <img class="pNewBgR" src="/Images/System/pNewBgR.png" />
+    <p>Новое в каталоге</p>
+    @if(Model != null)
+    {
+        <ul>
+
+        @foreach (var category in Model)
+        {
+            var shopsProducts = category.Product.SelectMany(q => q.ShopProduct);
+            
+            <li>
+                    @Html.ActionLink(category.Name, "Category", "Catalog", new { secondCategoryId = category.ID }, null)
+                    <sup>&nbsp;
+                        @if (shopsProducts.Any())
+                        {
+                            @:от @Convert.ToInt32(shopsProducts.Min(p => p.Price)).ToString() $
+                        }
+                    </sup>
+            </li>
+            
+        }
+        </ul>
+    }
+</div>

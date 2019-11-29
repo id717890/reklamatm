@@ -1,0 +1,56 @@
+﻿@using Infrastructure.Helpers
+@{
+    var regionDm = ConfigHelper.GetDomen;
+}
+
+
+<ul class="region-menu custom-buttons" id="region-top-selector">
+    <li>
+        <div class="item-container">
+            <div class="item">
+                <input id="allRegionsRadioBtn" type="radio" name="region" class="radio" value="reklama.tm" @(regionDm == "reklama.tm" ? "checked" : "") />
+                <label for="allRegionsRadioBtn">Все велаяты</label>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-container">
+            <div class="item">
+                <input id="lbRegionsRadioBtn" type="radio" name="region" class="radio" value="lb.reklama.tm" @(regionDm == "lb.reklama.tm" ? "checked" : "") />
+                <label for="lbRegionsRadioBtn">Lebap</label>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-container">
+            <div class="item">
+                <input id="mrRegionsRadioBtn" type="radio" name="region" class="radio" value="mr.reklama.tm" @(regionDm == "mr.reklama.tm" ? "checked" : "") />
+                <label for="mrRegionsRadioBtn">Mary</label>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-container">
+            <div class="item">
+                <input id="bnRegionsRadioBtn" type="radio" name="region" class="radio" value="bn.reklama.tm" @(regionDm == "bn.reklama.tm" ? "checked" : "") />
+                <label for="bnRegionsRadioBtn">Balkan</label>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-container">
+            <div class="item">
+                <input id="dzRegionsRadioBtn" type="radio" name="region" class="radio" value="dz.reklama.tm" @(regionDm == "dz.reklama.tm" ? "checked" : "") />
+                <label for="dzRegionsRadioBtn">Da&#x15F;oguz</label>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="item-container">
+            <div class="item">
+                <input id="agRegionsRadioBtn" type="radio" name="region" class="radio" value="ag.reklama.tm" @(regionDm == "ag.reklama.tm" ? "checked" : "") />
+                <label for="agRegionsRadioBtn">A&#x15F;gabat</label>
+            </div>
+        </div>
+    </li>
+</ul>

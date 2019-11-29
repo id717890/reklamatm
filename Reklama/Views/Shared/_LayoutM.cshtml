@@ -1,0 +1,31 @@
+﻿@using Infrastructure.Helpers
+@using Reklama.Models.ViewModels.Shared
+@using Reklama;
+@using Domain.Enums;
+
+@{
+
+    var selectedSiteCategory = (ViewBag.SelectedSiteCategory != null) ? (CategorySearch)ViewBag.SelectedSiteCategory : CategorySearch.Product;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>@ViewBag.Title</title>
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link rel="shortcut icon" href="@Url.Content("~/Images/System/favicon.ico")" type="image/x-icon" />
+    <link rel="icon" href="@Url.Content("~/Images/System/favicon.ico")" type="image/x-icon" />
+
+    @RenderSection("head", required: false)
+    @Styles.Render("~/Content/mobile/common/less")
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <div class="wrap">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/Scripts/mobile/common/js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

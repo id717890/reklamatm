@@ -1,0 +1,203 @@
+﻿@using Domain.Enums;
+@using Reklama.Models.AnnouncementsM
+@{
+    ViewBag.Title = "Объявления";
+    Layout = "../Shared/_LayoutM.cshtml";
+}
+
+
+@model AnnouncementIndexViewModel
+@section head
+{
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+}
+@section styles{
+
+    <style>
+        /* div {
+            outline: 1px solid aquamarine;
+        }*/
+        .collapse-toggler {
+        }
+
+            .collapse-toggler .glyphicon-chevron-up, .collapse-toggler .glyphicon-chevron-down {
+                float: right;
+            }
+
+        .glyphicon-chevron-up {
+            display: block;
+        }
+
+        .glyphicon-chevron-down {
+            display: none;
+        }
+
+        .collapsed .glyphicon-chevron-up {
+            display: none;
+        }
+
+        .collapsed .glyphicon-chevron-down {
+            display: block;
+        }
+
+        .hz-slide-menu {
+            overflow-x: auto;
+            width: auto;
+        }
+
+
+        
+
+        .touchcarousel .scrollbar-holder {
+        }
+
+        #categories-menu .btn-group.touchcarousel-item {
+            display: inline-block;
+            width: auto;
+        }
+
+        .touchcarousel.grey-blue .arrow-holder.right {
+            right: -2px;
+        }
+
+        .touchcarousel.grey-blue .arrow-holder.left {
+            left: -2px;
+        }
+    </style>
+
+
+}
+@section scripts
+{
+
+
+
+    <script type="text/javascript">
+        if (!window.rk) {
+            window.rk = {};
+        }
+
+        rk.announcementList = @Html.Raw(Json.Encode(Model.AnnouncementList));
+        rk.urls = {
+            GetLatestItems: '@Url.Action("GetLatestItems")',
+            AddNewAnn: '@Url.Action("CreateAnnouncement")',
+            GetAnn:"@Url.Action("GetAnnouncement")"
+        }
+    </script>
+}
+
+@helper RendRegionBtn(AnnouncementIndexViewModel model, string description, Regions regionType)
+{
+
+    <button type="button " class="region-btn-js btn btn-primary @(regionType == Regions.All ? "btn-small" : "") @(regionType == model.CurrentRegion?"active":"")"
+            data-region="@(regionType)">
+        @(description)
+    </button>
+}
+
+
+@helper RendSectionBtn(AnnouncementIndexViewModel model, SectionViewModel section)
+{
+
+    <button type="button " class="section-btn-js btn btn-primary @(section.Id ==0 ? "btn-small" : "") @(section.Id == model.CurrentSectionId ? "active" : "")" data-section="@(section.Id)">
+        @(section.Name)
+    </button>
+}
+
+
+<div class="container">
+    <button id="loading-dsctp" class="btn btn-lg btn-loading"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></button>
+    <div class="row search-bar">
+        <div class="col-xs-12">
+            <div class="input-group">
+                <input type="text" id="search-inpt" value="@(Model.SearchString)" class="form-control" placeholder="Поиск объявления...">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary glyphicon glyphicon-search" style="margin-top: -2px;" type="button"></button>
+                </span>
+            </div>
+        </div>
+
+    </div>
+    <div class="row top-menu ">
+        <div class="col-xs-12 touchcarousel grey-blue" id="regions-menu">
+            <div class="btn-group btn-group-justified hz-slide-menu touchcarousel-container" role="group">
+                <div class="btn-group touchcarousel-item" role="group">
+                    @RendRegionBtn(Model, "Все Регионы", Regions.All)
+                </div>
+                <div class="btn-group touchcarousel-item" role="group">
+                    @RendRegionBtn(Model, "Ашкабад", Regions.Ag)
+                </div>
+                <div class="btn-group touchcarousel-item" role="group">
+                    @RendRegionBtn(Model, "Лебап", Regions.Lb)
+                </div>
+                <div class="btn-group touchcarousel-item" role="group">
+                    @RendRegionBtn(Model, "Мары", Regions.Mr)
+                </div>
+                <div class="btn-group touchcarousel-item" role="group">
+
+                    @RendRegionBtn(Model, "Дашогуз", Regions.Dz)
+                </div>
+                <div class="btn-group touchcarousel-item" role="group">
+                    @RendRegionBtn(Model, "Балкан", Regions.Bn)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row top-menu ">
+        <div class="col-xs-12 touchcarousel grey-blue" id="categories-menu">
+            <div class="btn-group btn-group-justified hz-slide-menu touchcarousel-container" role="group">
+                <div class="btn-group touchcarousel-item" role="group">
+                    @RendSectionBtn(Model, new SectionViewModel() { Id = 0, Name = "Все" })
+                </div>
+                @foreach (var s in Model.SectionsList)
+                {
+                    <div class="btn-group touchcarousel-item" role="group">
+                        @RendSectionBtn(Model, s)
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-primary  btn-block collapse-toggler collapsed add-new-adv-btn"
+                    data-toggle="collapse" data-target="#addNewAdv"
+                    aria-expanded="false" aria-controls="addNewAdv">
+                Добавить в раздел
+                <span class="label label-default section-btn ">АВТО</span>
+                <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+
+    @Html.Partial("AddNew")
+
+
+    <div class="announcements-container">
+    </div>
+
+</div>
+
+
+<script id="ann-item-tmpl" type="x-jquery-tmpl">
+    <div class="row  announcement-itm" id="announcement-itm-${id}" data-id="${id}">
+        <div class="col-xs-12 description">
+            {{html description}}
+        </div>
+
+        <div class="thumbnails">
+            {{each images}}
+            <div class="${cssClass}">
+                <img class=" img-responsive center-block img-rounded" src="@Url.Content("Images/Users/")${link}?w=220&h=120&mode=crop">
+            </div>
+            {{/each}}
+        </div>
+        <div class="col-xs-12"> <span class="price">${price}&nbsp;${currency.name}</span></div>
+        <div class="col-xs-12"> <span class="phone">${phoneNumber}</span></div>
+        <div class="col-xs-12">
+            <span class="created-date">${publishDate} &nbsp;<ins class="view-count">${viewsCount}</ins></span>
+        </div>
+    </div>
+</script>

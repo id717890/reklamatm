@@ -1,0 +1,261 @@
+﻿@using Domain.Entity.Announcements
+@using Domain.Enums
+@using PagedList
+@using Reklama.Models.Shared
+@using Reklama.Models.SortModels
+@using Reklama.Models.ViewModels.Announcement
+@using Reklama.Models.ViewModels.Shared
+@model Domain.Entity.Announcements.Announcement
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td class="ci1 blue">
+                <div class="placeGoods sec">
+                    @Html.ActionLink(" ", "Create")
+                </div>
+
+                @** Need ViewBag.SortModel *@
+                @Html.Partial("_AnnouncementSectionsPartial", (object)ViewBag.Sections)
+
+
+                @* Need ViewBag.Cities *@
+                @Html.Partial("_AnnouncementSortByParams", (object)ViewBag.FilterParams)
+               
+                @{
+                    Html.RenderAction("GetUnderFiltersBanner", "Banners");
+                }
+
+                @Html.Partial("_YandexDirectPartial")
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+
+                <div class="crumbs">
+                    @Html.ActionLink("Главная страница", "Index", "Home")
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink("Объявления", "List", "Announcement")
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink(Model.Section.Name, "List", "Announcement", new { IsEnabledFilter=false, HasPhoto=false, HasAuction=false,SortOrder="Descending",SortOptions="ByDate",SectionId=Model.SectionId,CurrentPage=1,PageSize=15 }, null)
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink(Model.Subsection.Name, "List", "Announcement", new { IsEnabledFilter=false, HasPhoto=false, HasAuction=false,SortOrder="Descending",SortOptions="ByDate",SectionId=Model.SectionId, SubsectionId=Model.SubsectionId,CurrentPage=1,PageSize=15 }, null)
+                    <span class="arr">&rarr;</span>
+                    @Model.Name
+                </div>
+
+
+                @if (ViewBag.Subsections != null)
+                {
+                    @Html.Partial("_AnnouncementSubsectionPartial", (object)ViewBag.Subsections)
+                }
+
+                <div class="clear"></div>
+
+
+                <div class="ciPage">
+                    <div class="itemInfo">
+                        <div class="itemInfoTop">
+                            <div class="itemInfoTopL">
+                                <div><span>@Model.Name</span>№@Model.Id</div>
+                                <p>@Model.Category.Name</p>
+                            </div>
+
+                            @* PriceCurrency Block *@
+                            @Html.Partial("_PriceCurrencyPartialDetails", new PriceCurrencyViewModel() { IsAuction = Model.IsAuction, Price = Model.Price, Currency = Model.Currency })
+
+                        </div>
+                        <div class="itemInfoBtm">
+                            <p>@Model.SmallDescription</p>
+
+                            @* Link for Add-To-Bookmarks *@
+                            @if ((bool)ViewBag.IsIssetInBookmark)
+                            {
+                                <p>В закладках</p>
+                            }
+                            else
+                            {
+                                if (WebSecurity.IsAuthenticated)
+                                {
+                                @Html.Partial("_AddToBookmarkPartial", new CategorySearchSortModel()
+                                                                                {
+                                                                                    Id = Model.Id,
+                                                                                    Category = CategorySearch.Announcement
+                                                                                })
+                                }
+                            }
+
+                            @Html.Partial("_SocialWidgetsPartial", new SocialWidgetsViewModel()
+                            {
+                                Title = Model.Name,
+                                Description = Model.SmallDescription,
+                                ImageLink = (Model.Images != null && Model.Images.Count > 0) ? "http://reklama.tm" + string.Concat('/', Reklama.ProjectConfiguration.Get.FilePaths["users"] + Model.Images.ElementAt(0).Link) : "",
+                                Link = "http://reklama.tm" + Url.Action("Details", "Announcement", new { id = Model.Id }),
+                                IsInline = true
+                            })
+                        </div>
+                    </div>
+                    
+       <div class="sellerInfo">
+                        <img class="selBtm" src="/Images/System/selBtm.gif" />
+
+
+                        <div class="sellerInfoL">
+                            <div class="sellerPhoto">
+                                <img src="@((Model.User.AvatarLink != null) ? "/Images/Users/Avatars/" + Model.User.AvatarLink : "/Images/System/userAv_large.png")" />
+                            </div>
+                            <div class="sellerText">
+                                <div><a href="#">@Model.ContactName</a></div>
+                                 @if (Model.Phone != null && !String.IsNullOrEmpty(Model.Phone.Trim()))
+                                {
+                                    <p>
+                                        Телефон:
+                                        <a class="tel" href="tel:@Model.Phone">@Model.Phone</a>
+                                    </p>
+                                }
+                               
+                                @if (Model.ContactEmail != null && !String.IsNullOrEmpty(Model.ContactEmail.Trim()))
+                                {
+                                    <p>E-mail:&nbsp;<a href="mailto:@Model.ContactEmail">@Model.ContactEmail</a></p>
+                                    
+                                }
+                            </div>
+                        </div>
+
+
+                        <div class="sellerInfoM@(String.IsNullOrWhiteSpace(Model.ContactName) ? " withoutName" : "")">
+                            <ul>
+                                <li>
+                                    <img src="/Images/System/sel1.gif" />
+                                    <a href="@Url.Action("Index", "Profile", new { id = Model.UserId })">
+                                        <span>Профиль</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <img src="/Images/System/sel2.gif" />
+                                    <a href="@Url.Action("Create", "PrivateMessage", new { recepientId = Model.UserId })">
+                                        <span>Написать сообщение</span>
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <img src="/Images/System/sel3.gif" />
+                                    <a href="javascript: void()">
+                                        <span>Город: 
+                                                                                 @if (Model.CityId.HasValue)
+                                                                                 {
+                                                                                     @Model.City.Name
+                                                                                 }
+                                                                                 else
+                                                                                 {
+                                                                                     @:Не указан
+                                                                                 }
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sellerInfoR">
+                            <div>
+                                <img src="/Images/System/sel4.gif" />размещено -<span>@string.Format("{0:dd.MM.yyyy HH:mm}", Model.CreatedAt)</span>
+                            </div>
+                            <div>
+                                <img src="/Images/System/sel5.gif" />просмотров -<em>@Model.ViewsCount</em>
+                            </div>
+                            @if (User.Identity.IsAuthenticated || ViewBag.IsUserCanEdit)
+                            {
+                                if (WebSecurity.CurrentUserId == Model.UserId || User.IsInRole("Administrator") || User.IsInRole("Moderator") || ViewBag.IsUserCanEdit)
+                                {
+                                <div>
+                                    <img src="/Images/System/sel2.gif" />
+                                    @Html.ActionLink("редактировать", "Edit", "Announcement", new { id = Model.Id }, null)
+                                </div>
+                                <div>
+                                    <img src="/Images/System/sel2.gif" />
+                                    @Html.ActionLink("удалить", "Delete", "Announcement", new { id = Model.Id }, null)
+                                </div>
+                                }
+                            }
+
+
+                            @*<div class="UpAnnouncementBlock">
+                                @using (Html.BeginForm("Announcement", "Premium"))
+                                {
+                                    @Html.HiddenFor(x => x.Id);
+                                    <input type="submit" value="Поднять объявление" />                                                              
+                                }
+                            </div>*@
+
+
+
+                            <div class="UpAnnouncementBlock">
+                                @if ((Model.UserId != -1 && WebSecurity.CurrentUserId == Model.UserId) || (ViewBag.IsUserCanEdit) || User.IsInRole("Administrator"))
+                                {
+                                    var time = DateTime.Now - Model.UpTime;
+                                    time = TimeSpan.FromHours(ViewBag.UpTimeHours) - time;
+                                    //using (Html.BeginForm("Up", "Announcement"))
+                                    using (Html.BeginForm("Announcement", "Premium"))
+                                    {
+                                        if (Model.UpTime <= DateTime.Now.AddHours(-ViewBag.UpTimeHours) || User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+                                        {
+                                    @Html.HiddenFor(x => x.Id);
+                                    <input type="submit" value="Поднять объявление" />
+                                                              if ((User.IsInRole("Administrator") || User.IsInRole("Moderator")) && time.TotalSeconds > 0)
+                                                              {
+                                    <div style="margin-right: 0;">
+                                        <p><b>Поднять объявление можно будет через:  @time.Hours ч. @time.Minutes м.</b></p>
+                                    </div>
+                                                              }
+                                        }
+                                        else
+                                        {
+                                    <p><b>Поднять объявление можно будет через:  @time.Hours ч. @time.Minutes м.</b></p>
+                                        }
+                                    }
+                                }
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="itemInfoFull">
+                        <pre class="itemInfoFull-contailner">@Html.Raw(Model.Description)</pre>
+                    </div>
+
+                     @Html.Partial("SlideShow", new SliderModel
+                     {
+                         Slides = Model.Images.OrderBy(i => i.CreatedAt).Select(q => String.Format("/Images/Users/{0}", q.Link)).ToList(),
+                         Thumbnails = Model.Images.OrderBy(i => i.CreatedAt).Select(q => String.Format("/Images/Thumbnails/Announcement/{0}", q.Link)).ToList(),
+                     })
+
+                    
+                    
+                    @* List of comments *@
+                    @Html.Partial("_AnnouncementComments", (IPagedList<AnnouncementComment>)ViewBag.Comments ?? new PagedList<AnnouncementComment>(null, 1, 1))
+
+
+
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+
+
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/cusel-min-2.5.js")
+   @* @Scripts.Render("~/Scripts/jquery.tinyscrollbar.min.js")*@
+   @* @Scripts.Render("~/Scripts/jquery.jcarousel.min.js")*@
+    @Styles.Render("~/Content/Cusel.css")
+ @*   @Styles.Render("~/Content/Tinyscrollbar.css")*@
+}

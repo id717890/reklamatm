@@ -1,0 +1,33 @@
+﻿@model Domain.Entity.Realty.Realty
+
+@{
+    Layout = "~/Views/_Layout/_Mobile.cshtml";
+    ViewBag.Title = "Удаление объявления";
+}
+
+<div class="bg-silver">
+    <div class="main-header">
+        <div class="btn-panel mb-2 mt-2 d-inline-block">
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="card mt-1 mr-3 ml-3">
+            <div class="card-header">
+                Удаление объявления
+                <i class="fa fa-exclamation"></i>
+            </div>
+            <div class="card-body">
+                <h5>Вы уверены, что хотите удалить объявление `@Model.Name`?</h5>
+                @using (Html.BeginForm("DeleteConfirmedMobile", "Realty", new { id = Model.Id }, FormMethod.Get, null))
+                {
+                    <button type="submit" class="btn btn-large btn-danger"><i class="fa fa-check"></i> Удалить</button>
+                    <a href="@Url.Action("MyAnnouncementsMobile","Bookmarks")" class="btn btn-large btn-secondary"><i class="fa fa-times"></i> Отмена</a>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

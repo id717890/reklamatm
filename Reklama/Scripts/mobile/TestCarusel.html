@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../../Content/mobile/touch-carousel.css" rel="stylesheet" />
+    <script src="jquery-1.11.3.min.js"></script>
+    <script src="touch-carusel.js"></script>
+        
+    <style>
+        /* Copyright 2011, Dmitry Semenov, http://dimsemenov.com */
+
+
+
+    </style>
+</head>
+    <body>
+        
+
+        <div id="carousel-image-and-text" class="touchcarousel grey-blue">
+            <ul class="touchcarousel-container">
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/1.jpg" width="170" height="230" />
+                        <h4>Touch Navigation</h4>
+                        <p>For iOS and Android</p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/2.jpg" width="170" height="230" />
+                        <h4>Four Skins</h4>
+                        <p>With photoshop files</p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/3.jpg" width="170" height="230" />
+                        <h4>Responsive layout</h4>
+                        <p>Change width at any time</p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/4.jpg" width="170" height="230" />
+                        <h4>Powerful API</h4>
+                        <p>Public methods, callbacks</p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/5.jpg" width="170" height="230" />
+                        <h4>HTML content</h4>
+                        <p>Inside each slide</p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/6.jpg" width="170" height="230" />
+                        <h4>Smart autoplay</h4>
+                        <p>Stops after first action</p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="#carousel-image-text-horizontal">
+                        <img src="img/170x230/7.jpg" width="170" height="230" />
+                        <h4>Items size can vary</h4>
+                        <p>View <u>Example 4</u></p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/8.jpg" width="170" height="230" />
+                        <h4>Paging mode</h4>
+                        <p>Enables snapping to items</p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/9.jpg" width="170" height="230" />
+                        <h4>Styleable Scrollbar</h4>
+                        <p>Change size, position, etc.</p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/10.jpg" width="170" height="230" />
+                        <h4>Fast CSS3 transitions</h4>
+                        <p>For supported devices</p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/13.jpg" width="170" height="230" />
+                        <h4>Clean Code</h4>
+                        <p>Edit source code easily</p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/14.jpg" width="170" height="230" />
+                        <h4>Free support</h4>
+                        <p>And lifetime updates</p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/15.jpg" width="170" height="230" />
+                        <h4>Load it via Ajax</h4>
+                        <p>Has destroy() method</p>
+                    </a>
+                </li>
+                <li class="touchcarousel-item">
+                    <a class="item-block" href="javascript:;">
+                        <img src="img/170x230/16.jpg" width="170" height="230" />
+                        <h4>Simple Documentation</h4>
+                        <p>Step-by-step instructions</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <script type="text/javascript">
+            $(function(){
+                $("#carousel-image-and-text").touchCarousel({
+                    pagingNav: false,
+                    snapToItems: false,
+                    itemsPerMove: 2,
+                    scrollToLast: false,
+                    loopItems: false,
+                    scrollbar: true
+                }).data('touchCarousel');
+            })
+        </script>
+
+    </body>
+</html>

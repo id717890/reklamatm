@@ -1,0 +1,35 @@
+﻿@using Reklama
+@model IEnumerable<Reklama.Data.Entities.Product>
+
+@{
+    Layout = null;
+}
+
+<div class="popProducts">
+    <p class="listTitle">Популярные товары</p>
+    @Html.ActionLink("Весь список", "PopularProducts","Product", null, new { @class="allList" })
+    
+    @if(Model != null)
+    {
+        <ul>
+            @foreach(var product in Model)
+            {
+                <li>
+                    <div>
+                        <a href="@Url.Action("Details", "Catalog", new { id = product.ID })">
+                            <span class="img">
+                                @Html.Partial("_ProductTitularImage", product.ProductImage)</span>
+                            <div class="text">
+                                <p>@product.Title</p>
+                                @if(product.ShopProduct.Count > 0)
+                                {
+                                    @:от @Convert.ToInt32(product.ShopProduct.Min(p => p.Price)).ToString() $
+                                }
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+</div>

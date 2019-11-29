@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Reklama.Data.Entities.Category>
+@{
+    Layout = null;
+}
+<div class="popCatalogueLeft">
+    <p class="listTitle">Популярные разделы каталога</p>
+
+    @if(Model != null)
+    {
+        <ul>
+            @foreach (var popular in Model)
+            {
+                var shopsProducts = popular.Product.SelectMany(s => s.ShopProduct);
+
+                <li>
+                    @Html.ActionLink(popular.Name, "Category", "Catalog", new {secondCategoryId = popular.ID}, null)
+                    <sup>&nbsp;
+                        @if (shopsProducts.Any())
+                        {
+                            @:от @Convert.ToInt32(shopsProducts.Min(p => p.Price)).ToString() $
+                        }
+                    </sup>
+                </li>
+            }
+        </ul>
+    }
+</div>
