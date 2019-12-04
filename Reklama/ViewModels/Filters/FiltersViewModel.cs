@@ -14,7 +14,7 @@ namespace Reklama.ViewModels.Filters
     {
         public int? CityId { get; set; }
         public string Description { get; set; }
-        public int? Rooms { get; set; } = 1;
+        public string Rooms { get; set; } = "1";
         public int? SquareFrom { get; set; }
         public int? SquareTo { get; set; }
         public int? LevelFrom { get; set; }

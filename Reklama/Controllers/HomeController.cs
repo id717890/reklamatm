@@ -98,7 +98,16 @@ namespace Reklama.Controllers
             if (model.CityId > 0) result = result.Where(x => x.CityId == model.CityId);
             if (!string.IsNullOrEmpty(model.Description)) result = result.Where(x => x.Description.ToLower().Contains(model.Description.ToLower()));
             //if (model.Rooms > 0) result = result.Where(x => x.RoomsCount == model.Rooms);
-            result = result.Where(x => x.RoomsCount == model.Rooms);
+            try
+            {
+                if (!string.IsNullOrEmpty(model.Rooms))
+                {
+                    if (model.Rooms[model.Rooms.Length - 1] == '|') model.Rooms = model.Rooms.Substring(0, model.Rooms.Length - 1);
+                    var strExplode = model.Rooms.Split('|');
+                    result = result.Where(x => strExplode.Contains(x.RoomsCount.ToString()));
+                }
+            } catch{ }
+            //result = result.Where(x => x.RoomsCount == model.Rooms);
             if (model.LevelFrom > 0) result = result.Where(x => x.Floor >= model.LevelFrom || x.Floor == null);
             if (model.LevelTo > 0) result = result.Where(x => x.Floor <= model.LevelTo || x.Floor == null);
             if (model.SquareFrom > 0) result = result.Where(x => x.Square >= model.SquareFrom || x.Square == null);

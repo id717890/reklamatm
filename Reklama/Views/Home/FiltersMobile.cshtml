@@ -42,18 +42,18 @@
                             <div class="btn-group w-100" role="group" aria-label="Basic example">
                                 @for (int i = 1; i <= 5; i++)
                                 {
-                                    if (Model.Rooms == i)
+                                    if (Model.Rooms.Contains(i.ToString()))
                                     {
-                                        <button type="button" class="btn btn-primary btn-room-count active" data-count="@i">@i</button>
+                                        <button type="button" class="btn btn-primary btn-room-count-multy active" data-count="@i">@i</button>
                                     }
                                     else
                                     {
-                                        <button type="button" class="btn btn-outline-default btn-room-count" data-count="@i">@i</button>
+                                        <button type="button" class="btn btn-outline-default btn-room-count-multy" data-count="@i">@i</button>
                                     }
                                 }
-                                <button type="button" class="btn btn-default btn-room-count" data-count="0">>5</button>
+                                <button type="button" class="btn btn-default btn-room-count-multy" data-count="0">>5</button>
                             </div>
-                            @Html.HiddenFor(x => x.Rooms, new { @id = "room-count-field", @autocomplete = "off" })
+                            @Html.HiddenFor(x => x.Rooms, new { @id = "room-count-field-multy", @autocomplete = "off" })
                         </div>
                         <div class="form-group">
                             <div class="row">

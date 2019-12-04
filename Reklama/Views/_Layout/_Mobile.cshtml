@@ -150,6 +150,15 @@
                 $(this).addClass("active btn-primary");
             });
 
+            $(".btn-room-count-multy").click(function () {
+                $(this).toggleClass("active btn-primary");
+                var str = '';
+                $(".btn-room-count-multy.active").each(function (x, y) {
+                    str += $(this).data("count") + "|";
+                });
+                $('#room-count-field-multy').val(str);
+            });
+
             //$('.carousel-item-details').find('img').each(function () {
             //    var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
             //    $(this).addClass(imgClass);
