@@ -25,7 +25,7 @@ namespace Domain.Entity.Shared
 
         [AllowHtml]
         [Required(ErrorMessage = "Поле 'Описание' обязательно для заполнения")]
-        [StringLength(100000, ErrorMessage = "Минимальная длина - 20, максимальная - 4000 символов", MinimumLength = 20)]
+        [StringLength(100000, ErrorMessage = "Минимальная длина - 0, максимальная - 4000 символов", MinimumLength = 0)]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Подробное описание:")]
         public string Description { get; set; }

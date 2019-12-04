@@ -99,10 +99,10 @@ namespace Reklama.Controllers
             if (!string.IsNullOrEmpty(model.Description)) result = result.Where(x => x.Description.ToLower().Contains(model.Description.ToLower()));
             //if (model.Rooms > 0) result = result.Where(x => x.RoomsCount == model.Rooms);
             result = result.Where(x => x.RoomsCount == model.Rooms);
-            if (model.LevelFrom > 0) result = result.Where(x => x.Floor >= model.LevelFrom);
-            if (model.LevelTo > 0) result = result.Where(x => x.Floor <= model.LevelTo);
-            if (model.SquareFrom > 0) result = result.Where(x => x.Square >= model.SquareFrom);
-            if (model.SquareTo > 0) result = result.Where(x => x.Square <= model.SquareTo);
+            if (model.LevelFrom > 0) result = result.Where(x => x.Floor >= model.LevelFrom || x.Floor == null);
+            if (model.LevelTo > 0) result = result.Where(x => x.Floor <= model.LevelTo || x.Floor == null);
+            if (model.SquareFrom > 0) result = result.Where(x => x.Square >= model.SquareFrom || x.Square == null);
+            if (model.SquareTo > 0) result = result.Where(x => x.Square <= model.SquareTo || x.Square == null);
             switch(model.FieldSort)
             {
                 case 1:
@@ -128,7 +128,11 @@ namespace Reklama.Controllers
 
         private FiltersViewModel FillFiltersModelList (FiltersViewModel model = null)
         {
-            if (model == null) model = new FiltersViewModel();
+            if (model == null)
+            {
+                model = new FiltersViewModel();
+                model.LevelTo = 25;
+            }
             model.Cities = _cityRepository.Read();
             return model;
         }

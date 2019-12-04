@@ -33,7 +33,7 @@
                             @Html.DropDownListFor(x => x.CityId, new SelectList((Model.Cities), "Id", "Name"), "Выберите город", new { @class = "form-control", id = "city-field" })
                         </div>
                         <div class="form-group">
-                            <label for="description-field">Текс объявления:</label>
+                            <label for="description-field">Поиск по тексту объявления:</label>
                             @Html.TextBoxFor(x => x.Description, new { Class = "form-control", id = "description-field" })
                         </div>
                         <div class="form-group">
@@ -73,7 +73,7 @@
                                     @*<label for="level-from-field">Этаж от:</label>*@
                                     @*@Html.TextBoxFor(x => x.LevelFrom, new { Class = "form-control", type = "number", id = "level-from-field", min = "0", max = "999" })*@
                                     <div class="form-group">
-                                        <label for="room-count-field">Этажей от:</label>
+                                        <label for="room-count-field">Этаж не ниже:</label>
                                         @Html.DropDownListFor(x => x.LevelFrom, Model.FlorsList(), new { @class = "form-control" })
                                         @Html.ValidationMessageFor(x => x.LevelFrom)
                                     </div>
@@ -82,7 +82,7 @@
                                     @*<label for="level-to-field">Этаж до:</label>*@
                                     @*@Html.TextBoxFor(x => x.LevelTo, new { Class = "form-control", type = "number", id = "level-to-field", min = "0", max = "999" })*@
                                     <div class="form-group">
-                                        <label for="room-count-field">Этаж до:</label>
+                                        <label for="room-count-field">Этаж не выше:</label>
                                         @Html.DropDownListFor(x => x.LevelTo, Model.FlorsList(), new { @class = "form-control" })
                                         @Html.ValidationMessageFor(x => x.LevelTo)
                                     </div>
