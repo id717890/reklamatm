@@ -3490,6 +3490,7 @@
     <Content Include="Views\Realty\PlayStopMobile.cshtml" />
     <Content Include="Views\Partial\_RealtyItem.cshtml" />
     <Content Include="Views\Page\DetailsMobile.cshtml" />
+    <Content Include="Views\Shared\_FileUploadVue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

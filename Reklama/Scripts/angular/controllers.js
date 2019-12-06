@@ -58,8 +58,8 @@ angular.module('app', ['angularFileUpload'])
                     <a href="#" class="button remove remove-times" title="" data-filename="` + item.file.name + `" onclick="javascript: removeImage('` + item.file.name + `'); return false;"ng-click="item.remove()">
                         <i class="fa fa-times fa-2x text-danger"></i>
                     </a>
-                    <a data-fancybox="gallery" style="float: right;" href="/Images/Realty/`+ response.newFilename + `">
-                        <img class="img-fluid" src="/Images/Thumbnails/Realty/`+ response.newFilename + `">
+                    <a data-fancybox="gallery" style="float: right; width: 100%;" href="/Images/Realty/`+ response.newFilename + `">
+                        <img class="img-fluid" style="width: 100%" src="/Images/Thumbnails/Realty/`+ response.newFilename + `">
                     </a>
                 </div>`);
         });
