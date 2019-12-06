@@ -260,7 +260,7 @@ namespace Reklama.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult angularUploadFile(string cAction, string cController)
+        public JsonResult angularUploadFile(string cAction, string cController, string pos, string rndStr)
         {
             var file = Request.Files.Get("file");
             var uploader = new ImageUploader(file);
@@ -270,7 +270,9 @@ namespace Reklama.Controllers
                 filename = uploader.Name,
                 contentType = uploader.ContentType,
                 contentLength = uploader.ContentLength,
-                newFilename = uploader.UniqueName
+                newFilename = uploader.UniqueName,
+                pos = pos,
+                rndStr = rndStr
             };
 
             try
