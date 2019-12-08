@@ -39,14 +39,14 @@
                     </div>
 
                     <ul class="list-unstyled components" style="border-bottom: none">
-                        <li>
+                        @*<li>
                             <div class="input-group ml-4 mr-4 mb-3 w-auto">
                                 <input type="text" class="form-control" placeholder="Поиск">
                                 <div class="input-group-append">
                                     <button class="btn btn-success" type="button" id="button-addon2"><i class="fa fa-search"></i></button>
                                 </div>
                             </div>
-                        </li>
+                        </li>*@
                         <li class="@(ViewContext.RouteData.Values["Action"].ToString().ToLower() == "indexmobile" || ViewContext.RouteData.Values["Action"].ToString().ToLower() == "index" ? "active" : "")">
                             <a href="@Url.Action("IndexMobile", "Home")"><i class="fa fa-home"></i> Главная</a>
                         </li>
@@ -114,6 +114,26 @@
             //    theme: "minimal"
             //});
 
+            //$('.car-img').each(function () {
+            //    //var id = $(this).data('car-img-id');
+            //    console.log($(this).height())
+            //    if ($(this).height() < 230) {
+            //        //$('#car-img-' + id).css({height: '100% !important'})
+            //        $(this).css({ height: '100%' });
+            //    }
+            //});
+
+            //function setHeight(id) {
+            //    $('*[data-car-img-id="' + id +'"]').each(function () {
+            //        //var id = $(this).data('car-img-id');
+            //        console.log($(this).height())
+            //        if ($(this).height() < 230) {
+            //            //$('#car-img-' + id).css({height: '100% !important'})
+            //            $(this).css({ height: '100%' });
+            //        }
+            //    });
+            //}
+
 
             $('#dismiss, .overlay').on('click', function () {
                 $('#sidebar').removeClass('active');
@@ -132,15 +152,19 @@
                 $("#item-details" + id).show("blind", "fast", function () {
                     $("#item" + id).hide("blind", "fast");
                     $(this).css("display", "flex");
+                    //setHeight(id);
                 });
 
             });
 
             $(".item-details-btn").on("click", function () {
                 var id = $(this).data("id");
-                $("#item" + id).show("blind", "fast", function () {
-                    $("#item-details" + id).hide("blind", "fast");
-                });
+                if (!$(this).hasClass('phone-field')) {
+                    $("#item" + id).show("blind", "fast", function () {
+                        $("#item-details" + id).hide("blind", "fast");
+                    });
+                }
+                
             });
 
             $(".btn-room-count").click(function () {

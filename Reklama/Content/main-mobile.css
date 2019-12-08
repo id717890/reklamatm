@@ -851,12 +851,16 @@ a.article:hover {
 
 /* Carousel */
 .carousel-h {
-    height: 230px !important;
+    height: 170px !important;
     overflow-y: hidden;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     margin-top: 0 !important;
+}
+
+.carousel-inner, .carousel-item {
+    /*height: 170px;*/
 }
 
 /*.carousel-item {
