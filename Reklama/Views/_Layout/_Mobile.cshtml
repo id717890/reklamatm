@@ -154,7 +154,12 @@
                     $(this).css("display", "flex");
                     //setHeight(id);
                 });
-
+                //Увеличение кол-ва просмотров при клике и разворачивании объявления
+                $.ajax({
+                    url: '/Realty/IncreaseViews',
+                    type: 'POST',
+                    data: { id: id}
+                });
             });
 
             $(".item-details-btn").on("click", function () {
@@ -165,6 +170,20 @@
                     });
                 }
                 
+            });
+
+            $(".btn-field-sort").click(function () {
+                var count = $(this).data("sort");
+                $('#field-sort-field').val(count);
+                $(".btn-field-sort").removeClass("active btn-primary");
+                $(this).addClass("active btn-primary");
+            });
+
+            $(".btn-direction-sort").click(function () {
+                var count = $(this).data("sort");
+                $('#direction-sort-field').val(count);
+                $(".btn-direction-sort").removeClass("active btn-primary");
+                $(this).addClass("active btn-primary");
             });
 
             $(".btn-room-count").click(function () {

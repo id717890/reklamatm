@@ -7,7 +7,7 @@
     min-height: 100%;
 }
 
-.btn-room-count, .btn-room-count-multy {
+.btn-room-count, .btn-room-count-multy, .btn-direction-sort, .btn-field-sort {
     border: 1px solid silver;
 }
 
@@ -22,6 +22,10 @@ ul li.static a:hover {
 
 .item-details-btn, .item-short {
     cursor: pointer;
+}
+
+.item-short {
+    padding-right: 10px;
 }
 
 .desctiption-textarea, .room-count {

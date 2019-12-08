@@ -91,18 +91,30 @@
                         </div>
                         <div class="form-group">
                             <p class="m-0 font-weight-bold"><label for="city-field">Упорядочить по:</label></p>
-                            <div class="form-check form-check-inline">
+                            <div class="btn-group w-100" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-direction-sort @(Model.DirectionSort == 2 ? "btn-primary active" : "btn-outline-default")" data-sort="2">Убыванию</button>
+                                <button type="button" class="btn btn-direction-sort @(Model.DirectionSort == 1 ? "btn-primary active" : "btn-outline-default")" data-sort="1">Возрастанию</button>
+                            </div>
+                            @Html.HiddenFor(x => x.DirectionSort, new { @id = "direction-sort-field", @autocomplete = "off" })
+                            @*<div class="form-check form-check-inline">
                                 @Html.RadioButtonFor(x => x.DirectionSort, 2, new { @class = "form-check-input", id = "radio2" })
                                 <label class="form-check-label" for="radio2">Убыванию</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 @Html.RadioButtonFor(x => x.DirectionSort, 1, new { @class = "form-check-input", id = "radio1" })
                                 <label class="form-check-label" for="radio1">Возрастанию</label>
-                            </div>
+                            </div>*@
                         </div>
                         <div class="form-group">
                             <p class="m-0 font-weight-bold"><label for="city-field">Сортировать по:</label></p>
-                            <div class="form-check form-check-inline">
+                            <div class="btn-group w-100" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-field-sort @(Model.FieldSort == 2 ? "btn-primary active" : "btn-outline-default")" data-sort="2">Дата</button>
+                                <button type="button" class="btn btn-field-sort @(Model.FieldSort == 1 ? "btn-primary active" : "btn-outline-default")" data-sort="1">Цена</button>
+                                <button type="button" class="btn btn-field-sort @(Model.FieldSort == 3 ? "btn-primary active" : "btn-outline-default")" data-sort="3">Количеству м<sup>2</sup></button>
+                                <button type="button" class="btn btn-field-sort @(Model.FieldSort == 4 ? "btn-primary active" : "btn-outline-default")" data-sort="4">Цена за м<sup>2</sup></button>
+                            </div>
+                            @Html.HiddenFor(x => x.FieldSort, new { @id = "field-sort-field", @autocomplete = "off" })
+                            @*<div class="form-check form-check-inline">
                                 @Html.RadioButtonFor(x => x.FieldSort, 2, new { @class = "form-check-input", id = "radio4" })
                                 <label class="form-check-label" for="radio4">Дата</label>
                             </div>
@@ -117,7 +129,7 @@
                             <div class="form-check form-check-inline">
                                 @Html.RadioButtonFor(x => x.FieldSort, 4, new { @class = "form-check-input", id = "radio6" })
                                 <label class="form-check-label" for="radio6">Цене за м<sup>2</sup></label>
-                            </div>
+                            </div>*@
                         </div>
                         <div class="form-group">
                             @Html.AntiForgeryToken()

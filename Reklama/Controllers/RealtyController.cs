@@ -22,6 +22,7 @@ using Reklama.Models;
 using Reklama.Models.ViewModels.Realty;
 using System.Data;
 using Domain.Enums;
+using System.Net;
 
 namespace Reklama.Controllers
 {
@@ -118,6 +119,18 @@ namespace Reklama.Controllers
 
         //
         // GET: /Realty/Details/5
+
+        [HttpPost]
+        public ActionResult IncreaseViews (int id)
+        {
+            var realty = _realtyRepository.Read(id);
+            if (realty != null)
+            {
+                realty.Views += 1;
+                _realtyRepository.SaveIgnoreCurrency(realty);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.OK);  // OK = 200
+        }
 
         public ActionResult Details(int? id, int? commentPage, RealtySortByParams sortModel = null)
         {
