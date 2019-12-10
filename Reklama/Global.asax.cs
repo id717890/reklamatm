@@ -9,6 +9,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Security;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Reklama.App_Start;
 using Reklama.Infrastructure;
@@ -21,6 +22,14 @@ namespace Reklama
 
     public class MvcApplication : System.Web.HttpApplication
     {
+
+        protected void Application_BeginRequest()
+        {
+            if (FormsAuthentication.RequireSSL && !Request.IsSecureConnection)
+            {
+                Response.Redirect(Request.Url.AbsoluteUri.Replace("http://", "https://"));
+            }
+        }
 
         protected void Application_Start()
         {
