@@ -1,4 +1,5 @@
-﻿
+﻿@model Domain.Entity.Realty.Realty
+
 <div id="vueuploader">
     <button type="button" class="btn btn-large  btn-outline-primary w-100" onclick="document.getElementById('myfile').click();">
         <i class="fa fa-camera"></i>
@@ -7,6 +8,39 @@
 
     <input type="file" id="myfile" ref="fileInput" style="display: none;" v-on:change="onFileSelected('Realty', $event)" multiple />
 
-    <div id="imageContainer" style="display: none"></div>
-    <div id="imgcontainer" class="row px-2"></div>
+    @if (ViewBag.IsEdit == false)
+    {
+
+        <div id="imageContainer" style="display: none"></div>
+        <div id="imgcontainer" class="row px-2"></div>
+    }
+    else
+    {
+        <div id="imageContainer" style="display: none">
+            @if (Model.Photos != null && Model.Photos.Any())
+            {
+                foreach (var photo in Model.Photos)
+                {
+                    <input name="imagesNames[]" class="uploadedImage" data-filename="@("num" + photo.Id)" value="@photo.Link;false" />
+                }
+            }
+        </div>
+
+        <div id="imgcontainer" class="row px-2">
+            @if (Model.Photos != null && Model.Photos.Any())
+            {
+                foreach (var photo in Model.Photos)
+                {
+                    <div class="col-lg-4 col-md-6 col-6 px-0 thumb img-block-gallery" data-filename="@("image_" + photo.Id)" id="@("image_" + photo.Id)">
+                        <a href="#" class="button remove remove-times" title="" onclick="javascript: removeImage(@("'num" + photo.Id + "', '" + photo.Id + "')"); return false;">
+                            <i class="fa fa-times fa-2x text-danger"></i>
+                        </a>
+                        <a style="float: right; width: 100%;" href="#" onclick="event.preventDefault()">
+                            <img class="img-fluid" style="width: 100%" src=@("/Images/Thumbnails/Realty/" + photo.Link)>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+    }
 </div>
