@@ -40,13 +40,13 @@
 
                     <ul class="list-unstyled components" style="border-bottom: none">
                         @*<li>
-                            <div class="input-group ml-4 mr-4 mb-3 w-auto">
-                                <input type="text" class="form-control" placeholder="Поиск">
-                                <div class="input-group-append">
-                                    <button class="btn btn-success" type="button" id="button-addon2"><i class="fa fa-search"></i></button>
+                                <div class="input-group ml-4 mr-4 mb-3 w-auto">
+                                    <input type="text" class="form-control" placeholder="Поиск">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-success" type="button" id="button-addon2"><i class="fa fa-search"></i></button>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>*@
+                            </li>*@
                         <li class="@(ViewContext.RouteData.Values["Action"].ToString().ToLower() == "indexmobile" || ViewContext.RouteData.Values["Action"].ToString().ToLower() == "index" ? "active" : "")">
                             <a href="@Url.Action("IndexMobile", "Home")"><i class="fa fa-home"></i> Главная</a>
                         </li>
@@ -158,7 +158,7 @@
                 $.ajax({
                     url: '/Realty/IncreaseViews',
                     type: 'POST',
-                    data: { id: id}
+                    data: { id: id }
                 });
             });
 
@@ -169,7 +169,7 @@
                         $("#item-details" + id).hide("blind", "fast");
                     });
                 }
-                
+
             });
 
             $(".btn-field-sort").click(function () {
@@ -220,17 +220,17 @@
     @*@Scripts.Render("/Scripts/slides.min.jquery.js")*@
     @*Scripts.Render("~/bundles/angular-file-uploader")*@
     @*@Scripts.Render("~/Scripts/angular/es5-shim.min.js")*@
-    @Scripts.Render("~/Scripts/angular/angular.min.js")
-    @Scripts.Render("~/Scripts/angular/angular-file-upload.js")
-    @Scripts.Render("~/Scripts/angular/controllers.js")
-    @Scripts.Render("~/Scripts/angular/directives.js")
+    @*@Scripts.Render("~/Scripts/angular/angular.min.js")*@
+    @*@Scripts.Render("~/Scripts/angular/angular-file-upload.js")*@
+    @*@Scripts.Render("~/Scripts/angular/controllers.js")*@
+    @*@Scripts.Render("~/Scripts/angular/directives.js")*@
     @*@Scripts.Render("~/Scripts/Search.js")*@
     @*<script src="@Url.Content("~/Scripts/regionSections.js")" type="text/javascript"></script>*@
 
     @RenderSection("Scripts", required: false)
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    @Scripts.Render("~/Scripts/vue.js")
+    @Scripts.Render("~/Scripts/axios.js")
     <script>
         function removeImage(fileName, pos) {
             console.log(fileName)
@@ -243,7 +243,7 @@
             console.log(element);
 
             if (file) {
-                remove(file.val());
+                //remove(file.val());
                 file.remove();
                 element.remove();
             }
@@ -278,12 +278,13 @@
                     if (this.files) {
                         for (var i = 0; i <= this.files.length - 1; i++) {
                             const rndStr = rndString();
+                            console.log(1)
                             $('#imgcontainer').append(`
-                                <div class="col-lg-4 col-md-6 col-6 px-0 thumb img-block-gallery" data-filename="image_` + rndStr + `" id="image_` + rndStr + `">
-                                <div id="progress_`+ rndStr + `">
-                                    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-                                </div>
-                                </div>`)
+                                        <div class="col-lg-4 col-md-6 col-6 px-0 thumb img-block-gallery" data-filename="image_` + rndStr + `" id="image_` + rndStr + `">
+                                            <div id="progress_`+ rndStr + `">
+                                                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                                            </div>
+                                        </div>`)
                             const fd = new FormData()
                             fd.append('file', this.files[i], this.files[i].name)
                             fd.append('cController', this.ctor)
@@ -296,14 +297,14 @@
                             }).then(x => {
                                 //console.log(x)
                                 $('#progress_' + x.data.rndStr).remove();
-                                $('#imageContainer').append('<input type="hidden" name="imagesNames[]" class="uploadedImage" data-filename="' + x.data.filename + '" value="' + x.data.newFilename + '" />');
+                                $('#imageContainer').append('<input type="hidden" name="imagesNames[]" class="uploadedImage" data-filename="' + x.data.filename + '" value="' + x.data.newFilename + ';false" />');
                                 $('#image_' + x.data.rndStr).append(`
-                                    <a href="#" class="button remove remove-times" title="" data-filename="` + x.data.filename + `" onclick="javascript: removeImage('` + x.data.filename + `', '` + x.data.rndStr +`'); return false;"ng-click="item.remove()">
-                                        <i class="fa fa-times fa-2x text-danger"></i>
-                                    </a>
-                                    <a  style="float: right; width: 100%;" href="#" onclick="event.preventDefault()">
-                                        <img class="img-fluid" style="width: 100%" src="/Images/Thumbnails/Realty/`+ x.data.newFilename + `">
-                                    </a>`)
+                                            <a href="#" class="button remove remove-times" title="" data-filename="` + x.data.filename + `" onclick="javascript: removeImage('` + x.data.filename + `', '` + x.data.rndStr + `'); return false;">
+                                                <i class="fa fa-times fa-2x text-danger"></i>
+                                            </a>
+                                            <a  style="float: right; width: 100%;" href="#" onclick="event.preventDefault()">
+                                                <img class="img-fluid" style="width: 100%" src="/Images/Thumbnails/Realty/`+ x.data.newFilename + `">
+                                            </a>`)
                                 //console.log(this.$refs['progress_' + x.data.pos])
                                 //this.$refs['progress_' + x.data.pos].remove()
                                 //console.log(x)

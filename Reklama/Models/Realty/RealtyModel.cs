@@ -304,6 +304,36 @@ namespace Reklama.Models.Realty
             return Save(realty);
         }
 
+        public int Update(Domain.Entity.Realty.Realty realty, string imageNamesSeparated)
+        {
+
+            var currencyRepository = DependencyResolver.Current.GetService<ICurrencyRepository>();
+            currencyRepository.Context = base.Context;
+            var r = currencyRepository.Read(realty.Id);
+
+            if (imageNamesSeparated != null)
+            {
+                var imagesNames = imageNamesSeparated.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                var result = new List<RealtyPhoto>();
+                foreach (var s in imagesNames)
+                {
+                    var obj = s.Split(';');
+                    var image = new RealtyPhoto { CreatedAt = DateTime.Now, Link = obj[0], IsTitular = false };
+                    if (obj.Length > 1)
+                    {
+                        image.IsTitular = obj[1] == "true";
+                    }
+                    var n = realty.Photos;
+
+                    result.Add(image);
+                }
+
+                //realty.Photos = result;
+            }
+
+            return Save(realty);
+        }
+
         public override int Save(Domain.Entity.Realty.Realty entity)
         {
             var currencyRepository = DependencyResolver.Current.GetService<ICurrencyRepository>();

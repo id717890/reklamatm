@@ -12,6 +12,7 @@ namespace Domain.Repository.Realty
     {
         int SaveIgnoreCurrency(Domain.Entity.Realty.Realty realty);
         int Save(Domain.Entity.Realty.Realty realty, string imageNamesSeparated);
+        int Update(Domain.Entity.Realty.Realty realty, string imageNamesSeparated);
         IQueryable<Domain.Entity.Realty.Realty> ReadByUser(IQueryable<Domain.Entity.Realty.Realty> realty, int userId);
         IQueryable<Domain.Entity.Realty.Realty> ReadByCategory(IQueryable<Domain.Entity.Realty.Realty> realty, int categoryId);
         IQueryable<Domain.Entity.Realty.Realty> ReadBySection(IQueryable<Domain.Entity.Realty.Realty> realty, int sectionId);
