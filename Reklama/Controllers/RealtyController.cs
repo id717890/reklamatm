@@ -198,6 +198,7 @@ namespace Reklama.Controllers
             model.FloorCount = 1;
             model.Floor = 1;
             model.RoomsCount = 1;
+            model.FloorCount = 12;
             return View("CreateMobile" ,model);
         }
 

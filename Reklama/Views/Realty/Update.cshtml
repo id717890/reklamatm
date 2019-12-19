@@ -137,9 +137,10 @@
 <div class="bg-silver">
     <div class="main-header">
         <div class="btn-panel mb-2 mt-2 d-inline-block">
+            <img class="img-logo" style="margin: 0; max-height: 39px;" src="/Images/System/logo2.png" alt="reklama.tm" />
         </div>
     </div>
-    <div class="main-container py-3">
+    <div class="main-container py-3 px-3">
         <form id="formCreate" action="/Realty/Update/@Model.Id" method="post">
             <div class="form-group">
                 <label for="city-field">Город:</label>
@@ -211,7 +212,7 @@
 
             <div class="form-group">
                 <label for="phone-field">Телефон:</label>
-                @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1 form-control", @type = "number", id = "phone-field" })
+                @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1 form-control", @type = "text", id = "phone-field" })
             </div>
 
             <div class="form-group desctiption-textarea">

@@ -140,7 +140,7 @@ namespace Domain.Entity.Realty
             }
         }
 
-        public List<SelectListItem> FlorsList ()
+        public IEnumerable<SelectListItem> FlorsList ()
         {
             var result = new List<SelectListItem>();
             for (int i = 1; i <= 25; i++)
@@ -148,10 +148,29 @@ namespace Domain.Entity.Realty
                 result.Add(new SelectListItem
                 {
                     Value = i.ToString(),
-                    Text = i.ToString()
+                    Text = i.ToString(),
+                    Selected = i == 12
                 });
             }
             return result;
+        }
+
+        public SelectList FlorsSelect 
+        {
+            get
+            {
+                var result = new List<SelectListItem>();
+                for (int i = 1; i <= 25; i++)
+                {
+                    result.Add(new SelectListItem
+                    {
+                        Value = i.ToString(),
+                        Text = i.ToString(),
+                        Selected = i == 12
+                    });
+                }
+                return new SelectList(result, "Value", "Text", "12");
+            }
         }
 
         public string DescriptionView

@@ -137,9 +137,10 @@
 <div class="bg-silver">
     <div class="main-header">
         <div class="btn-panel mb-2 mt-2 d-inline-block">
+            <img class="img-logo" style="margin: 0; max-height: 39px;" src="/Images/System/logo2.png" alt="reklama.tm" />
         </div>
     </div>
-    <div class="main-container py-3">
+    <div class="main-container py-3  px-3">
         <form id="formCreate" action="/Realty/CreateMobile" method="post">
             <div class="form-group">
                 <label for="city-field">Город:</label>
@@ -190,16 +191,16 @@
                 <div class="row m-0 p-0">
                     <div class="col-6 ml-0 pl-0">
                         <div class="form-group">
-                            <label for="room-count-field">Этажей в доме:</label>
-                            @Html.DropDownListFor(x => x.FloorCount, Model.FlorsList(), new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.FloorCount)
+                            <label for="floor-field">На каком этаже:</label>
+                            @Html.DropDownListFor(x => x.Floor, Model.FlorsList(), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Floor)
                         </div>
                     </div>
                     <div class="col-6 pr-0">
                         <div class="form-group">
-                            <label for="floor-field">На каком этаже:</label>
-                            @Html.DropDownListFor(x => x.Floor, Model.FlorsList(), new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.Floor)
+                            <label for="room-count-field">Этажей в доме:</label>
+                            @Html.DropDownListFor(x => x.FloorCount, Model.FlorsList(), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.FloorCount)
                         </div>
                     </div>
                 </div>
@@ -218,7 +219,7 @@
 
             <div class="form-group">
                 <label for="phone-field">Телефон:</label>
-                @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1 form-control", @type = "number", id = "phone-field" })
+                @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1 form-control", @type = "text", id = "phone-field" })
             </div>
 
             <div class="form-group desctiption-textarea">

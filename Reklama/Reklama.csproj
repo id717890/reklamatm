@@ -1253,6 +1253,8 @@
     <Content Include="Images\System\logo-0.png" />
     <Content Include="Images\System\logo.png" />
     <Content Include="Images\System\logo1.png" />
+    <Content Include="Images\System\logo2.png" />
+    <Content Include="Images\System\logo3.png" />
     <Content Include="Images\System\logOut.png" />
     <Content Include="Images\System\mAdsBg.png" />
     <Content Include="Images\System\mAdsR.png" />
@@ -1394,6 +1396,7 @@
     <Content Include="Scripts\angular\controllers.js" />
     <Content Include="Scripts\angular\directives.js" />
     <Content Include="Scripts\angular\es5-shim.min.js" />
+    <Content Include="Scripts\axios.js" />
     <Content Include="Scripts\BaseProducts.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -3022,6 +3025,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\uploader.js" />
+    <Content Include="Scripts\vue.js" />
     <Content Include="Scripts\wysiwyg.js" />
     <Content Include="Scripts\CurrencyList.js" />
     <Content Include="testmakeup\home1\css\bootstrap.min.css" />
