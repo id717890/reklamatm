@@ -203,10 +203,15 @@ ul li.static a:hover {
     justify-content: center;
     align-items: center;
     color: darkcyan;
-    background-color: white;
+    background-color: #0c70b9;
     min-height: 53px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.17);
     margin-bottom: 10px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index:2;
+    width: 100%;
 }
 
 .ig-r .input-group-prepend .input-group-text {
@@ -256,7 +261,7 @@ ul li.static a:hover {
     text-align: center;
     background: #7386D5;
     position: absolute;
-    top: 10px;
+    top: 33px;
     right: 10px;
     cursor: pointer;
     -webkit-transition: all 0.3s;
@@ -286,7 +291,7 @@ ul li.static a:hover {
     }
 
 #sidebar .sidebar-header {
-    padding: 20px;
+    padding: 8px 20px;
     background: #6d7fcc;
 }
 
@@ -855,7 +860,7 @@ a.article:hover {
 
 /* Carousel */
 .carousel-h {
-    height: 170px !important;
+    height: 200px !important;
     overflow-y: hidden;
     display: flex;
     justify-content: center;

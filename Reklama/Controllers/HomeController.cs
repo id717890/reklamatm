@@ -96,7 +96,10 @@ namespace Reklama.Controllers
             model.IsFiltered = true;
             var result = _realtyRepository.Read();
             if (model.CityId > 0) result = result.Where(x => x.CityId == model.CityId);
-            if (!string.IsNullOrEmpty(model.Description)) result = result.Where(x => x.Description.ToLower().Contains(model.Description.ToLower()));
+            if (!string.IsNullOrEmpty(model.Description))
+            {
+                result = result.Where(x => x.Description.ToLower().Contains(model.Description.ToLower()) || x.City.Name.ToLower().Contains(model.Description.ToLower()) || x.Street.ToLower().Contains(model.Description.ToLower()));
+            }
             //if (model.Rooms > 0) result = result.Where(x => x.RoomsCount == model.Rooms);
             try
             {

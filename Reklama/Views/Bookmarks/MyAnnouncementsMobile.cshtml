@@ -16,7 +16,12 @@
 
 <div class="bg-silver">
     <div class="main-header">
-        <div class="profile-header-wrapper">
+        <a href="@Url.Action("Index", "Home")">
+            <img class="img-logo" style="margin: 0; max-height: 49px;" src="/Images/System/logo3.png" alt="reklama.tm" />
+        </a>
+    </div>
+    <div class="main-container" style="padding-top: 60px;">
+        <div class="profile-header-wrapper mb-2">
             <h2 class="text-center mt-2 text-white">Профиль</h2>
             <div class="info">
                 <div class="logo">
@@ -34,11 +39,11 @@
                 <div class="personal">
                     <h3>@surname @name</h3>
                     @if (site != null)
-                    { <p>Сайт: @site</p> }
+                    {<p>Сайт: @site</p>}
                     @if (skype != null)
-                    { <p>Skype: @skype</p> }
+                    {<p>Skype: @skype</p>}
                     @if (icq != null)
-                    { <p>ICQ: @icq</p> }
+                    {<p>ICQ: @icq</p>}
                 </div>
             </div>
             <div class="actions">
@@ -50,8 +55,6 @@
                 <a href="@Url.Action("LogOffAlternative", "Account")" class="btn btn-default btn-rounded mt-3"><i class="fa fa-sign-out-alt"></i> Выход</a>
             </div>
         </div>
-    </div>
-    <div class="main-container">
         <div class="main-pub-items">
             @{var rnd = new Random(); }
             @foreach (var realty in Model)
@@ -60,19 +63,19 @@
                     <div class="bg blue">&nbsp;</div>
 
                     @*<div class="img">
-                            @if (realty.Photos.Count != 0)
-                            {
-                                <div class="icon-wrapper">
-                                    <img data-toggle="modal" data-target="@("#item-modal-" + realty.Id)" src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["realty_thumb"], "/", realty.Photos.OrderBy(x => x.CreatedAt).First().Link)" />
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="icon-wrapper blue">
-                                    <i class="fa fa-home fa-3x"></i>
-                                </div>
-                            }
-                        </div>*@
+                        @if (realty.Photos.Count != 0)
+                        {
+                            <div class="icon-wrapper">
+                                <img data-toggle="modal" data-target="@("#item-modal-" + realty.Id)" src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["realty_thumb"], "/", realty.Photos.OrderBy(x => x.CreatedAt).First().Link)" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="icon-wrapper blue">
+                                <i class="fa fa-home fa-3x"></i>
+                            </div>
+                        }
+                    </div>*@
                     <div class="info pl-3">
                         <div class="announce-info">
                             <div class="name-ico mr-2">
@@ -119,7 +122,7 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="line">
                             <div class="icon">
                                 <i class="fa fa-shopping-cart"></i>
