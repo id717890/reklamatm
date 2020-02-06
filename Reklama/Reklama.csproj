@@ -3509,6 +3509,7 @@
     <Content Include="Views\Page\DetailsMobile.cshtml" />
     <Content Include="Views\Shared\_FileUploadVue.cshtml" />
     <Content Include="Views\Realty\Update.cshtml" />
+    <Content Include="Views\Partial\_Language.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

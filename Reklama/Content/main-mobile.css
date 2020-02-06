@@ -934,3 +934,21 @@ a.article:hover {
         transform: rotate(360deg);
     }
 }
+
+
+/* Lang panel */
+
+.lang {
+    text-decoration: none;
+    color: white;
+}
+
+.lang:hover {
+    text-decoration: none;
+    color: silver;
+}
+
+.active-lang {
+    color: orangered !important;
+    font-weight: bold;
+}
