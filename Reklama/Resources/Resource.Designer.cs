@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Прикрепить фото.
+        /// </summary>
+        public static string BtnAddPhoto {
+            get {
+                return ResourceManager.GetString("BtnAddPhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Найти.
         /// </summary>
         public static string BtnFind {
@@ -70,11 +79,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вход.
+        /// </summary>
+        public static string BtnLogin {
+            get {
+                return ResourceManager.GetString("BtnLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Разместить объявление.
+        /// </summary>
+        public static string BtnPublishAd {
+            get {
+                return ResourceManager.GetString("BtnPublishAd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Сбросить.
         /// </summary>
         public static string BtnReset {
             get {
                 return ResourceManager.GetString("BtnReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Адрес.
+        /// </summary>
+        public static string FormAddress {
+            get {
+                return ResourceManager.GetString("FormAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Этажей в доме.
+        /// </summary>
+        public static string FormBuildingFloors {
+            get {
+                return ResourceManager.GetString("FormBuildingFloors", resourceCulture);
             }
         }
         
@@ -97,6 +142,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Подробное описание.
+        /// </summary>
+        public static string FormDescription {
+            get {
+                return ResourceManager.GetString("FormDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Поиск по тексту объявления.
         /// </summary>
         public static string FormFindByText {
@@ -115,6 +169,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to На каком этаже.
+        /// </summary>
+        public static string FormFloor {
+            get {
+                return ResourceManager.GetString("FormFloor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Этажей не ниже.
         /// </summary>
         public static string FormFloorFrom {
@@ -129,6 +192,51 @@ namespace Resources {
         public static string FormFloorTo {
             get {
                 return ResourceManager.GetString("FormFloorTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to м&lt;sup&gt;2&lt;/sup&gt;.
+        /// </summary>
+        public static string FormM {
+            get {
+                return ResourceManager.GetString("FormM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Телефон.
+        /// </summary>
+        public static string FormPhone {
+            get {
+                return ResourceManager.GetString("FormPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фотографии.
+        /// </summary>
+        public static string FormPhotos {
+            get {
+                return ResourceManager.GetString("FormPhotos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Цена.
+        /// </summary>
+        public static string FormPrice {
+            get {
+                return ResourceManager.GetString("FormPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Запомнить меня.
+        /// </summary>
+        public static string FormRememberMe {
+            get {
+                return ResourceManager.GetString("FormRememberMe", resourceCulture);
             }
         }
         
@@ -201,6 +309,15 @@ namespace Resources {
         public static string FormSortFieldSquare {
             get {
                 return ResourceManager.GetString("FormSortFieldSquare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Площадь.
+        /// </summary>
+        public static string FormSquare {
+            get {
+                return ResourceManager.GetString("FormSquare", resourceCulture);
             }
         }
         

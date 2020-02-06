@@ -3,7 +3,7 @@
 <div id="vueuploader">
     <button type="button" class="btn btn-large  btn-outline-primary w-100" onclick="document.getElementById('myfile').click();">
         <i class="fa fa-camera"></i>
-        Прикрепить фотографию
+        @Resources.Resource.BtnAddPhoto
     </button>
 
     <input type="file" id="myfile" ref="fileInput" style="display: none;" v-on:change="onFileSelected('Realty', $event)" multiple />

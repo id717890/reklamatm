@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnAddPhoto" xml:space="preserve">
+    <value>Add photo</value>
+  </data>
   <data name="BtnFind" xml:space="preserve">
     <value>Find</value>
   </data>
+  <data name="BtnLogin" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="BtnPublishAd" xml:space="preserve">
+    <value>Publish ad</value>
+  </data>
   <data name="BtnReset" xml:space="preserve">
     <value>Reset</value>
+  </data>
+  <data name="FormAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="FormBuildingFloors" xml:space="preserve">
+    <value>All floors</value>
   </data>
   <data name="FormCity" xml:space="preserve">
     <value>City</value>
@@ -129,17 +144,38 @@
   <data name="FormCityPlacceholder" xml:space="preserve">
     <value>Select city</value>
   </data>
+  <data name="FormDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
   <data name="FormFindByText" xml:space="preserve">
     <value>Find by text</value>
   </data>
   <data name="FormFlatsCount" xml:space="preserve">
     <value>Count of flats</value>
   </data>
+  <data name="FormFloor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
   <data name="FormFloorFrom" xml:space="preserve">
     <value>Floor from</value>
   </data>
   <data name="FormFloorTo" xml:space="preserve">
     <value>Floor to</value>
+  </data>
+  <data name="FormM" xml:space="preserve">
+    <value>m&lt;sup&gt;2&lt;/sup&gt;</value>
+  </data>
+  <data name="FormPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="FormPhotos" xml:space="preserve">
+    <value>Photos</value>
+  </data>
+  <data name="FormPrice" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="FormRememberMe" xml:space="preserve">
+    <value>Remember me</value>
   </data>
   <data name="FormSortDirection" xml:space="preserve">
     <value>Sort direction</value>
@@ -164,6 +200,9 @@
   </data>
   <data name="FormSortFieldSquare" xml:space="preserve">
     <value>Count of m&lt;sup&gt;2&lt;/sup&gt;</value>
+  </data>
+  <data name="FormSquare" xml:space="preserve">
+    <value>Square</value>
   </data>
   <data name="FormSquareFrom" xml:space="preserve">
     <value>Square frome m&lt;sup&gt;2&lt;/sup&gt;</value>

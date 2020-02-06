@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnAddPhoto" xml:space="preserve">
+    <value>Прикрепить фото</value>
+  </data>
   <data name="BtnFind" xml:space="preserve">
     <value>Найти</value>
   </data>
+  <data name="BtnLogin" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="BtnPublishAd" xml:space="preserve">
+    <value>Разместить объявление</value>
+  </data>
   <data name="BtnReset" xml:space="preserve">
     <value>Сбросить</value>
+  </data>
+  <data name="FormAddress" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="FormBuildingFloors" xml:space="preserve">
+    <value>Этажей в доме</value>
   </data>
   <data name="FormCity" xml:space="preserve">
     <value>Город</value>
@@ -129,17 +144,38 @@
   <data name="FormCityPlacceholder" xml:space="preserve">
     <value>Выберите город</value>
   </data>
+  <data name="FormDescription" xml:space="preserve">
+    <value>Подробное описание</value>
+  </data>
   <data name="FormFindByText" xml:space="preserve">
     <value>Поиск по тексту объявления</value>
   </data>
   <data name="FormFlatsCount" xml:space="preserve">
     <value>Кол-во комнат</value>
   </data>
+  <data name="FormFloor" xml:space="preserve">
+    <value>На каком этаже</value>
+  </data>
   <data name="FormFloorFrom" xml:space="preserve">
     <value>Этажей не ниже</value>
   </data>
   <data name="FormFloorTo" xml:space="preserve">
     <value>Этажей не выше</value>
+  </data>
+  <data name="FormM" xml:space="preserve">
+    <value>м&lt;sup&gt;2&lt;/sup&gt;</value>
+  </data>
+  <data name="FormPhone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="FormPhotos" xml:space="preserve">
+    <value>Фотографии</value>
+  </data>
+  <data name="FormPrice" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="FormRememberMe" xml:space="preserve">
+    <value>Запомнить меня</value>
   </data>
   <data name="FormSortDirection" xml:space="preserve">
     <value>Упорядочить по</value>
@@ -164,6 +200,9 @@
   </data>
   <data name="FormSortFieldSquare" xml:space="preserve">
     <value>Количеству м&lt;sup&gt;2&lt;/sup&gt;</value>
+  </data>
+  <data name="FormSquare" xml:space="preserve">
+    <value>Площадь</value>
   </data>
   <data name="FormSquareFrom" xml:space="preserve">
     <value>Площадь от м&lt;sup&gt;2&lt;/sup&gt;</value>
