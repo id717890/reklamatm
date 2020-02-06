@@ -8,7 +8,6 @@ namespace Domain.Entity.Shared
     public class City: BaseEntity
     {
         public string Name { get; set; }
-        public string NameTm { get; set; }
 
         public override string ToString()
         {
