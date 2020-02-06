@@ -23,7 +23,7 @@
     @*<link href="@Url.Content("~/Content/Reset.css")" rel="stylesheet" />*@
     
 
-    <title>www.reklama.tm</title>
+    <title>>@Resources.Resource.IndexHeader</title>
 </head>
 <body>
     <div class="container-fluid p-0 h-100 bg-silver">
@@ -40,13 +40,13 @@
 
                     <ul class="list-unstyled components" style="border-bottom: none">
                         @*<li>
-                                <div class="input-group ml-4 mr-4 mb-3 w-auto">
-                                    <input type="text" class="form-control" placeholder="Поиск">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-success" type="button" id="button-addon2"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </div>
-                            </li>*@
+            <div class="input-group ml-4 mr-4 mb-3 w-auto">
+                <input type="text" class="form-control" placeholder="Поиск">
+                <div class="input-group-append">
+                    <button class="btn btn-success" type="button" id="button-addon2"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </li>*@
                         <li class="@(ViewContext.RouteData.Values["Action"].ToString().ToLower() == "indexmobile" || ViewContext.RouteData.Values["Action"].ToString().ToLower() == "index" ? "active" : "")">
                             <a href="@Url.Action("IndexMobile", "Home")"><i class="fa fa-home"></i> Главная</a>
                         </li>
@@ -59,6 +59,21 @@
                         <li>
                             <a href="/Page/Details/2"><i class="fa fa-toolbox"></i> Соглашение</a>
                         </li>
+                        @if (!string.IsNullOrEmpty(ViewBag.Language) && ViewBag.Language == "en")
+                        {
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString().ToLower() == "filtersmobile" ? "active" : "")">
+                                <a href="@Url.Action("ChangeCulture","Language", new { lang = "ru" })"><i class="fa fa-filter"></i> RUS</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString().ToLower() == "filtersmobile" ? "active" : "")">
+                                <a href="@Url.Action("ChangeCulture","Language", new { lang = "en" })"><i class="fa fa-filter"></i> ENG</a>
+                            </li>
+                        }
+
+
+
                         <li>
                             <ul class="list-unstyled CTAs">
                                 <li>

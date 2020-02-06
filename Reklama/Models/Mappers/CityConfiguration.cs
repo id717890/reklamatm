@@ -14,6 +14,7 @@ namespace Reklama.Models.Mappers
             ToTable(TableMap.CityTable);
             HasKey(c => c.Id);
             Property(c => c.Name).IsRequired().HasMaxLength(32);
+            Property(c => c.NameTm).IsRequired().HasMaxLength(32);
         }
     }
 }

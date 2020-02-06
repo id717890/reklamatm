@@ -16,9 +16,11 @@ using Reklama.Models.ViewModels.Announcement;
 using PagedList;
 using Reklama.ViewModels.Filters;
 using Domain.Repository.Shared;
+using Reklama.Filters;
 
 namespace Reklama.Controllers
 {
+    [Culture]
     public class HomeController : _BaseController
     {
         private ReklamaContext rc = new ReklamaContext();
