@@ -14,10 +14,11 @@ using Reklama.Models;
 using Domain.Repository.Catalogs;
 using System.Web.Security;
 using Domain.Repository.Shared;
+using Reklama.Filters;
 
 namespace Reklama.Controllers
 {
-    [Authorize]
+    [Authorize, Culture]
     public class BookmarksController : _BaseController
     {
         private ReklamaContext rc = new ReklamaContext();

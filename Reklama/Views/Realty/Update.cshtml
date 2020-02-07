@@ -145,18 +145,19 @@
     <div class="main-container px-3" style="padding-top: 65px">
         <form id="formCreate" action="/Realty/Update/@Model.Id" method="post">
             <div class="form-group">
-                <label for="city-field">Город:</label>
-                @Html.DropDownListFor(x => x.CityId, new SelectList((ViewBag.Cities), "Id", "Name"), "Выберите город", new { @class = "form-control", id = "city-field" })
+                <label for="city-field">@Resources.Resource.FormCity:</label>
+                @Html.DropDownListFor(x => x.CityId, new SelectList((ViewBag.Cities), "Id", "Name"), @Resources.Resource.FormCityPlacceholder, new { @class = "form-control", id = "city-field" })
                 @Html.ValidationMessageFor(x => x.CityId)
             </div>
 
             <div class="form-group">
-                <label for="address-field">Адрес:</label>
+                <label for="address-field">@Resources.Resource.FormAddress:</label>
                 @Html.TextBoxFor(x => x.Street, new { Class = "regInp1 form-control", id = "address-field" })
                 @Html.ValidationMessageFor(x => x.Street)
             </div>
             <div class="form-check m-0 p-0 room-count mb-3">
-                @Html.LabelFor(x => x.RoomsCount)
+                @*@Html.LabelFor(x => x.RoomsCount)*@
+                <label>@Resources.Resource.FormFlatsCount:</label>
                 @*<label for="address-field">Количество комнат:</label>*@
                 <div class="btn-group w-100" role="group" aria-label="Basic example">
                     @for (int i = 1; i <= 5; i++)
@@ -173,7 +174,7 @@
                     @Html.RadioButtonFor(x => x.RoomsCount, 0)>5*@
             </div>
 
-            <label for="square-field">Площадь:</label>
+            <label for="square-field">@Resources.Resource.FormSquare:</label>
             <div class="input-group mb-3">
                 @Html.TextBoxFor(x => x.Square, new { Class = "regInp3 form-control", @type="number", id = "square-field" })
                 <div class="input-group-prepend">
@@ -186,14 +187,14 @@
                 <div class="row m-0 p-0">
                     <div class="col-6 ml-0 pl-0">
                         <div class="form-group">
-                            <label for="room-count-field">Этажей в доме:</label>
+                            <label for="room-count-field">@Resources.Resource.FormBuildingFloors:</label>
                             @Html.DropDownListFor(x => x.FloorCount, Model.FlorsList(), new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.FloorCount)
                         </div>
                     </div>
                     <div class="col-6 pr-0">
                         <div class="form-group">
-                            <label for="floor-field">На каком этаже:</label>
+                            <label for="floor-field">@Resources.Resource.FormFloor:</label>
                             @Html.DropDownListFor(x => x.Floor, Model.FlorsList(), new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.Floor)
                         </div>
@@ -201,7 +202,7 @@
                 </div>
             </div>
 
-            <label for="price-field">Цена:</label>
+            <label for="price-field">@Resources.Resource.FormPrice:</label>
 
             <div class="input-group mb-3">
                 @Html.TextBoxFor(x => x.Price, new { Class = "regInp1 form-control", @type = "number", id = "price-field", step = "0.1" })
@@ -213,14 +214,15 @@
             </div>
 
             <div class="form-group">
-                <label for="phone-field">Телефон:</label>
+                <label for="phone-field">@Resources.Resource.FormPhone:</label>
                 @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1 form-control", @type = "text", id = "phone-field" })
             </div>
 
             <div class="form-group desctiption-textarea">
                 <label for="description-field">@*Подробное описание:*@ </label>
                 @*<textarea class=""></textarea>*@
-                @Html.LabelFor(x => x.Description)
+                @*@Html.LabelFor(x => x.Description)*@
+                <label>@Resources.Resource.FormDescription</label>
                 @Html.TextAreaFor(x => x.Description, new { @rows = 4 })
                 @*@Html.HiddenFor(m => m.Description, new { @id = "hfDesc" })*@
                 @Html.ValidationMessageFor(x => x.Description)
@@ -234,7 +236,7 @@
             <div class="registerInW">
                 <div class="borderReg ">
                     <div class="fieldItem">
-                        <span class="field-title">Фотографии:</span>
+                        <span class="field-title">@Resources.Resource.FormPhotos:</span>
                         @Html.Partial("_FileUploadVue")
                     </div>
                 </div>
@@ -374,7 +376,7 @@
                 <p>
                     <button type="submit" class="btn btn-lg btn-primary w-100">
                         <i class="fa fa-check"></i>
-                        Разместить объявление
+                        @Resources.Resource.BtnPublishAd
                     </button>
                 </p>
                 @*<p>Время размещения с @string.Format("{0:dd.MM.yyyy}", DateTime.Now) до @string.Format("{0:dd.MM.yyyy}", DateTime.Now.AddDays(ProjectConfiguration.Get.GetConfigValue("ExpiredAtRealty").ToInt32(null)))</p>*@

@@ -6,10 +6,12 @@ using System.Web;
 using System.Web.Mvc;
 using Domain.Entity.Other;
 using Domain.Repository.Other;
+using Reklama.Filters;
 using Reklama.Models;
 
 namespace Reklama.Controllers
 {
+    [Culture]
     public class PageController : _BaseController
     {
         private ReklamaContext rc = new ReklamaContext();

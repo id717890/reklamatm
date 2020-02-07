@@ -120,6 +120,9 @@
   <data name="BtnAddPhoto" xml:space="preserve">
     <value>Прикрепить фото</value>
   </data>
+  <data name="BtnClose" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
   <data name="BtnFind" xml:space="preserve">
     <value>Найти</value>
   </data>
@@ -225,6 +228,9 @@
   <data name="MenuMain" xml:space="preserve">
     <value>Главная</value>
   </data>
+  <data name="NoData" xml:space="preserve">
+    <value>Нет данных</value>
+  </data>
   <data name="RealtyContacts" xml:space="preserve">
     <value>Контакты</value>
   </data>
@@ -233,5 +239,8 @@
   </data>
   <data name="RealtyFloorShort" xml:space="preserve">
     <value>эт.</value>
+  </data>
+  <data name="TotalFind" xml:space="preserve">
+    <value>Всего найдено</value>
   </data>
 </root>

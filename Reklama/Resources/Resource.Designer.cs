@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Закрыть.
+        /// </summary>
+        public static string BtnClose {
+            get {
+                return ResourceManager.GetString("BtnClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Найти.
         /// </summary>
         public static string BtnFind {
@@ -385,6 +394,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Нет данных.
+        /// </summary>
+        public static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Контакты.
         /// </summary>
         public static string RealtyContacts {
@@ -408,6 +426,15 @@ namespace Resources {
         public static string RealtyFloorShort {
             get {
                 return ResourceManager.GetString("RealtyFloorShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Всего найдено.
+        /// </summary>
+        public static string TotalFind {
+            get {
+                return ResourceManager.GetString("TotalFind", resourceCulture);
             }
         }
     }

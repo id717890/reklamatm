@@ -118,120 +118,129 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BtnAddPhoto" xml:space="preserve">
-    <value>Add photo</value>
+    <value>Suraty goşuň</value>
+  </data>
+  <data name="BtnClose" xml:space="preserve">
+    <value>Ýapmak</value>
   </data>
   <data name="BtnFind" xml:space="preserve">
-    <value>Find</value>
+    <value>Tapmak</value>
   </data>
   <data name="BtnLogin" xml:space="preserve">
-    <value>Log In</value>
+    <value>Giriş</value>
   </data>
   <data name="BtnPublishAd" xml:space="preserve">
-    <value>Publish ad</value>
+    <value>Bildirişi çap etmek</value>
   </data>
   <data name="BtnReset" xml:space="preserve">
-    <value>Reset</value>
+    <value>Yza gaýt</value>
   </data>
   <data name="FormAddress" xml:space="preserve">
-    <value>Address</value>
+    <value>Salgy</value>
   </data>
   <data name="FormBuildingFloors" xml:space="preserve">
-    <value>All floors</value>
+    <value>Jaýyň gatlary</value>
   </data>
   <data name="FormCity" xml:space="preserve">
-    <value>City</value>
+    <value>Şäher</value>
   </data>
   <data name="FormCityPlacceholder" xml:space="preserve">
-    <value>Select city</value>
+    <value>Şäheri saýlaň</value>
   </data>
   <data name="FormDescription" xml:space="preserve">
-    <value>Description</value>
+    <value>Jikme-jik beýany</value>
   </data>
   <data name="FormFindByText" xml:space="preserve">
-    <value>Find by text</value>
+    <value>Bildiriş boýunça gözleg</value>
   </data>
   <data name="FormFlatsCount" xml:space="preserve">
-    <value>Count of flats</value>
+    <value>Otaglaryň sany</value>
   </data>
   <data name="FormFloor" xml:space="preserve">
-    <value>Floor</value>
+    <value>Haýsy gatda</value>
   </data>
   <data name="FormFloorFrom" xml:space="preserve">
-    <value>Floor from</value>
+    <value>Gatdan aşak</value>
   </data>
   <data name="FormFloorTo" xml:space="preserve">
-    <value>Floor to</value>
+    <value>Gatdan ýokary</value>
   </data>
   <data name="FormM" xml:space="preserve">
     <value>m&lt;sup&gt;2&lt;/sup&gt;</value>
   </data>
   <data name="FormPhone" xml:space="preserve">
-    <value>Phone</value>
+    <value>Telefon</value>
   </data>
   <data name="FormPhotos" xml:space="preserve">
-    <value>Photos</value>
+    <value>Suratlar</value>
   </data>
   <data name="FormPrice" xml:space="preserve">
-    <value>Price</value>
+    <value>Bahasy</value>
   </data>
   <data name="FormRememberMe" xml:space="preserve">
-    <value>Remember me</value>
+    <value>Meni ýatda sakla</value>
   </data>
   <data name="FormSortDirection" xml:space="preserve">
-    <value>Sort direction</value>
+    <value>boýunça tertipleşdirme</value>
   </data>
   <data name="FormSortDirectionAsc" xml:space="preserve">
-    <value>Asc</value>
+    <value>artma</value>
   </data>
   <data name="FormSortDirectionDesc" xml:space="preserve">
-    <value>Desc</value>
+    <value>azalma</value>
   </data>
   <data name="FormSortField" xml:space="preserve">
-    <value>Sort by</value>
+    <value>boýunça saýlaşdyrmak</value>
   </data>
   <data name="FormSortFieldDate" xml:space="preserve">
-    <value>Date</value>
+    <value>Sene</value>
   </data>
   <data name="FormSortFieldPrice" xml:space="preserve">
-    <value>Price</value>
+    <value>Bahasy</value>
   </data>
   <data name="FormSortFieldPriceForSquare" xml:space="preserve">
-    <value>Price for m&lt;sup&gt;2&lt;/sup&gt;</value>
+    <value>m&lt;sup&gt;2&lt;/sup&gt; üçin bahasy</value>
   </data>
   <data name="FormSortFieldSquare" xml:space="preserve">
-    <value>Count of m&lt;sup&gt;2&lt;/sup&gt;</value>
+    <value>m&lt;sup&gt;2&lt;/sup&gt; mukdary</value>
   </data>
   <data name="FormSquare" xml:space="preserve">
-    <value>Square</value>
+    <value>Meýdany</value>
   </data>
   <data name="FormSquareFrom" xml:space="preserve">
-    <value>Square frome m&lt;sup&gt;2&lt;/sup&gt;</value>
+    <value>m&lt;sup&gt;2&lt;/sup&gt;-dan meýdany</value>
   </data>
   <data name="FormSquareTo" xml:space="preserve">
-    <value>Square to m&lt;sup&gt;2&lt;/sup&gt;</value>
+    <value>m&lt;sup&gt;2&lt;/sup&gt;-a çenli meýdan</value>
   </data>
   <data name="MenuAddAd" xml:space="preserve">
-    <value>Add ad</value>
+    <value>Bildirişi çap etmek</value>
   </data>
   <data name="MenuContract" xml:space="preserve">
-    <value>Contract</value>
+    <value>Ylalaşyk</value>
   </data>
   <data name="MenuDashboard" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>Şahsy otag</value>
   </data>
   <data name="MenuFilters" xml:space="preserve">
-    <value>Filters</value>
+    <value>Filtrler</value>
   </data>
   <data name="MenuMain" xml:space="preserve">
-    <value>Main</value>
+    <value>Baş sahypa</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>Maglumat ýok</value>
   </data>
   <data name="RealtyContacts" xml:space="preserve">
-    <value>Contacts</value>
+    <value>Habarlaşmak üçin belgiler</value>
   </data>
   <data name="RealtyFlatShort" xml:space="preserve">
-    <value>fl. app.</value>
+    <value>otagly jaý</value>
   </data>
   <data name="RealtyFloorShort" xml:space="preserve">
-    <value>lv.</value>
+    <value>gat</value>
+  </data>
+  <data name="TotalFind" xml:space="preserve">
+    <value>Jemi tapylan</value>
   </data>
 </root>
