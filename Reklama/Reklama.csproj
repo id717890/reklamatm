@@ -222,7 +222,19 @@
     <Compile Include="Areas\CatalogAdmin\Models\EditProductPageViewModel.cs" />
     <Compile Include="Areas\CatalogAdmin\Models\IndexProductPageViewModel.cs" />
     <Compile Include="Controllers\Home1Controller.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\_BaseController.cs" />
+    <Compile Include="Filters\CultureAttribute.cs" />
+    <Compile Include="Resources\Resource.en.Designer.cs">
+      <DependentUpon>Resource.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Attributes\CustomRealtyEditAuth.cs" />
     <Compile Include="Utils\Attributes\CustomRealtyAuth.cs" />
     <Compile Include="Utils\Attributes\CustomAnnouncementAuth.cs" />
@@ -3497,6 +3509,7 @@
     <Content Include="Views\Page\DetailsMobile.cshtml" />
     <Content Include="Views\Shared\_FileUploadVue.cshtml" />
     <Content Include="Views\Realty\Update.cshtml" />
+    <Content Include="Views\Partial\_Language.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3504,6 +3517,7 @@
     <Folder Include="Images\Users\Avatars\" />
     <Folder Include="Scripts\tiny_mce\plugins\spellchecker\classes\utils\" />
     <Folder Include="Scripts\tiny_mce\plugins\spellchecker\includes\" />
+    <Folder Include="Views\Language\" />
     <Folder Include="Views\_Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -3682,6 +3696,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201404190815444_Add_IsActive_To_Suncategory.resx">
       <DependentUpon>201404190815444_Add_IsActive_To_Suncategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.en.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

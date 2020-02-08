@@ -118,7 +118,15 @@
                                 <i class="fa fa-cube"></i>
                             </div>
                             <div class="text">
-                                @Html.Raw(realty.DescriptionView)
+                                @*@Html.Raw(realty.DescriptionView)*@
+                                @if (!string.IsNullOrEmpty(ViewBag.Language) && ViewBag.Language == "en")
+                                {
+                                    @Html.Raw(realty.DescriptionViewTm)
+                                }
+                                else
+                                {
+                                    @Html.Raw(realty.DescriptionView)
+                                }
                             </div>
                         </div>
 
@@ -146,7 +154,7 @@
                                 {
                                     <span>
                                         @String.Format("{0:n0}", realty.PriceForOneMeter)
-                                        $/м<sup>2</sup>
+                                        $/@Html.Raw(Resources.Resource.FormM)
                                     </span>
                                 }
                             </div>

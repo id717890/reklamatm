@@ -24,10 +24,12 @@ using System.Data;
 using Domain.Enums;
 using System.Net;
 using System.Globalization;
+using Reklama.Filters;
 
 namespace Reklama.Controllers
 {
-    public class RealtyController : Controller
+    [Culture]
+    public class RealtyController : _BaseController
     {
         private ReklamaContext rc = new ReklamaContext();
 

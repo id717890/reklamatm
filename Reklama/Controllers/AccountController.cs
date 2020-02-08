@@ -16,7 +16,7 @@ using WebMatrix.WebData;
 
 namespace Reklama.Controllers
 {
-    [Authorize]
+    [Authorize, Culture]
     [InitializeSimpleMembership]
     public class AccountController : _BaseController
     {

@@ -33,7 +33,7 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <button type="button" class="btn btn-secondary my-2 float-right" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Закрыть</button>
+                <button type="button" class="btn btn-secondary my-2 float-right" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;@Resources.Resource.BtnClose</button>
             </div>
         </div>
     </div>
@@ -70,7 +70,14 @@
                 <i class="fa fa-cube"></i>
             </div>
             <div class="text">
-                @Html.Raw(Model.DescriptionView)
+                @if (!string.IsNullOrEmpty(ViewBag.Language) && ViewBag.Language == "en")
+                {
+                    @Html.Raw(Model.DescriptionViewTm)
+                }
+                else
+                {
+                    @Html.Raw(Model.DescriptionView)
+                }
             </div>
         </div>
         <div class="line">
@@ -96,7 +103,7 @@
                 {
                     <span>
                         @String.Format("{0:n0}", Model.PriceForOneMeter)
-                        $/м<sup>2</sup>
+                        $/@Html.Raw(Resources.Resource.FormM)
                     </span>
                 }
 
@@ -222,7 +229,14 @@
                 <i class="fa fa-cube"></i>
             </div>
             <div class="text">
-                @Html.Raw(Model.DescriptionView)
+                @if (!string.IsNullOrEmpty(ViewBag.Language) && ViewBag.Language == "en")
+                {
+                    @Html.Raw(Model.DescriptionViewTm)
+                }
+                else
+                {
+                    @Html.Raw(Model.DescriptionView)
+                }
             </div>
         </div>
         <div class="line item-details-btn" data-id="@Model.Id">
@@ -248,7 +262,7 @@
                 {
                     <span>
                         @String.Format("{0:n0}", Model.PriceForOneMeter)
-                        $/м<sup>2</sup>
+                        $/@Html.Raw(Resources.Resource.FormM)
                     </span>
                 }
 
@@ -264,7 +278,7 @@
         {
             <div class="line mt-3 item-details-btn phone-field" data-id="@Model.Id">
                 <div class="text">
-                    <p>Контакты: </p>
+                    <p>@Resources.Resource.RealtyContacts: </p>
                     @Model.Phone
                 </div>
             </div>

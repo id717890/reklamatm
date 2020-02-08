@@ -8,7 +8,7 @@
 
 <div class="bg-silver">
     <div class="main-header">
-        <h3 class="text-white">Фильтры</h3>
+        <h3 class="text-white">@Resources.Resource.MenuFilters</h3>
     </div>
     <div class="main-container px-3"  style="padding-top: 65px">
         <div class="row">
@@ -18,7 +18,7 @@
                     <a href="@Url.Action("IndexMobile", "Home")" class="btn btn-lg btn-outline-primary w-100"><i class="fa fa-home"></i></a>
                 </div>
                 <div class="col-6 text-center px-0 mx-0">
-                    <div class="alert alert-primary mb-2">Всего найдено: @(Model.Realties != null ? @Model.Realties.Count() : 0)</div>
+                    <div class="alert alert-primary mb-2">@Resources.Resource.TotalFind: @(Model.Realties != null ? @Model.Realties.Count() : 0)</div>
                 </div>
                 <div class="col-3">
                     <a href="@Url.Action("FiltersMobile", "Home")" class="btn btn-lg btn-outline-success w-100"><i class="fa fa-filter"></i></a>
@@ -29,15 +29,15 @@
                 <div class="col-12">
                     <form id="formCreate" action="/Home/FiltersMobile" method="post">
                         <div class="form-group">
-                            <label for="city-field">Город:</label>
-                            @Html.DropDownListFor(x => x.CityId, new SelectList((Model.Cities), "Id", "Name"), "Выберите город", new { @class = "form-control", id = "city-field" })
+                            <label for="city-field">@Resources.Resource.FormCity:</label>
+                            @Html.DropDownListFor(x => x.CityId, new SelectList((Model.Cities), "Id", "Name"), @Resources.Resource.FormCityPlacceholder, new { @class = "form-control", id = "city-field" })
                         </div>
                         <div class="form-group">
-                            <label for="description-field">Поиск по тексту объявления:</label>
+                            <label for="description-field">@Resources.Resource.FormFindByText:</label>
                             @Html.TextBoxFor(x => x.Description, new { Class = "form-control", id = "description-field" })
                         </div>
                         <div class="form-group">
-                            <label for="rooms-field">Кол-во комнат:</label>
+                            <label for="rooms-field">@Resources.Resource.FormFlatsCount:</label>
                             @*@Html.TextBoxFor(x => x.Rooms, new { Class = "form-control", id = "rooms-field", type = "number", min = "0", max = "999" })*@
                             <div class="btn-group w-100" role="group" aria-label="Basic example">
                                 @for (int i = 1; i <= 5; i++)
@@ -58,11 +58,11 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="square-from-field">Площадь от м<sup>2</sup>:</label>
+                                    <label for="square-from-field">@Html.Raw(Resources.Resource.FormSquareFrom):</label>
                                     @Html.TextBoxFor(x => x.SquareFrom, new { Class = "form-control", type = "number", id = "square-from-field", min = "0", max = "999" })
                                 </div>
                                 <div class="col-6">
-                                    <label for="square-to-field">Площадь до м<sup>2</sup>:</label>
+                                    <label for="square-to-field">@Html.Raw(Resources.Resource.FormSquareTo):</label>
                                     @Html.TextBoxFor(x => x.SquareTo, new { Class = "form-control", type = "number", id = "square-to-field", min = "0", max = "999" })
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                     @*<label for="level-from-field">Этаж от:</label>*@
                                     @*@Html.TextBoxFor(x => x.LevelFrom, new { Class = "form-control", type = "number", id = "level-from-field", min = "0", max = "999" })*@
                                     <div class="form-group">
-                                        <label for="room-count-field">Этаж не ниже:</label>
+                                        <label for="room-count-field">@Resources.Resource.FormFloorFrom:</label>
                                         @Html.DropDownListFor(x => x.LevelFrom, Model.FlorsList(), new { @class = "form-control" })
                                         @Html.ValidationMessageFor(x => x.LevelFrom)
                                     </div>
@@ -82,7 +82,7 @@
                                     @*<label for="level-to-field">Этаж до:</label>*@
                                     @*@Html.TextBoxFor(x => x.LevelTo, new { Class = "form-control", type = "number", id = "level-to-field", min = "0", max = "999" })*@
                                     <div class="form-group">
-                                        <label for="room-count-field">Этаж не выше:</label>
+                                        <label for="room-count-field">@Resources.Resource.FormFloorTo:</label>
                                         @Html.DropDownListFor(x => x.LevelTo, Model.FlorsList(), new { @class = "form-control" })
                                         @Html.ValidationMessageFor(x => x.LevelTo)
                                     </div>
@@ -90,10 +90,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <p class="m-0 font-weight-bold"><label for="city-field">Упорядочить по:</label></p>
+                            <p class="m-0 font-weight-bold"><label for="city-field">@Resources.Resource.FormSortDirection:</label></p>
                             <div class="btn-group w-100" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-direction-sort @(Model.DirectionSort == 2 ? "btn-primary active" : "btn-outline-default")" data-sort="2">Убыванию</button>
-                                <button type="button" class="btn btn-direction-sort @(Model.DirectionSort == 1 ? "btn-primary active" : "btn-outline-default")" data-sort="1">Возрастанию</button>
+                                <button type="button" class="btn btn-direction-sort @(Model.DirectionSort == 2 ? "btn-primary active" : "btn-outline-default")" data-sort="2">@Resources.Resource.FormSortDirectionDesc</button>
+                                <button type="button" class="btn btn-direction-sort @(Model.DirectionSort == 1 ? "btn-primary active" : "btn-outline-default")" data-sort="1">@Resources.Resource.FormSortDirectionAsc</button>
                             </div>
                             @Html.HiddenFor(x => x.DirectionSort, new { @id = "direction-sort-field", @autocomplete = "off" })
                             @*<div class="form-check form-check-inline">
@@ -106,12 +106,12 @@
                             </div>*@
                         </div>
                         <div class="form-group">
-                            <p class="m-0 font-weight-bold"><label for="city-field">Сортировать по:</label></p>
+                            <p class="m-0 font-weight-bold"><label for="city-field">@Resources.Resource.FormSortField:</label></p>
                             <div class="btn-group w-100" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-field-sort @(Model.FieldSort == 2 ? "btn-primary active" : "btn-outline-default")" data-sort="2">Дата</button>
-                                <button type="button" class="btn btn-field-sort @(Model.FieldSort == 1 ? "btn-primary active" : "btn-outline-default")" data-sort="1">Цена</button>
-                                <button type="button" class="btn btn-field-sort @(Model.FieldSort == 3 ? "btn-primary active" : "btn-outline-default")" data-sort="3">Количеству м<sup>2</sup></button>
-                                <button type="button" class="btn btn-field-sort @(Model.FieldSort == 4 ? "btn-primary active" : "btn-outline-default")" data-sort="4">Цена за м<sup>2</sup></button>
+                                <button type="button" class="btn btn-field-sort @(Model.FieldSort == 2 ? "btn-primary active" : "btn-outline-default")" data-sort="2">@Resources.Resource.FormSortFieldDate</button>
+                                <button type="button" class="btn btn-field-sort @(Model.FieldSort == 1 ? "btn-primary active" : "btn-outline-default")" data-sort="1">@Resources.Resource.FormSortFieldPrice</button>
+                                <button type="button" class="btn btn-field-sort @(Model.FieldSort == 3 ? "btn-primary active" : "btn-outline-default")" data-sort="3">@Html.Raw(Resources.Resource.FormSortFieldPriceForSquare)</button>
+                                <button type="button" class="btn btn-field-sort @(Model.FieldSort == 4 ? "btn-primary active" : "btn-outline-default")" data-sort="4">@Html.Raw(@Resources.Resource.FormSortFieldSquare)</button>
                             </div>
                             @Html.HiddenFor(x => x.FieldSort, new { @id = "field-sort-field", @autocomplete = "off" })
                             @*<div class="form-check form-check-inline">
@@ -136,12 +136,12 @@
                             <div class="row">
                                 <div class="col-6">
                                     <a class="btn btn-lg btn-outline-secondary w-100" href="@Url.Action("FiltersMobile", "Home")">
-                                        <i class="fa fa-redo-alt"></i> Сбросить
+                                        <i class="fa fa-redo-alt"></i> @Resources.Resource.BtnReset
                                     </a>
                                 </div>
                                 <div class="col-6">
                                     <button type="submit" class="btn btn-lg btn-primary w-100">
-                                        <i class="fa fa-filter"></i> Найти
+                                        <i class="fa fa-filter"></i> @Resources.Resource.BtnFind
                                     </button>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                             }
                             else
                             {
-                                <h3 class="text-center">Нет данных</h3>
+                                <h3 class="text-center">@Resources.Resource.NoData</h3>
                             }
                         }
                     </div>

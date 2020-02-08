@@ -201,5 +201,34 @@ namespace Domain.Entity.Realty
                 return result;
             }
         }
+
+        public string DescriptionViewTm
+        {
+            get
+            {
+                var result = string.Empty;
+                if (RoomsCount != null && RoomsCount > 0) result += RoomsCount + " otagly jaý";
+                else result += " 5 otagdan köp";
+                if (Square != null)
+                {
+                    if (RoomsCount != null) result += ", " + Square + " m<sup>2</sup>";
+                    else result += Square + " m<sup>2</sup>";
+                }
+                if (Floor != null)
+                {
+                    if (FloorCount != null)
+                    {
+                        if (RoomsCount != null || Square != null) result += ", " + Floor + "/" + FloorCount + " gat";
+                        else result += Floor + "/" + FloorCount + " gat";
+                    }
+                    else
+                    {
+                        if (RoomsCount != null || Square != null) result += ", " + Floor + " gat";
+                        else result += Floor + " gat";
+                    }
+                }
+                return result;
+            }
+        }
     }
 }

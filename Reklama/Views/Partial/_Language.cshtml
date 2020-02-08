@@ -1,0 +1,5 @@
+﻿<div style="position: fixed; z-index: 10; right: 25px; top: 15px;">
+    <a href="@Url.Action("ChangeCulture","Language", new { lang = "en" })" class="@(ViewBag.Language == "en" ? "active-lang lang" : "lang")">TM</a>
+    <span style="color: white;"> | </span>
+    <a href="@Url.Action("ChangeCulture","Language", new { lang = "ru" })" class="@(ViewBag.Language == "ru" ? "active-lang lang" : "lang")">RU</a>
+</div>

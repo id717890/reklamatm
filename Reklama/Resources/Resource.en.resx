@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BtnAddPhoto" xml:space="preserve">
+    <value>Suraty goşuň</value>
+  </data>
+  <data name="BtnClose" xml:space="preserve">
+    <value>Ýapmak</value>
+  </data>
+  <data name="BtnFind" xml:space="preserve">
+    <value>Tapmak</value>
+  </data>
+  <data name="BtnLogin" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="BtnPublishAd" xml:space="preserve">
+    <value>Bildirişi çap etmek</value>
+  </data>
+  <data name="BtnReset" xml:space="preserve">
+    <value>Yza gaýt</value>
+  </data>
+  <data name="FormAddress" xml:space="preserve">
+    <value>Salgy</value>
+  </data>
+  <data name="FormBuildingFloors" xml:space="preserve">
+    <value>Jaýyň gatlary</value>
+  </data>
+  <data name="FormCity" xml:space="preserve">
+    <value>Şäher</value>
+  </data>
+  <data name="FormCityPlacceholder" xml:space="preserve">
+    <value>Şäheri saýlaň</value>
+  </data>
+  <data name="FormDescription" xml:space="preserve">
+    <value>Jikme-jik beýany</value>
+  </data>
+  <data name="FormFindByText" xml:space="preserve">
+    <value>Bildiriş boýunça gözleg</value>
+  </data>
+  <data name="FormFlatsCount" xml:space="preserve">
+    <value>Otaglaryň sany</value>
+  </data>
+  <data name="FormFloor" xml:space="preserve">
+    <value>Haýsy gatda</value>
+  </data>
+  <data name="FormFloorFrom" xml:space="preserve">
+    <value>Gatdan aşak</value>
+  </data>
+  <data name="FormFloorTo" xml:space="preserve">
+    <value>Gatdan ýokary</value>
+  </data>
+  <data name="FormM" xml:space="preserve">
+    <value>m&lt;sup&gt;2&lt;/sup&gt;</value>
+  </data>
+  <data name="FormPhone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="FormPhotos" xml:space="preserve">
+    <value>Suratlar</value>
+  </data>
+  <data name="FormPrice" xml:space="preserve">
+    <value>Bahasy</value>
+  </data>
+  <data name="FormRememberMe" xml:space="preserve">
+    <value>Meni ýatda sakla</value>
+  </data>
+  <data name="FormSortDirection" xml:space="preserve">
+    <value>boýunça tertipleşdirme</value>
+  </data>
+  <data name="FormSortDirectionAsc" xml:space="preserve">
+    <value>artma</value>
+  </data>
+  <data name="FormSortDirectionDesc" xml:space="preserve">
+    <value>azalma</value>
+  </data>
+  <data name="FormSortField" xml:space="preserve">
+    <value>boýunça saýlaşdyrmak</value>
+  </data>
+  <data name="FormSortFieldDate" xml:space="preserve">
+    <value>Sene</value>
+  </data>
+  <data name="FormSortFieldPrice" xml:space="preserve">
+    <value>Bahasy</value>
+  </data>
+  <data name="FormSortFieldPriceForSquare" xml:space="preserve">
+    <value>m&lt;sup&gt;2&lt;/sup&gt; üçin bahasy</value>
+  </data>
+  <data name="FormSortFieldSquare" xml:space="preserve">
+    <value>m&lt;sup&gt;2&lt;/sup&gt; mukdary</value>
+  </data>
+  <data name="FormSquare" xml:space="preserve">
+    <value>Meýdany</value>
+  </data>
+  <data name="FormSquareFrom" xml:space="preserve">
+    <value>m&lt;sup&gt;2&lt;/sup&gt;-dan meýdany</value>
+  </data>
+  <data name="FormSquareTo" xml:space="preserve">
+    <value>m&lt;sup&gt;2&lt;/sup&gt;-a çenli meýdan</value>
+  </data>
+  <data name="MenuAddAd" xml:space="preserve">
+    <value>Bildirişi çap etmek</value>
+  </data>
+  <data name="MenuContract" xml:space="preserve">
+    <value>Ylalaşyk</value>
+  </data>
+  <data name="MenuDashboard" xml:space="preserve">
+    <value>Şahsy otag</value>
+  </data>
+  <data name="MenuFilters" xml:space="preserve">
+    <value>Filtrler</value>
+  </data>
+  <data name="MenuMain" xml:space="preserve">
+    <value>Baş sahypa</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>Maglumat ýok</value>
+  </data>
+  <data name="RealtyContacts" xml:space="preserve">
+    <value>Habarlaşmak üçin belgiler</value>
+  </data>
+  <data name="RealtyFlatShort" xml:space="preserve">
+    <value>otagly jaý</value>
+  </data>
+  <data name="RealtyFloorShort" xml:space="preserve">
+    <value>gat</value>
+  </data>
+  <data name="TotalFind" xml:space="preserve">
+    <value>Jemi tapylan</value>
+  </data>
+</root>
