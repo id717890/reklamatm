@@ -39,14 +39,14 @@
     </div>
 </div>
 
-<div class="item blue" id="@("item"+Model.Id)">
+<div class="item blue item-short" id="@("item"+Model.Id)" data-id="@Model.Id">
     <div class="bg blue"></div>
 
     <div class="img">
         @if (Model.Photos != null && Model.Photos.Count != 0)
         {
             <div class="icon-wrapper">
-                <img data-toggle="modal" data-target="@("#item-modal-"+Model.Id)" src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["realty_thumb"], "/", Model.Photos.OrderBy(x => x.CreatedAt).First().Link)" />
+                <img  data-target="@("#item-modal-"+Model.Id)" src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["realty_thumb"], "/", Model.Photos.OrderBy(x => x.CreatedAt).First().Link)" />
             </div>
         }
         else
@@ -56,7 +56,7 @@
             </div>
         }
     </div>
-    <div class="info item-short" data-id="@Model.Id">
+    <div class="info">
         <div class="line">
             <div class="icon">
                 <i class="fa fa-map-marker"></i>

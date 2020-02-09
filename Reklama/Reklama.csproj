@@ -1173,6 +1173,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Properties\PublishProfiles\HardDrive.pubxml" />
     <None Include="Properties\PublishProfiles\reklama.pubxml" />
+    <None Include="Properties\PublishProfiles\reklamaRegRu.pubxml" />
     <None Include="Properties\PublishProfiles\Smarter.pubxml" />
     <None Include="Properties\PublishProfiles\To FileSystem.pubxml" />
     <Content Include="Images\icons\loading.gif" />

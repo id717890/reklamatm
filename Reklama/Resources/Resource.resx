@@ -160,10 +160,10 @@
     <value>На каком этаже</value>
   </data>
   <data name="FormFloorFrom" xml:space="preserve">
-    <value>Этажей не ниже</value>
+    <value>Этаж не ниже</value>
   </data>
   <data name="FormFloorTo" xml:space="preserve">
-    <value>Этажей не выше</value>
+    <value>Этаж не выше</value>
   </data>
   <data name="FormM" xml:space="preserve">
     <value>м&lt;sup&gt;2&lt;/sup&gt;</value>

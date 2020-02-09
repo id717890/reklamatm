@@ -187,7 +187,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Этажей не ниже.
+        ///   Looks up a localized string similar to Этаж не ниже.
         /// </summary>
         public static string FormFloorFrom {
             get {
@@ -196,7 +196,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Этажей не выше.
+        ///   Looks up a localized string similar to Этаж не выше.
         /// </summary>
         public static string FormFloorTo {
             get {
