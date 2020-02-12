@@ -8,8 +8,8 @@
 <html class=" bg-silver">
 <head>
     <meta name="viewport" content="width=device-width" />
-    @Styles.Render("~/bundles/styles/bootstrap")
     @Styles.Render("~/bundles/styles/fontawesome")
+    @Styles.Render("~/bundles/styles/bootstrap")
     @Styles.Render("~/bundles/styles/main-mobile")
     <!-- Scrollbar Custom CSS -->
     @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">*@
@@ -21,7 +21,7 @@
     @*@Scripts.Render("~/bundles/modernizr")*@
     @*@Styles.Render("~/Scripts/tinymce/skins/lightgray/skin.min.css")*@
     @*<link href="@Url.Content("~/Content/Reset.css")" rel="stylesheet" />*@
-    
+
 
     <title>www.reklama.tm</title>
 </head>
@@ -93,7 +93,8 @@
 
     <!-- 1. Add latest jQuery and fancybox files -->
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>*@
+    @Scripts.Render("~/Scripts/jquery341.min.js")
     @*<script type="text/javascript">
             var $ = $.noConflict(true);
         </script>*@
@@ -283,11 +284,11 @@
                             const rndStr = rndString();
                             console.log(1)
                             $('#imgcontainer').append(`
-                                            <div class="col-lg-4 col-md-6 col-6 px-0 thumb img-block-gallery" data-filename="image_` + rndStr + `" id="image_` + rndStr + `">
-                                                <div id="progress_`+ rndStr + `">
-                                                    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-                                                </div>
-                                            </div>`)
+                                                <div class="col-lg-4 col-md-6 col-6 px-0 thumb img-block-gallery" data-filename="image_` + rndStr + `" id="image_` + rndStr + `">
+                                                    <div id="progress_`+ rndStr + `">
+                                                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                                                    </div>
+                                                </div>`)
                             const fd = new FormData()
                             fd.append('file', this.files[i], this.files[i].name)
                             fd.append('cController', this.ctor)
@@ -302,12 +303,12 @@
                                 $('#progress_' + x.data.rndStr).remove();
                                 $('#imageContainer').append('<input type="hidden" name="imagesNames[]" class="uploadedImage" data-filename="' + x.data.filename + '" value="' + x.data.newFilename + ';false" />');
                                 $('#image_' + x.data.rndStr).append(`
-                                                <a href="#" class="button remove remove-times" title="" data-filename="` + x.data.filename + `" onclick="javascript: removeImage('` + x.data.filename + `', '` + x.data.rndStr + `'); return false;">
-                                                    <i class="fa fa-times fa-2x text-danger"></i>
-                                                </a>
-                                                <a  style="float: right; width: 100%;" href="#" onclick="event.preventDefault()">
-                                                    <img class="img-fluid" style="width: 100%" src="/Images/Thumbnails/Realty/`+ x.data.newFilename + `">
-                                                </a>`)
+                                                    <a href="#" class="button remove remove-times" title="" data-filename="` + x.data.filename + `" onclick="javascript: removeImage('` + x.data.filename + `', '` + x.data.rndStr + `'); return false;">
+                                                        <i class="fa fa-times fa-2x text-danger"></i>
+                                                    </a>
+                                                    <a  style="float: right; width: 100%;" href="#" onclick="event.preventDefault()">
+                                                        <img class="img-fluid" style="width: 100%" src="/Images/Thumbnails/Realty/`+ x.data.newFilename + `">
+                                                    </a>`)
                                 //console.log(this.$refs['progress_' + x.data.pos])
                                 //this.$refs['progress_' + x.data.pos].remove()
                                 //console.log(x)
