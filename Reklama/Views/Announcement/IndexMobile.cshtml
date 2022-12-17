@@ -1,0 +1,31 @@
+﻿@using System.Globalization
+@model List<Domain.Entity.Announcements.Announcement>
+
+@{
+    ViewBag.Title = "Объявления";
+    Layout = "~/Views/_Layout/_Mobile.cshtml";
+}
+
+<div class="bg-silver">
+    <div class="main-header">
+        <div class="btn-panel  d-inline-block">
+            <a href="@Url.Action("Index", "Home")">
+                <img class="img-logo" style="margin: 0; max-height: 49px;" src="/Images/System/logo3.png" alt="reklama.tm" />
+            </a>
+        </div>
+    </div>
+    
+    <div class="main-container" style="padding-top: 65px">
+        @Html.Partial("~/VIews/Partial/_TabMenu.cshtml")
+        <div class="main-pub-items">
+            @foreach (var realty in Model)
+            {
+                @Html.Partial("~/Views/Partial/_AnnouncementItem.cshtml", realty)
+            }
+
+        </div>
+    </div>
+</div>
+
+
+

@@ -13,7 +13,7 @@
 	
 	$(".SectionList").change(function(){
 		var name = $(".SectionList option:selected").text();
-		if(name == 'Сниму' || name == 'Сдам'){
+		if(name === 'Сниму' || name === 'Сдам'){
 			$("label#ForDaysLabel").slideDown();
 		}else{
 			$("label#ForDaysLabel").slideUp();
@@ -115,7 +115,7 @@ function validateForm() {
 
 function ValidateTextInput(selector) {
     var input = $(selector);
-    if (input && input.val() != "" && input.val().trim() != "") {
+    if (input && input.val() !== "" && input.val().trim() !== "") {
         return true;
     }
     return false;

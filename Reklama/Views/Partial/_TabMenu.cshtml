@@ -1,0 +1,22 @@
+﻿<style>
+    .tab-menu {
+        margin-bottom: 10px;
+    }
+
+        .tab-menu a {
+            text-decoration: none;
+            color: black;
+            opacity: 0.6;
+            margin-right: 8px;
+        }
+
+            .tab-menu a.active {
+                border-bottom: 1px dashed black;
+                opacity: 1;
+            }
+</style>
+
+<div class="tab-menu">
+    @Html.ActionLink("Недвижимость", "Index", "Home",null, new { @class = Request.Url.LocalPath == "/" ? "active" : "" })
+    @Html.ActionLink("Объявления", "Index", "Announcement", null, new { @class = Request.Url.LocalPath.ToLower() == "/announcement" ? "active" : "" })
+</div>

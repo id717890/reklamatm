@@ -271,14 +271,14 @@
                     this.ctor = ctor
                     this.files = event.target.files
                     //this.html = ''
-                    this.onUpload()
+                    this.onUpload(ctor)
                 },
                 callbackClosure(i, callback) {
                     return function () {
                         return callback(i)
                     }
                 },
-                onUpload() {
+                onUpload(type) {
                     if (this.files) {
                         for (var i = 0; i <= this.files.length - 1; i++) {
                             const rndStr = rndString();
@@ -307,7 +307,7 @@
                                                         <i class="fa fa-times fa-2x text-danger"></i>
                                                     </a>
                                                     <a  style="float: right; width: 100%;" href="#" onclick="event.preventDefault()">
-                                                        <img class="img-fluid" style="width: 100%" src="/Images/Thumbnails/Realty/`+ x.data.newFilename + `">
+                                                        <img class="img-fluid" style="width: 100%" src="/Images/Thumbnails/${type}/`+ x.data.newFilename + `">
                                                     </a>`)
                                 //console.log(this.$refs['progress_' + x.data.pos])
                                 //this.$refs['progress_' + x.data.pos].remove()

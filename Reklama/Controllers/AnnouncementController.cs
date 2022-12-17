@@ -103,6 +103,98 @@ namespace Reklama.Controllers
             ViewBag.SelectedSiteCategory = CategorySearch.Announcement;
         }
 
+        public ActionResult Index()
+        {
+            var model = _repository.Read().OrderByDescending(x => x.CreatedAt).Take(20).ToList();
+            return View("IndexMobile", model);
+        }
+
+        [CustomAnnouncementAuth]
+        public ActionResult New()
+        {
+            var model = new Announcement();
+            var userID = WebSecurity.CurrentUserId;
+            if (userID != -1)
+            {
+                var user = _profileRepository.Read(userID);
+                model.Phone = user.Phone;
+                model.ContactEmail = user.Email;
+                model.ContactName = user.Name;
+                model.IsDisplayPhone = true;
+            }
+
+            ViewBag.Cities = _cityRepository.Read();
+            ViewBag.Currencies = _currencyRepository.Read();
+            PopulateSectionDropDownList(allowEmpty: true);
+            PopulateCategoryDropDownList();
+            //PopulateCityDropDownList();
+            //PopulateCurrencyDropDownList();
+            return View("New", model);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult New (Announcement model, FormCollection collection)
+        {
+            model.SectionId = 27; // Разное 
+            model.SubsectionId = 154; // Все остальное, что не вошло в другие категории. 
+            //model.CategoryId = 1; // Объявления
+            model.CreatedAt = model.UpTime = DateTime.Now;
+            model.ExpiredAt = DateTime.Now.AddDays(int.Parse(_configRepository.ReadByName("ExpiredAtAnnouncement").Value));
+            model.IsActive = true;
+            model.UserId = WebSecurity.CurrentUserId;
+            model.ViewsCount = 0;
+            model.IsDisplayPhone = true;
+            model.Description = Helper.RemoveTextFromText(model.Description, "width", ";");
+            ModelState.Remove("IsDisplayPhone");
+
+            //if (model.CityId == null || model.CityId == 0)
+            //{
+            //    ModelState.AddModelError("CityId", "Не выбран город");
+            //}
+
+            if (model.Description.Length>0)
+            {
+                if (model.Description.Length>600)
+                {
+                    model.SmallDescription = model.Description.Substring(0, 599);
+                } else
+                {
+                    model.SmallDescription = model.Description.Substring(0, model.Description.Length);
+                }
+                ModelState.Remove("SmallDescription");
+            }
+
+            IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
+
+            if (ModelState.IsValid)
+            {
+                var images = collection["imagesNames[]"];
+                var id = _repository.Save(model, images);
+                if (id > 0 && WebSecurity.CurrentUserId == -1 && ProjectConfiguration.IsAnonymousUserAllowed)
+                {
+                    var cookieName = "ann" + id;
+                    var newCookie = new HttpCookie(cookieName, id.ToString())
+                    {
+                        Expires = DateTime.Now.AddYears(1),
+                        Domain = ".reklama.tm"
+                    };
+                    HttpContext.Response.Cookies.Add(newCookie);
+
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.Cities = _cityRepository.Read();
+            ViewBag.Currencies = _currencyRepository.Read();
+            ViewBag.Categories = _categoryRepository.Read();
+            PopulateSectionDropDownList(allowEmpty: true);
+            PopulateCategoryDropDownList();
+
+            return View(model);
+        }
+
 
         [CustomAnnouncementAuth]
         public ActionResult Create()

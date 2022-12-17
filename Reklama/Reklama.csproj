@@ -1171,8 +1171,10 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\HardDrive.pubxml" />
     <None Include="Properties\PublishProfiles\reklama.pubxml" />
+    <None Include="Properties\PublishProfiles\reklama.tm - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\reklamaRegRu.pubxml" />
     <None Include="Properties\PublishProfiles\Smarter.pubxml" />
     <None Include="Properties\PublishProfiles\To FileSystem.pubxml" />
@@ -3512,6 +3514,10 @@
     <Content Include="Views\Shared\_FileUploadVue.cshtml" />
     <Content Include="Views\Realty\Update.cshtml" />
     <Content Include="Views\Partial\_Language.cshtml" />
+    <Content Include="Views\Announcement\New.cshtml" />
+    <Content Include="Views\Partial\_TabMenu.cshtml" />
+    <Content Include="Views\Announcement\IndexMobile.cshtml" />
+    <Content Include="Views\Partial\_AnnouncementItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
