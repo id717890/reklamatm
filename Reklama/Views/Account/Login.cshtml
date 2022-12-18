@@ -1,20 +1,49 @@
-﻿@model Reklama.Models.ViewModels.Shared.LoginModel
-
+﻿@model Reklama.Models.ViewModels.Shared.LoginModel 
 @{
-    ViewBag.Title = "Вход на сайт";
+    ViewBag.Title = "LoginMobile";
+    Layout = "~/Views/_Layout/_Mobile.cshtml";
 }
 
-<section id="loginForm">
-    <div id="loginWindow" style="margin: 10px auto;">
-        @Html.Partial("_LoginPartial")
+<div class="content-wrapper bg-blue h-100">
+    <div class="logo-wrapper d-flex justify-content-center align-items-center">
+        <img class="img-logo" src="/Images/System/logo3.png" style="max-width: 180px;" alt="reklama.tm" />
     </div>
-</section>
 
-@*<section class="social" id="socialLoginForm">
-    <h2>Use another service to log in.</h2>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>*@
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "AuthorizeForm" }))
+    {
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="input-group mb-3 ig-r">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-th"></i></span>
+            </div>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "E-mail", aria_label = "Username", aria_describedby = "basic-addon1" })
+            @*<input type="text" class="form-control" placeholder="E-mail" aria-label="Username" aria-describedby="basic-addon1">*@
+        </div>
+        <div class="input-group mb-3 ig-r">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
+            </div>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", aria_label = "Password", aria_describedby = "basic-addon1" })
+            @*<input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">*@
+        </div>
+        <div class="form-group d-flex justify-content-center align-items-center">
+            @Html.CheckBoxFor(m => m.RememberMe)
+            <label style = "margin: 0 0 0 10px; ">@Resources.Resource.FormRememberMe</label>
+            @*@Html.LabelFor(m => m.RememberMe, htmlAttributes: new { style = "margin: 0 0 0 10px; " })*@
+        </div>
+
+        if (ViewBag.ReturnUrl != null)
+        {
+            @Html.Hidden("returnUrl", (string)ViewBag.ReturnUrl)
+        }
+
+        <button type="submit" class="btn btn-default btn-rounded mb-3"><i class="fa fa-user-circle"></i> @Resources.Resource.BtnLogin</button>
+        <a href="@Url.Action("Index","Home")" class="btn btn-default btn-rounded"><i class="fa fa-home"></i> @Resources.Resource.MenuMain</a>
+    }
+
+    
+</div>
+

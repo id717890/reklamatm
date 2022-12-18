@@ -1,6 +1,6 @@
 ﻿@using System.Globalization
 @using Reklama
-@model Domain.Entity.Realty.Realty
+@model Domain.Entity.Announcements.Announcement
 
 @{
     ViewBag.Title = "Создание нового объявления";
@@ -8,57 +8,14 @@
 }
 
 @section Scripts {
-    @*<script src="~/Scripts/jquery.validate.min.js"></script>*@
-    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
-
-
-
     @Scripts.Render("~/bundles/jqueryval")
-    @* @Scripts.Render("~/Scripts/ajaxupload.js")*@
     @Scripts.Render("~/Scripts/Realty.js")
     @Scripts.Render("~/Scripts/common.js")
     @Scripts.Render("~/Scripts/jquery-te-1.4.0.min.js")
     @Styles.Render("~/Content/jquery-te-1.4.0.css")
 
-
-
-    <script>
-        var desc = 'textarea.desc';
-        var limit = 100;
-
-        jQuery(document).ready(function () {
-            //jQuery(".removeImage1").on("click", function (e) {
-            //    console.log(1);
-            //});
-
-            //jQuery('.message').jqte({
-            //    change: function () {
-            //        var s = jQuery(".message-container .jqte_editor").html();
-            //        jQuery("#hfDesc").val(s);
-
-            //        if (!$(desc).hasClass('active')) {
-            //            //var s = $(this).val();
-            //            while (s.indexOf("\n") > -1)
-            //                s = s.replace("\n", " ");
-            //            s = $.removeTags(s);
-            //            $(desc).val(s);
-            //            var text = $(desc).val();
-            //            var chars = text.length;
-            //            if (chars > limit) {
-            //                var new_text = text.substr(0, limit);
-            //                $(desc).val(new_text);
-            //            }
-            //        }
-
-            //    }
-            //});
-        });
-    </script>
-
     <!-- 1. Add latest jQuery and fancybox files -->
-
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 }
 
@@ -142,8 +99,14 @@
             </a>
         </div>
     </div>
-    <div class="main-container  px-3" style="padding-top: 65px">
-        <form id="formCreate" action="/Realty/CreateMobile" method="post">
+    <div class="main-container px-3" style="padding-top: 65px">
+        <form id="formCreate" action="/Announcement/Update/@Model.Id" method="post">
+            <div class="form-group">
+                <div class="label-container">@Html.LabelFor(n => n.Name)</div>
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", id = "name-field" })
+                @Html.ValidationMessageFor(x => x.Name)
+            </div>
+            
             <div class="form-group">
                 <label for="city-field">@Resources.Resource.FormCity:</label>
                 @Html.DropDownListFor(x => x.CityId, new SelectList((ViewBag.Cities), "Id", "Name"), @Resources.Resource.FormCityPlacceholder, new { @class = "form-control", id = "city-field" })
@@ -151,67 +114,22 @@
             </div>
 
             <div class="form-group">
-                <label for="address-field">@Resources.Resource.FormAddress:</label>
-                @Html.TextBoxFor(x => x.Street, new { Class = "regInp1 form-control", id = "address-field" })
-                @Html.ValidationMessageFor(x => x.Street)
-            </div>
-            <div class="form-check m-0 p-0 room-count mb-3">
-                @*@Html.LabelFor(x => x.RoomsCount)*@
-                <label>@Resources.Resource.FormFlatsCount</label>
-                <div class="btn-group w-100" role="group" aria-label="Basic example">
-                    @for (int i = 1; i <= 5; i++)
-                    {
-                        if (Model.RoomsCount == i)
-                        {
-                            <button type="button" class="btn btn-primary btn-room-count active" data-count="@i">@i</button>
-                        }
-                        else
-                        {
-                            <button type="button" class="btn btn-outline-default btn-room-count" data-count="@i">@i</button>
-                        }
-                    }
-                    <button type="button" class="btn btn-default btn-room-count" data-count="0">>5</button>
-                </div>
-                @Html.HiddenFor(x => x.RoomsCount, new { @id = "room-count-field", @autocomplete = "off" })
-                @*@for (int i = 1; i <= 5; i++)
-                    {
-                        @Html.RadioButtonFor(x => x.RoomsCount, i) @i
-                    }
-                    @Html.RadioButtonFor(x => x.RoomsCount, 0)>5*@
-            </div>
-
-            <label for="square-field">@Resources.Resource.FormSquare:</label>
-            <div class="input-group mb-3">
-                @Html.TextBoxFor(x => x.Square, new { Class = "regInp3 form-control", @type="number", id = "square-field" })
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1" style="min-width: 45px; text-align: center">@Html.Raw(Resources.Resource.FormM)</span>
-                </div>
-                @Html.ValidationMessageFor(x => x.Square)
-            </div>
-
-            <div class="form-group">
-                <div class="row m-0 p-0">
-                    <div class="col-6 ml-0 pl-0">
-                        <div class="form-group">
-                            <label for="floor-field">@Resources.Resource.FormFloor:</label>
-                            @Html.DropDownListFor(x => x.Floor, Model.FlorsList(), new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.Floor)
+                @foreach (var item in (SelectList)ViewBag.Categories)
+                {
+                    <div class="item-container">
+                        <div class="item">
+                            @Html.RadioButtonFor(m => m.CategoryId, item.Value, new { id = "categoryButtom" + item.Value, name = "CategoryId", @class = "radio" })
+                            @Html.LabelFor(m => m, item.Text, new { @for = "categoryButtom" + item.Value })
                         </div>
                     </div>
-                    <div class="col-6 pr-0">
-                        <div class="form-group">
-                            <label for="room-count-field">@Resources.Resource.FormBuildingFloors:</label>
-                            @Html.DropDownListFor(x => x.FloorCount, Model.FlorsList(), new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.FloorCount)
-                        </div>
-                    </div>
-                </div>
+                }
+                @Html.ValidationMessageFor(s => s.CategoryId)
             </div>
 
             <label for="price-field">@Resources.Resource.FormPrice:</label>
 
             <div class="input-group mb-3">
-                @Html.TextBoxFor(x => x.Price, new { Class = "regInp1 form-control", @type = "number", id = "price-field" })
+                @Html.TextBoxFor(x => x.Price, new { Class = "regInp1 form-control", @type = "number", id = "price-field", step = "0.1" })
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon2" style="min-width: 45px; text-align: center"><i class="fa fa-dollar-sign"></i></span>
                 </div>
@@ -225,80 +143,67 @@
             </div>
 
             <div class="form-group desctiption-textarea">
-                <label for="description-field">@*Подробное описание:*@ </label>
-                @*<textarea class=""></textarea>*@
-                @*@Html.LabelFor(x => x.Description)*@
+                <label for="description-field"></label>
                 <label>@Resources.Resource.FormDescription</label>
                 @Html.TextAreaFor(x => x.Description, new { @rows = 4 })
-                @*@Html.HiddenFor(m => m.Description, new { @id = "hfDesc" })*@
                 @Html.ValidationMessageFor(x => x.Description)
-                @*<p>не более 1800 символов</p>*@
-                @*<div class="rightText">
-                        Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление о продавце - покупатель будет спокоен.
-                        <br />
-                    </div>*@
             </div>
 
             <div class="registerInW">
                 <div class="borderReg ">
                     <div class="fieldItem">
                         <span class="field-title">@Resources.Resource.FormPhotos:</span>
-                        @Html.Partial("_FileUploadVue")
-                    </div>
-                </div>
-            </div>
+                        <div id="vueuploader">
+                            <button type="button" class="btn btn-large  btn-outline-primary w-100" onclick="document.getElementById('myfile').click();">
+                                <i class="fa fa-camera"></i>
+                                @Resources.Resource.BtnAddPhoto
+                            </button>
 
-            <div class="borderReg head d-none">
-                <div class="fieldItem">
-                    <span class="field-title">Раздел сайта:</span>
-                    <input class="regRad" id="regRad" name="regRad" type="radio" value="" /><label for="regRad">объявления</label>
-                    <input class="regRad" id="regRad2" name="regRad" type="radio" checked="checked" value="" /><label for="regRad2">недвижимость</label>
-                </div>
-                <div class="fieldItem">
-                    <span class="field-title">Лицо:</span>
-                    @Html.RadioButtonFor(x => x.IsAgency, false, new { Class = "Personal", Checked = "checked" }) частное
-                    @Html.RadioButtonFor(x => x.IsAgency, true, new { Class = "Agency" }) агенство
-                </div>
-                <div id="AgencyNameDiv" hidden>
-                    <div class="rightText">
-                        <br />@Html.ValidationMessageFor(x => x.AgencyName)
-                    </div>
-                    <span class="field-title">Название агенства:</span>
-                    @Html.TextBoxFor(x => x.AgencyName, new { Class = "regInp2", Id = "AgencyName" })
-                </div>
-                <div class="fieldItem">
-                    <span class="field-title">Категория:</span>
-                    @Html.DropDownListFor(x => x.CategoryId, new SelectList((ViewBag.Categories), "Id", "Name"), "Выберите категорию")
+                            <input type="file" id="myfile" ref="fileInput" style="display: none;" v-on:change="onFileSelected('Announcement', $event)" multiple />
 
-                    <div class="rightText">
-                        @Html.ValidationMessageFor(x => x.CategoryId)
-                    </div>
-                </div>
+                            @if (ViewBag.IsEdit == false)
+                            {
 
-                <div class="fieldItem">
-                    <span class="field-title">Раздел:</span>
-
-                    <div id="CategoryButtons">
-                        @foreach (var item in new SelectList((ViewBag.Sections), "Id", "Name"))
-                        {
-                            <div class="item-container">
-                                <div class="item">
-                                    @Html.RadioButtonFor(m => m.SectionId, item.Value, new { id = "categoryButtom" + item.Value, name = "SectionId", @class = "radio" })
-                                    @Html.LabelFor(m => m, item.Text, new { @for = "categoryButtom" + item.Value })
+                                <div id="imageContainer" style="display: none"></div>
+                                <div id="imgcontainer" class="row px-2"></div>
+                            }
+                            else
+                            {
+                                <div id="imageContainer" style="display: none">
+                                    @if (Model.Images != null && Model.Images.Any())
+                                    {
+                                        foreach (var photo in Model.Images)
+                                        {
+                                            <input name="imagesNames[]" class="uploadedImage" data-filename="@("num" + photo.Id)" value="@photo.Link;false" />
+                                        }
+                                    }
                                 </div>
-                            </div>
-                        }
-                        <div style="clear: both; padding: 0; height: 0; min-height: 0;"></div>
-                        <div style="padding-left: 210px; padding-bottom: 0;">@Html.ValidationMessageFor(s => s.SectionId)</div>
-                        <label for="pertin1" hidden id="ForDaysLabel">@Html.CheckBoxFor(x => x.ForDays, new { Id = "ForDays" })На сутки</label>
 
+                                <div id="imgcontainer" class="row px-2">
+                                    @if (Model.Images != null && Model.Images.Any())
+                                    {
+                                        foreach (var photo in Model.Images)
+                                        {
+                                            <div class="col-lg-4 col-md-6 col-6 px-0 thumb img-block-gallery" data-filename="@("image_" + photo.Id)" id="@("image_" + photo.Id)">
+                                                <a href="#" class="button remove remove-times" title="" onclick="javascript: removeImage(@("'num" + photo.Id + "', '" + photo.Id + "')"); return false;">
+                                                    <i class="fa fa-times fa-2x text-danger"></i>
+                                                </a>
+                                                <a style="float: right; width: 100%;" href="#" onclick="event.preventDefault()">
+                                                    <img class="img-fluid" style="width: 100%" src=@("/Images/Thumbnails/Announcement/" + photo.Link)>
+                                                </a>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            }
+                        </div>
                     </div>
-
                 </div>
             </div>
 
             <div class="borderReg d-none">
-
+                @Html.TextBoxFor(m => m.SectionId, Model.SectionId)
+                @Html.TextBoxFor(m => m.SubsectionId, Model.SubsectionId)
                 <div class="fieldItem">
                     <div class="regBrown label-container">Заголовок:</div>
                     @Html.TextBoxFor(x => x.Name, new { Class = "regInp2" })
@@ -308,8 +213,6 @@
                         @Html.ValidationMessageFor(x => x.Name)
                     </div>
                 </div>
-
-
 
                 <div class="fieldItem">
                     <div class="label-container">Краткое описание:</div>
@@ -358,7 +261,7 @@
 
                 <div class="fieldItem w-100">
                     <span class="field-title">Фотографии:</span>
-                    @Html.Partial("_FileUpload")
+                    @*@Html.Partial("_FileUpload")*@
                 </div>
 
             </div>

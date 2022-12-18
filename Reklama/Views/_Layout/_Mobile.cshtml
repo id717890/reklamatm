@@ -53,7 +53,7 @@
                             <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> @Resources.Resource.MenuMain</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("LoginMobile","Account")"><i class="fa fa-tv"></i> @Resources.Resource.MenuDashboard</a>
+                            <a href="@Url.Action("Login","Account")"><i class="fa fa-tv"></i> @Resources.Resource.MenuDashboard</a>
                         </li>
                         <li class="@(ViewContext.RouteData.Values["Action"].ToString().ToLower() == "filtersmobile" ? "active" : "")">
                             <a href="@Url.Action("FiltersMobile","Home")"><i class="fa fa-filter"></i> @Resources.Resource.MenuFilters</a>
@@ -64,7 +64,7 @@
                         <li>
                             <ul class="list-unstyled CTAs">
                                 <li>
-                                    <a href="/Realty/CreateMobile" class="download" style="color: #7386D5 !important">
+                                    <a href="/Realty/New" class="download" style="color: #7386D5 !important">
                                         @Resources.Resource.MenuAddAd
                                     </a>
                                 </li>

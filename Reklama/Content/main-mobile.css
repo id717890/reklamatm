@@ -7,6 +7,22 @@
     min-height: 100%;
 }
 
+.categories {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+    .categories .category {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+        label {
+            margin-left: 10px;
+            margin-bottom: 0;
+        }
+
 .btn-room-count, .btn-room-count-multy, .btn-direction-sort, .btn-field-sort {
     border: 1px solid silver;
 }
@@ -37,11 +53,11 @@ ul li.static a:hover {
     color: #fff;
 }
 
-.remove-times{
+.remove-times {
     position: absolute;
     right: 17px;
     top: 13px;
-    z-index:100;
+    z-index: 100;
 }
 
 .bg-blue {
@@ -108,10 +124,10 @@ ul li.static a:hover {
         display: none;
     }
 
-        .main-pub-items .item .bg {
-            width: 10px !important;
-            flex: 0 0 auto;
-        }
+    .main-pub-items .item .bg {
+        width: 10px !important;
+        flex: 0 0 auto;
+    }
 
 .blue {
     background-color: #0c70b9;
@@ -142,43 +158,44 @@ ul li.static a:hover {
     flex-basis: 95%;
 }
 
-.main-pub-items .item .info .line {
-    display: flex;
-    flex-flow: row nowrap;
-    word-break: break-word;
-}
-
-    .main-pub-items .item .info .line .icon {
-        flex-basis: 25px;
-    }
-
-    .main-pub-items .item .info .line .text {
-        color: rgba(44, 43, 43, 0.85)
-    }
-
-
-.main-pub-items .item .info .announce-info {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items:center;
-    color: black;
-}
-    .main-pub-items .item .info .announce-info .name-ico {
+    .main-pub-items .item .info .line {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 34px;
-        width: 34px;
-        background-color: lightgray;
+        flex-flow: row nowrap;
+        word-break: break-word;
     }
 
-    .main-pub-items .item .info .announce-info .name {
-        flex-grow: 2;
+        .main-pub-items .item .info .line .icon {
+            flex-basis: 25px;
+        }
+
+        .main-pub-items .item .info .line .text {
+            color: rgba(44, 43, 43, 0.85)
+        }
+
+
+    .main-pub-items .item .info .announce-info {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        color: black;
     }
+
+        .main-pub-items .item .info .announce-info .name-ico {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 34px;
+            width: 34px;
+            background-color: lightgray;
+        }
+
+        .main-pub-items .item .info .announce-info .name {
+            flex-grow: 2;
+        }
 
     /*.main-pub-items .item .info .announce-info .dt {*/
-        /*position: absolute;*/
-        /*right: 10px;*/
+    /*position: absolute;*/
+    /*right: 10px;*/
     /*}*/
 
     .main-pub-items .item .info p {
@@ -210,7 +227,7 @@ ul li.static a:hover {
     position: fixed;
     left: 0;
     right: 0;
-    z-index:2;
+    z-index: 2;
     width: 100%;
 }
 
@@ -544,36 +561,36 @@ a.article:hover {
     display: block;
 }
 
-.profile-header-wrapper .info {
-    display: flex;
-    padding: 20px 20px 0;
-}
-
-    .profile-header-wrapper .info .logo {
-        width: 90px;
-        height: 90px;
-        -moz-border-radius: 50%;
-        -webkit-border-radius: 50%;
-        border-radius: 50%;
-        justify-content: center;
-        align-items: center;
+    .profile-header-wrapper .info {
         display: flex;
-        background-color: lightgray;
-        font-size: 2rem;
+        padding: 20px 20px 0;
     }
 
-    .profile-header-wrapper .info .personal {
-        color: white;
-        margin-left: 20px;
-    }
+        .profile-header-wrapper .info .logo {
+            width: 90px;
+            height: 90px;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            background-color: lightgray;
+            font-size: 2rem;
+        }
+
+        .profile-header-wrapper .info .personal {
+            color: white;
+            margin-left: 20px;
+        }
 
     .profile-header-wrapper .actions {
         padding: 0 20px 10px;
     }
 
-    .profile-header-wrapper .actions a {
-        color: white !important;
-    }
+        .profile-header-wrapper .actions a {
+            color: white !important;
+        }
 
     .profile-header-wrapper .info .personal p {
         margin-bottom: 5px;
@@ -949,10 +966,10 @@ a.article:hover {
     color: white;
 }
 
-.lang:hover {
-    text-decoration: none;
-    color: silver;
-}
+    .lang:hover {
+        text-decoration: none;
+        color: silver;
+    }
 
 .active-lang {
     color: orangered !important;

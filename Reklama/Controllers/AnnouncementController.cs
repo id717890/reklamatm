@@ -24,6 +24,7 @@ using Reklama.Services;
 using WebMatrix.WebData;
 using PagedList;
 using Domain.Enums;
+using System.Globalization;
 
 namespace Reklama.Controllers
 {
@@ -183,7 +184,7 @@ namespace Reklama.Controllers
 
                 }
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Announcement");
             }
 
             ViewBag.Cities = _cityRepository.Read();
@@ -193,6 +194,144 @@ namespace Reklama.Controllers
             PopulateCategoryDropDownList();
 
             return View(model);
+        }
+
+        [HttpGet]
+        [CustomAnnouncementAuth]
+        public ActionResult Update(int id)
+        {
+            var announcement = _repository.Read(id);
+            if (announcement == null) return HttpNotFound();
+            var isRealtyUserCanEdit = _anonymousUserService.IsUserCanEdit(id);
+            if (WebSecurity.CurrentUserId != announcement.UserId && !User.IsInRole("Administrator") && !User.IsInRole("Moderator"))
+            {
+                if (!isRealtyUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
+
+            }
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+
+
+            if (announcement.Price.HasValue && !announcement.Currency.Rate.Equals(1.0f))
+            {
+                announcement.Price = Math.Round((decimal)announcement.Price * (decimal)announcement.Currency.Rate, 2);
+            }
+
+            if (announcement.UserId != -1 && (announcement.Phone == null || announcement.Phone.Equals(string.Empty)))
+            {
+                announcement.Phone = announcement.User.Phone;
+            }
+
+            ViewBag.IsEdit = true;
+            ViewBag.Cities = _cityRepository.Read();
+            ViewBag.Sections = _sectionRepository.Read();
+            //ViewBag.Categories = _categoryRepository.Read();
+            ViewBag.Currencies = _currencyRepository.Read();
+            ViewBag.ImagePath = ImageProvider.PublicRealtyImagesPath;
+            ViewBag.UploadedImages = from photo in announcement.Images select photo.Link + ";" + photo.IsTitular.ToString().ToLower();
+            PopulateCategoryDropDownList();
+
+            return View("Update", announcement);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(Announcement model, FormCollection collection)
+        {
+            var announcement = _repository.Read(model.Id);
+            if (announcement == null) return HttpNotFound();
+
+            var isUserCanEdit = _anonymousUserService.IsUserCanEditRealty(model.Id);
+            if (WebSecurity.CurrentUserId != announcement.UserId && !User.IsInRole("Administrator") && !User.IsInRole("Moderator"))
+            {
+                if (!isUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
+            }
+
+            model.ExpiredAt = DateTime.Now.AddDays(int.Parse(ProjectConfiguration.Get.GetConfigValue("ExpiredAtAnnouncement").ToString()));
+            model.IsActive = true;
+            model.UserId = announcement.UserId;
+            model.UpTime = announcement.UpTime;
+            model.ViewsCount = announcement.ViewsCount;
+            model.CreatedAt = announcement.CreatedAt;
+            model.IsDisplayPhone = true;
+
+            announcement.Description = Helper.RemoveTextFromText(announcement.Description, "width", ";");
+
+            ModelState.Remove("IsDisplayPhone");
+
+            if (ModelState.IsValid)
+            {
+                var images = collection["imagesNames[]"];
+
+                try
+                {
+                    int id = _repository.Save(model);
+                    _announcementImageRepository.SaveManyImages(id, images);
+                    return RedirectToAction("MyAnnouncements", "Bookmarks");
+                }
+                catch (Exception e)
+                {
+                    TempData["error"] = ProjectConfiguration.Get.DataErrorMessage;
+                    return RedirectToAction("Update", "Announcement", new { Id = model.Id });
+                }
+            }
+            ViewBag.Cities = _cityRepository.Read();
+            ViewBag.Sections = _sectionRepository.Read();
+            //ViewBag.Categories = _categoryRepository.Read();
+            PopulateCategoryDropDownList();
+            ViewBag.Currencies = _currencyRepository.Read();
+            ViewBag.UploadedImages = (collection["imagesNames[]"] != null) ? collection["imagesNames[]"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries) : null;
+            return RedirectToAction("MyAnnouncements", "Bookmarks");
+        }
+
+        [HttpGet]
+        public ActionResult PlayStop(int id = 0)
+        {
+            var announcement = _repository.Read(id);
+            if (announcement == null) return HttpNotFound();
+
+            var isAnonumousUserCanEdit = _anonymousUserService.IsUserCanEdit(id);
+            if (WebSecurity.CurrentUserId != announcement.UserId && !User.IsInRole("Administrator"))
+            {
+                if (!isAnonumousUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
+            }
+            return View("PlayStop", announcement);
+        }
+
+        [HttpGet]
+        public ActionResult PlayStopConfirmed(int id)
+        {
+            var announcement = _repository.Read(id);
+            if (announcement == null) return HttpNotFound();
+
+            var isAnonumousUserCanEdit = _anonymousUserService.IsUserCanEdit(id);
+            if (WebSecurity.CurrentUserId != announcement.UserId && !User.IsInRole("Administrator"))
+            {
+                if (!isAnonumousUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
+            }
+
+            try
+            {
+                announcement.IsActive = !announcement.IsActive;
+                _repository.Save(announcement);
+            }
+            catch (DataException e)
+            {
+                TempData["error"] = ProjectConfiguration.Get.DataErrorMessage;
+            }
+            return RedirectToAction("MyAnnouncements", "Bookmarks");
         }
 
 
@@ -530,7 +669,7 @@ namespace Reklama.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete_(int id = 0)
+        public ActionResult Delete(int id = 0)
         {
             var announcement = _repository.Read(id);
             if (announcement == null) return HttpNotFound();
@@ -544,11 +683,11 @@ namespace Reklama.Controllers
                 }
             }
 
-            return View("Delete_", announcement);
+            return View("Delete", announcement);
         }
 
         [HttpPost]
-        public ActionResult DeleteConfirmed_(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
             var announcement = _repository.Read(id);
             if (announcement == null) return HttpNotFound();
@@ -570,12 +709,12 @@ namespace Reklama.Controllers
             {
                 TempData["error"] = ProjectConfiguration.Get.DataErrorMessage;
             }
-            return RedirectToAction("MyAnnouncements_", "Bookmarks");
+            return RedirectToAction("MyAnnouncements", "Bookmarks");
         }
 
 
         [HttpGet]
-        public ActionResult Delete(int id = 0)
+        public ActionResult DeleteOld(int id = 0)
         {
             var announcement = _repository.Read(id);
             if (announcement == null) return HttpNotFound();
@@ -593,7 +732,7 @@ namespace Reklama.Controllers
         }        
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmedOld(int id)
         {
             var announcement = _repository.Read(id);
             if (announcement == null) return HttpNotFound();

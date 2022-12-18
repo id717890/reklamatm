@@ -2,7 +2,7 @@
 
 @{
     Layout = "~/Views/_Layout/_Mobile.cshtml";
-    ViewBag.Title = "Удаление объявления";
+    ViewBag.Title = "Включить/выключить объявления";
 }
 
 <div class="bg-silver">
@@ -13,14 +13,14 @@
     <div class="main-container">
         <div class="card mt-1 mr-3 ml-3">
             <div class="card-header">
-                Удаление объявления
+                Включить/выключить объявления
                 <i class="fa fa-exclamation"></i>
             </div>
             <div class="card-body">
-                <h5>Вы уверены, что хотите удалить объявление `@Model.Name`?</h5>
-                @using (Html.BeginForm("DeleteConfirmed", "Realty", new { id = Model.Id }, FormMethod.Get, null))
+                <h5>Вы уверены, что хотите @(Model.IsActive ? "отключить " : "включить " ) объявление `@Model.Name`?</h5>
+                @using (Html.BeginForm("PlayStopConfirmed", "Realty", new { id = Model.Id }, FormMethod.Get, null))
                 {
-                    <button type="submit" class="btn btn-large btn-danger"><i class="fa fa-check"></i> Удалить</button>
+                    <button type="submit" class="btn btn-large btn-primary"><i class="fa fa-check"></i> ОК</button>
                     <a href="@Url.Action("MyRealty","Bookmarks")" class="btn btn-large btn-secondary"><i class="fa fa-times"></i> Отмена</a>
                 }
             </div>

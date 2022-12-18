@@ -169,7 +169,7 @@ namespace Reklama.Controllers
 
 
         [CustomRealtyAuth]
-        public ActionResult CreateMobile()
+        public ActionResult New()
         {
             var model = new Realty();
             var userID = WebSecurity.CurrentUserId;
@@ -201,7 +201,7 @@ namespace Reklama.Controllers
             model.Floor = 1;
             model.RoomsCount = 1;
             model.FloorCount = 12;
-            return View("CreateMobile" ,model);
+            return View("New" ,model);
         }
 
         [CustomRealtyAuth]
@@ -232,7 +232,7 @@ namespace Reklama.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult CreateMobile(Realty realty, FormCollection collection)
+        public ActionResult New(Realty realty, FormCollection collection)
         {
             if (realty.Floor > realty.FloorCount)
             {
@@ -490,9 +490,7 @@ namespace Reklama.Controllers
                 {
                     int id = _realtyRepository.Save(model);
                     _photoRepository.SaveManyImages(id, images);
-
-                    //return RedirectToAction("Details", "Realty", new { Id = id });
-                    return RedirectToAction("MyAnnouncementsMobile", "Bookmarks");
+                    return RedirectToAction("MyRealty", "Bookmarks");
                 }
                 catch (Exception e)
                 {
@@ -506,7 +504,7 @@ namespace Reklama.Controllers
             ViewBag.Categories = _categoryRepository.Read();
             ViewBag.Currencies = _currencyRepository.Read();
             ViewBag.UploadedImages = (collection["imagesNames[]"] != null) ? collection["imagesNames[]"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries) : null;
-            return RedirectToAction("MyAnnouncementsMobile", "Bookmarks");
+            return RedirectToAction("MyRealty", "Bookmarks");
 
             //if (realty.Floor > realty.FloorCount)
             //{
@@ -647,7 +645,7 @@ namespace Reklama.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id = 0)
+        public ActionResult DeleteOld(int id = 0)
         {
             var realty = _realtyRepository.Read(id);
             if (realty == null) return HttpNotFound();
@@ -665,7 +663,7 @@ namespace Reklama.Controllers
         }
 
         [HttpGet]
-        public ActionResult DeleteMobile(int id = 0)
+        public ActionResult Delete(int id = 0)
         {
             var realty = _realtyRepository.Read(id);
             if (realty == null) return HttpNotFound();
@@ -678,11 +676,11 @@ namespace Reklama.Controllers
                     return HttpNotFound();
                 }
             }
-            return View("DeleteMobile", realty);
+            return View("Delete", realty);
         }
 
         [HttpGet]
-        public ActionResult PlayStopMobile(int id = 0)
+        public ActionResult PlayStop(int id = 0)
         {
             var realty = _realtyRepository.Read(id);
             if (realty == null) return HttpNotFound();
@@ -695,11 +693,11 @@ namespace Reklama.Controllers
                     return HttpNotFound();
                 }
             }
-            return View("PlayStopMobile", realty);
+            return View("PlayStop", realty);
         }
 
         [HttpGet]
-        public ActionResult PlayStopConfirmedMobile(int id)
+        public ActionResult PlayStopConfirmed(int id)
         {
             var realty = _realtyRepository.Read(id);
             if (realty == null) return HttpNotFound();
@@ -722,11 +720,11 @@ namespace Reklama.Controllers
             {
                 TempData["error"] = ProjectConfiguration.Get.DataErrorMessage;
             }
-            return RedirectToAction("MyAnnouncementsMobile", "Bookmarks");
+            return RedirectToAction("MyRealty", "Bookmarks");
         }
 
         [HttpGet]
-        public ActionResult DeleteConfirmedMobile(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
             var announcement = _realtyRepository.Read(id);
             if (announcement == null) return HttpNotFound();
@@ -748,7 +746,7 @@ namespace Reklama.Controllers
             {
                 TempData["error"] = ProjectConfiguration.Get.DataErrorMessage;
             }
-            return RedirectToAction("MyAnnouncementsMobile", "Bookmarks");
+            return RedirectToAction("MyRealty", "Bookmarks");
         }
 
 
@@ -774,7 +772,7 @@ namespace Reklama.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmedOld(int id)
         {
             var realty = _realtyRepository.Read(id);
             if (realty == null) return HttpNotFound();

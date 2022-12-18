@@ -1,229 +1,286 @@
-﻿@using Domain.Entity.Realty;
-@using Domain.Enums
-@using Reklama
+﻿@using System.Globalization
 @using Reklama.Models.SortModels
-@using Reklama.Models.ViewModels.Shared
 @model PagedList.IPagedList<Domain.Entity.Realty.Realty>
+
 @{
+    ViewBag.Title = "IndexMobile";
+    Layout = "~/Views/_Layout/_Mobile.cshtml";
     var sortModel = (PagerSortModel)ViewBag.SortModel;
+    var name = ViewBag.UserName;
+    var surname = ViewBag.UserSurName;
+    var site = ViewBag.Site;
+    var skype = ViewBag.Skype;
+    var icq = ViewBag.Icq;
+    var isAdmin = ViewBag.IsAdmin;
 }
 
-<div class="catalogInner">
-    <table>
-        <tr>
-            <td class="ci2">
-                <img width="10" height="1" border="0" src="/Images/System/s.png" />
-            </td>
-            <td class="ci3" valign="top">
-                <div class="crumbs">
+<div class="bg-silver">
+    <div class="main-header">
+        <a href="@Url.Action("Index", "Home")">
+            <img class="img-logo" style="margin: 0; max-height: 49px;" src="/Images/System/logo3.png" alt="reklama.tm" />
+        </a>
+    </div>
+    <div class="main-container" style="padding-top: 60px;">
+        <div class="profile-header-wrapper mb-2">
+            <h2 class="text-center mt-2 text-white">Профиль</h2>
+            <div class="info">
+                <div class="logo">
+                    @if (name != string.Empty && name != null)
+                    {
+                        <span>
+                            @name.Substring(0, 1).ToUpper()
+                        </span>
+                    }
+                    else
+                    {
+                        <span>Н/Д</span>
+                    }
                 </div>
-                <h1>@ViewBag.Title</h1>
-                <div class="booksTabs">
-                    <ul>
-                        <li>@Html.RouteLink("Объявления", "MyAnnouncements")</li>
-                        <li class="a">@Html.RouteLink("Недвижимость", "MyRealty")</li>
-                        @*<li><a href="javascript:void(0)">Авто</a></li>
-                        <li><a href="javascript:void(0)">Купить</a></li>*@
-                    </ul>
+                <div class="personal">
+                    <h3>@surname @name</h3>
+                    @if (site != null)
+                    {<p>Сайт: @site</p>}
+                    @if (skype != null)
+                    {<p>Skype: @skype</p>}
+                    @if (icq != null)
+                    {<p>ICQ: @icq</p>}
                 </div>
-                <div class="ciList myBookm">
-                    <ul>
-                        @foreach (var realty in Model)
+            </div>
+            <div class="actions">
+                <a class="btn btn-default btn-rounded mt-3"><i class="fa fa-pencil-alt"></i> Редактировать</a>
+                @if (isAdmin)
+                {
+                    <a class="btn btn-default btn-rounded mt-3"><i class="fa fa-user-alt"></i> Пользователи</a>
+                }
+                <a href="@Url.Action("LogOffAlternative", "Account")" class="btn btn-default btn-rounded mt-3"><i class="fa fa-sign-out-alt"></i> Выход</a>
+            </div>
+        </div>
+        @Html.Partial("~/VIews/Partial/_TabMenuProfile.cshtml")
+        <div class="main-pub-items">
+            @{var rnd = new Random(); }
+            @foreach (var realty in Model)
+            {
+                <div class="item blue">
+                    <div class="bg blue">&nbsp;</div>
+
+                    @*<div class="img">
+                        @if (realty.Photos.Count != 0)
                         {
-                            <li>
-                                <table>
-                                    <tr>
-                                        <td class="ciImg">
-                                            <a href="javascript:void(0)">
-                                                @if (realty.Photos.Count != 0)
-                                                {
-                                                    <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["realty_thumb"], "/", realty.Photos.OrderBy(x => x.CreatedAt).First().Link)" />
-                                                }
-                                                else
-                                                {
-                                                    <img src="/Images/System/no_photo_realty.png" />
-                                                }
-                                            </a>
-                                        </td>
-                                        <td class="ciText">
-                                            <div>
-                                                <span class="ciName">
-                                                    <a href="http://jay.reklama.tm/Details/@realty.Id">@realty.Name</a>
-                                                    <span>@realty.Id</span>
-                                                </span>
-                                                <div class="ciType">
-                                                    <span class="sale">@realty.RealtyCategory.Name</span>
-                                                </div>
-                                                <p>
-                                                    @realty.SmallDescription
-                                                    <a href="http://jay.reklama.tm/Details/@realty.Id">Читать подробнее</a>
-                                                </p>
-                                                <div class="ciRate">
-                                                    <span>
-                                                        <img src="/Images/System/foto.png" />
-                                                        <span style="margin: 0; padding: 0;">Фото</span>
-                                                        <sup>@realty.Photos.Count</sup>
-                                                    </span>
-
-                                                    <img src="/Images/System/book.png" />
-                                                    <span style="margin: 0; padding: 0;">Комментарии</span>
-                                                    <sup>
-                                                        @if (realty.Comments == null)
-                                                        {
-                                                            @:0
-                                                        }
-                                                        else
-                                                        {
-                                                            @realty.Comments.Count
-                                                        }
-                                                    </sup>
-
-                                                </div>
-                                                <div class="ciAuthor">
-                                                    @Html.ActionLink(@realty.UserProfile.Email, "Index", "Profile", new { id = realty.UserId }, null)
-                                                    @string.Format("{0:dd.MM.yyyy HH:mm}", realty.CreatedAt)
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="ciOffers ciRealt">
-
-                                            @Html.Partial("_PriceCurrencyPartialList", new PriceCurrencyViewModel()
-                                                                                           {
-                                                                                               Currency = realty.Currency,
-                                                                                               IsAuction = realty.IsAuction,
-                                                                                               Price = realty.Price
-                                                                                           })
-
-                                        </td>
-                                        <td class="ciInfo">
-                                            <div>
-                                                <p class="ciStatus">статус - <span>@((realty.IsActive) ? "активно" : "неактивно")</span></p>
-                                                <p>дата публикации: <span>@string.Format("{0:dd.MM.yyyy}", realty.CreatedAt)</span></p>
-                                                <p>дата окончания: <span>@string.Format("{0:dd.MM.yyyy}", realty.ExpiredAt)</span></p>
-
-                                                @if (realty.UpTime <= DateTime.Now.AddHours(-((int)ViewBag.UpTimerealty)))
-                                                {
-                                                    <div id="RealtyUp">
-                                                        <input class="RealtyUp" realtyId="@realty.Id" value="Поднять объявление" type="button">
-                                                    </div>
-                                                }
-                                                else
-                                                {
-                                                    var time = DateTime.Now - realty.UpTime;
-                                                    time = TimeSpan.FromHours(ViewBag.UpTimerealty) - time;
-                                <p><b>Поднять объявление можно будет через:  @time.Hours ч. @time.Minutes м.</b></p>
-                                                }
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </li>
+                            <div class="icon-wrapper">
+                                <img data-toggle="modal" data-target="@("#item-modal-" + realty.Id)" src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["realty_thumb"], "/", realty.Photos.OrderBy(x => x.CreatedAt).First().Link)" />
+                            </div>
                         }
-                    </ul>
-                </div>
-                <div class="pages">
-                    <ul class="fastNav">
-                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
-                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
-                        <a class="page-prev" href="javascript:void(0)"></a>
-                       
-                        @for (int page = 1; page <= Model.PageCount && page <= 7; page++)
+                        else
                         {
-                            <li>
-
-                                @if (page == Model.PageNumber)
+                            <div class="icon-wrapper blue">
+                                <i class="fa fa-home fa-3x"></i>
+                            </div>
+                        }
+                    </div>*@
+                    <div class="info pl-3">
+                        <div class="announce-info">
+                            <div class="name-ico mr-2">
+                                @if (realty.UserProfile.Name != string.Empty && realty.UserProfile.Name != null)
                                 {
-                                    @Html.ActionLink(page.ToString(), "MyRealty", new
-                                                                            {
-                                                                                CurrentPage = page,
-                                                                                PageSize = sortModel.PageSize
-                                                                            },
-                                                                            new { @class = "hr" })
+                                    <span>
+                                        @realty.UserProfile.Name.Substring(0, 1).ToUpper()
+                                    </span>
                                 }
                                 else
                                 {
-                                    @Html.ActionLink(page.ToString(), "MyRealty", new
-                                                                            {
-                                                                                CurrentPage = page,
-                                                                                PageSize = sortModel.PageSize
-                                                                            })
+                                    <span>Н/Д</span>
                                 }
-                            </li>
-                        }
-                        
-                        @if (Model.PageCount > 14)
-                        {
-                            <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
-                            </li>
-                        }
-                        
-                        @for (int page = Model.PageCount - 6; page <= Model.PageCount && page > 7; page++)
-                        {
-                            <li>
-
-                                @if (page == Model.PageNumber)
+                            </div>
+                            <div class="name mr-2">
+                                @if (realty.UserProfile.Name != string.Empty && realty.UserProfile.Name != null)
                                 {
-                                    @Html.ActionLink(page.ToString(), "MyRealty", new
-                                                                            {
-                                                                                CurrentPage = page,
-                                                                                PageSize = sortModel.PageSize
-                                                                            },
-                                                                            new { @class = "hr" })
+                                    @realty.UserProfile.Name
                                 }
                                 else
                                 {
-                                    @Html.ActionLink(page.ToString(), "MyRealty", new
-                                                                            {
-                                                                                CurrentPage = page,
-                                                                                PageSize = sortModel.PageSize
-                                                                            })
+                                    <span>Н/Д</span>
                                 }
-                            </li>
-                        }
-
-                        <a class="page-next" href="javascript:void(0)"></a>
-                    </ul>
-
-                    <div class="pageslider">
-                        <div class="pagesliderTop">
-                            <ul>
-                                @for (int page = 1; page <= Model.PageCount; page++)
-                                {
-                                    <li>
-
-                                        @if (page == Model.PageNumber)
-                                        {
-                                            @Html.ActionLink(page.ToString(), "MyRealty", new
-                                                                            {
-                                                                                CurrentPage = page,
-                                                                                PageSize = sortModel.PageSize
-                                                                            },
-                                                                            new { @class = "shr" })
-                                        }
-                                        else
-                                        {
-                                            @Html.ActionLink(page.ToString(), "MyRealty", new
-                                                                            {
-                                                                                CurrentPage = page,
-                                                                                PageSize = sortModel.PageSize
-                                                                            })
-                                        }
-                                    </li>
-                                }
-                            </ul>
+                            </div>
+                            <div class="dt">
+                                <i class="fa fa-calendar"></i> <span>@realty.CreatedAt.ToString("dd MMM")</span>
+                            </div>
                         </div>
-                        @*<div class="alHScrollBar">
-                            <div class="alHScrollSlider" style="left: 0px;"></div>
-                        </div>*@
+
+                        <div class="line">
+                            <div class="icon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            <div class="text">
+                                @realty.Address
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="icon">
+                                <i class="fa fa-cube"></i>
+                            </div>
+                            <div class="text">
+                                @*@Html.Raw(realty.DescriptionView)*@
+                                @if (!string.IsNullOrEmpty(ViewBag.Language) && ViewBag.Language == "en")
+                                {
+                                    @Html.Raw(realty.DescriptionViewTm)
+                                }
+                                else
+                                {
+                                    @Html.Raw(realty.DescriptionView)
+                                }
+                            </div>
+                        </div>
+
+
+                        <div class="line">
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <div class="text">
+                                @if (realty.Currency != null && realty.Price != null)
+                                {
+                                    var nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+                                    nfi.NumberGroupSeparator = " ";
+                                    @Math.Round(((decimal)realty.Currency.Rate * realty.Price.Value), 2).ToString("#,0", nfi)
+                                    @*@String.Format("{0:n0}", Math.Round(((decimal)Model.Currency.Rate * Model.Price.Value), 2))*@
+                                    //.ToString("0.#####", CultureInfo.CreateSpecificCulture("fr-CA"))
+                                }
+                                else
+                                {
+                                    <span>0</span>
+                                }
+                                $ &nbsp;&nbsp;&nbsp;
+
+                                @if (WebSecurity.IsAuthenticated && realty.PriceForOneMeter != null)
+                                {
+                                    <span>
+                                        @String.Format("{0:n0}", realty.PriceForOneMeter)
+                                        $/@Html.Raw(Resources.Resource.FormM)
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                        <p style="color: black">
+                            <i class="fa fa-eye"></i> <span>@realty.Views</span>
+
+                            <span class="float-right">
+                                <a href="@Url.Action("Delete", "Realty", new { id = realty.Id })">
+                                    <i class="fa fa-trash-alt text-danger"></i>
+                                </a>
+                            </span>
+
+                            <span class="float-right mr-3">
+                                @if (realty.IsActive)
+                                {
+                                    <a href="@Url.Action("PlayStop", "Realty", new { id = realty.Id })" class="text-primary" title="Приостановить"><i class="fa fa-pause"></i> </a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("PlayStop", "Realty", new { id = realty.Id })" class="text-success" title="Активировать"><i class="fa fa-play"></i> </a>
+                                }
+                            </span>
+                            <span class="float-right mr-3">
+                                <a href="@Url.Action("Update", "Realty", new { id = realty.Id })">
+                                    <i class="fa fa-pencil-alt text-primary"></i>
+                                </a>
+                            </span>
+                        </p>
                     </div>
                 </div>
-            </td>
-        </tr>
-    </table>
+            }
+        </div>
+        <div class="pages">
+            <ul class="fastNav">
+                <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                <a class="page-prev" href="javascript:void(0)"></a>
+
+                @for (int page = 1; page <= Model.PageCount && page <= 7; page++)
+                {
+                    <li>
+
+                        @if (page == Model.PageNumber)
+                        {
+                            @Html.ActionLink(page.ToString(), "MyAnnouncementsMobile", new
+                       {
+                           CurrentPage = page,
+                           PageSize = sortModel.PageSize
+                       },
+                                                                            new { @class = "hr" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink(page.ToString(), "MyAnnouncementsMobile", new
+                       {
+                           CurrentPage = page,
+                           PageSize = sortModel.PageSize
+                       })
+                        }
+                    </li>
+                }
+                @if (Model.PageCount > 14)
+                {
+                    <li class="exppages">
+                        <a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
+                    </li>
+                }
+
+                @for (int page = Model.PageCount - 6; page <= Model.PageCount && page > 7; page++)
+                {
+                    <li>
+
+                        @if (page == Model.PageNumber)
+                        {
+                            @Html.ActionLink(page.ToString(), "MyAnnouncementsMobile", new
+                       {
+                           CurrentPage = page,
+                           PageSize = sortModel.PageSize
+                       },
+                                                                            new { @class = "hr" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink(page.ToString(), "MyAnnouncementsMobile", new
+                       {
+                           CurrentPage = page,
+                           PageSize = sortModel.PageSize
+                       })
+                        }
+                    </li>
+                }
+
+                <a class="page-next" href="javascript:void(0)"></a>
+            </ul>
+
+            <div class="pageslider">
+                <div class="pagesliderTop">
+                    <ul>
+                        @for (int page = 1; page <= Model.PageCount; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "MyAnnouncementsMobile", new
+                               {
+                                   CurrentPage = page,
+                                   PageSize = sortModel.PageSize
+                               },
+                                                                            new { @class = "shr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "MyAnnouncementsMobile", new
+                               {
+                                   CurrentPage = page,
+                                   PageSize = sortModel.PageSize
+                               })
+                                }
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="middleBot"></div>
-
-
-@section head {
-    @Scripts.Render("~/Scripts/Bookmark.js")
-}

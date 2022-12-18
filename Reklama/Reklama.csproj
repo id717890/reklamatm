@@ -3077,7 +3077,7 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\LoginOld.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
@@ -3128,7 +3128,7 @@
     <Content Include="Views\Links\LinkToOneOfMainConfigPage.cshtml" />
     <Content Include="Views\Shared\_RemoveFromBookmarkPartial.cshtml" />
     <Content Include="Views\Shared\404.cshtml" />
-    <Content Include="Views\Bookmarks\MyAnnouncements.cshtml" />
+    <Content Include="Views\Bookmarks\MyAnnouncementsOld.cshtml" />
     <Content Include="Views\Currency\SwitcherList.cshtml" />
     <Content Include="Views\Search\_AnnouncementSectionsPartial.cshtml" />
     <Content Include="Views\Search\_AnnouncementSortByParams.cshtml" />
@@ -3151,7 +3151,7 @@
     <Content Include="Views\Realty\_RealtyCategories.cshtml" />
     <Content Include="Views\Realty\_RealtyPreview.cshtml" />
     <Content Include="Views\Realty\_RealtySortByParams.cshtml" />
-    <Content Include="Views\Realty\Delete.cshtml" />
+    <Content Include="Views\Realty\DeleteOld.cshtml" />
     <Content Include="Views\Realty\Edit.cshtml" />
     <Content Include="Views\Realty\_RealtyCommentCreate.cshtml" />
     <Content Include="Views\Realty\_RealtyComments.cshtml" />
@@ -3176,7 +3176,7 @@
     <Content Include="Views\Admin\ArticleInactive.cshtml" />
     <Content Include="Views\Search\RealtyList.cshtml" />
     <Content Include="Views\Search\_RealtySortByParams.cshtml" />
-    <Content Include="Views\Bookmarks\MyRealty.cshtml" />
+    <Content Include="Views\Bookmarks\MyRealtyOld.cshtml" />
     <Content Include="Views\Bookmarks\Realty.cshtml" />
     <Content Include="Views\Search\_RealtyCategories.cshtml" />
     <Content Include="Views\Premium\Announcement.cshtml" />
@@ -3457,7 +3457,7 @@
     <Content Include="Scripts\mobile\bootstrap-3.3.5\_config.yml" />
     <Content Include="Views\Announcement\Catalog.cshtml" />
     <Content Include="Views\Announcement\Create.cshtml" />
-    <Content Include="Views\Announcement\Delete.cshtml" />
+    <Content Include="Views\Announcement\DeleteOld.cshtml" />
     <Content Include="Views\Announcement\Details.cshtml" />
     <Content Include="Views\Announcement\Edit.cshtml" />
     <Content Include="Views\Announcement\List.cshtml" />
@@ -3490,7 +3490,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Account\LoginMobile.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\Main.cshtml" />
     <Content Include="Views\Home\FiltersMobile.cshtml" />
     <Content Include="webfonts\fa-brands-400.eot" />
@@ -3505,10 +3505,10 @@
     <Content Include="webfonts\fa-solid-900.ttf" />
     <Content Include="webfonts\fa-solid-900.woff" />
     <Content Include="webfonts\fa-solid-900.woff2" />
-    <Content Include="Views\Realty\CreateMobile.cshtml" />
-    <Content Include="Views\Bookmarks\MyRealty_.cshtml" />
-    <Content Include="Views\Realty\DeleteMobile.cshtml" />
-    <Content Include="Views\Realty\PlayStopMobile.cshtml" />
+    <Content Include="Views\Realty\New.cshtml" />
+    <Content Include="Views\Bookmarks\MyRealty.cshtml" />
+    <Content Include="Views\Realty\Delete.cshtml" />
+    <Content Include="Views\Realty\PlayStop.cshtml" />
     <Content Include="Views\Partial\_RealtyItem.cshtml" />
     <Content Include="Views\Page\DetailsMobile.cshtml" />
     <Content Include="Views\Shared\_FileUploadVue.cshtml" />
@@ -3518,9 +3518,12 @@
     <Content Include="Views\Partial\_TabMenu.cshtml" />
     <Content Include="Views\Announcement\IndexMobile.cshtml" />
     <Content Include="Views\Partial\_AnnouncementItem.cshtml" />
-    <Content Include="Views\Bookmarks\MyAnnouncements_.cshtml" />
+    <Content Include="Views\Bookmarks\MyAnnouncements.cshtml" />
     <Content Include="Views\Partial\_TabMenuProfile.cshtml" />
-    <Content Include="Views\Announcement\Delete_.cshtml" />
+    <Content Include="Views\Announcement\Delete.cshtml" />
+    <Content Include="Views\Announcement\Update.cshtml" />
+    <Content Include="Views\Partial\_CategoryPicker.cshtml" />
+    <Content Include="Views\Announcement\PlayStop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

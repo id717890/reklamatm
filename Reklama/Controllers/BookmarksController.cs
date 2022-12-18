@@ -75,7 +75,7 @@ namespace Reklama.Controllers
             return View(announcements.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
         }
 
-        public ActionResult MyAnnouncements_(PagerSortModel sortModel = null)
+        public ActionResult MyAnnouncements(PagerSortModel sortModel = null)
         {
             //var announcements = _bookmarkRepository.ReadAnnouncementsByUser(WebSecurity.CurrentUserId).Where(a => a.IsActive == true);
             //ViewBag.SortModel = sortModel;
@@ -107,12 +107,12 @@ namespace Reklama.Controllers
             {
                 ViewBag.IsAdmin = true;
                 var model = _announcementRepository.Read().OrderByDescending(x => x.CreatedAt);
-                return View("MyAnnouncements_", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
+                return View("MyAnnouncements", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
             }
             else
             {
                 var model = _announcementRepository.Read().Where(x => x.UserId == WebSecurity.CurrentUserId).OrderByDescending(x => x.CreatedAt);
-                return View("MyAnnouncements_", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
+                return View("MyAnnouncements", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
             }
         }
 
@@ -139,7 +139,7 @@ namespace Reklama.Controllers
         }
 
 
-        public ActionResult MyRealty_(PagerSortModel sortModel = null)
+        public ActionResult MyRealty(PagerSortModel sortModel = null)
         {
             ViewBag.UpTimeAnnouncement = int.Parse(_configRepository.ReadByName("UpTimeAnnouncement").Value);
             ViewBag.SortModel = sortModel;
@@ -161,17 +161,17 @@ namespace Reklama.Controllers
             {
                 ViewBag.IsAdmin = true;
                 var model = _realtyRepository.Read().OrderByDescending(x => x.CreatedAt);
-                return View("MyRealty_", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
+                return View("MyRealty", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
             } else
             {
                 var model = _realtyRepository.Read().Where(x => x.UserId == WebSecurity.CurrentUserId).OrderByDescending(x => x.CreatedAt);
-                return View("MyRealty_", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
+                return View("MyRealty", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
             }
         }
 
         //
         // GET: /Bookmarks/MyAnnouncements
-        public ActionResult MyAnnouncements(PagerSortModel sortModel = null)
+        public ActionResult MyAnnouncementsOld(PagerSortModel sortModel = null)
         {
             var myAnnouncements = _announcementRepository.ReadByUser(_announcementRepository.Read(),
                                                                      WebSecurity.CurrentUserId);
@@ -183,7 +183,7 @@ namespace Reklama.Controllers
 
         //
         // GET: /Bookmarks/MyRealty
-        public ActionResult MyRealty(PagerSortModel sortModel = null)
+        public ActionResult MyRealtyOld(PagerSortModel sortModel = null)
         {
             var myRealty = _realtyRepository.ReadByUser(_realtyRepository.Read(),
                                                                      WebSecurity.CurrentUserId);
