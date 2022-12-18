@@ -254,6 +254,12 @@ ul li.static a:hover {
         left: 0;
     }
 
+    #sidebar::-webkit-scrollbar {
+        width: 0px;
+    }
+
+
+
 #dismiss {
     width: 35px;
     height: 35px;

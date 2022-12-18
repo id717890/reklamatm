@@ -105,7 +105,7 @@ namespace Reklama.Controllers
 
         public ActionResult Index()
         {
-            var model = _repository.Read().OrderByDescending(x => x.CreatedAt).Take(20).ToList();
+            var model = _repository.Read().OrderByDescending(x => x.CreatedAt).Take(50).ToList();
             return View("IndexMobile", model);
         }
 
@@ -527,6 +527,50 @@ namespace Reklama.Controllers
                                      filterParams.SubsectionId, filterParams.CategoryId);
             
             return View("List", announcementsToSort.ToPagedList((filterParams.CurrentPage.HasValue) ? filterParams.CurrentPage.Value : 1, filterParams.PageSize));
+        }
+
+        [HttpGet]
+        public ActionResult Delete_(int id = 0)
+        {
+            var announcement = _repository.Read(id);
+            if (announcement == null) return HttpNotFound();
+
+            var isAnonumousUserCanEdit = _anonymousUserService.IsUserCanEdit(id);
+            if (WebSecurity.CurrentUserId != announcement.UserId && !User.IsInRole("Administrator"))
+            {
+                if (!isAnonumousUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
+            }
+
+            return View("Delete_", announcement);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteConfirmed_(int id)
+        {
+            var announcement = _repository.Read(id);
+            if (announcement == null) return HttpNotFound();
+
+            var isAnonumousUserCanEdit = _anonymousUserService.IsUserCanEdit(id);
+            if (WebSecurity.CurrentUserId != announcement.UserId && !User.IsInRole("Administrator"))
+            {
+                if (!isAnonumousUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
+            }
+
+            try
+            {
+                _repository.Delete(announcement);
+            }
+            catch (DataException e)
+            {
+                TempData["error"] = ProjectConfiguration.Get.DataErrorMessage;
+            }
+            return RedirectToAction("MyAnnouncements_", "Bookmarks");
         }
 
 

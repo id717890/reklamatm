@@ -18,7 +18,8 @@ using Reklama.Filters;
 
 namespace Reklama.Controllers
 {
-    [Authorize, Culture]
+    //[Authorize, Culture]
+    [ Culture]
     public class BookmarksController : _BaseController
     {
         private ReklamaContext rc = new ReklamaContext();
@@ -74,6 +75,47 @@ namespace Reklama.Controllers
             return View(announcements.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
         }
 
+        public ActionResult MyAnnouncements_(PagerSortModel sortModel = null)
+        {
+            //var announcements = _bookmarkRepository.ReadAnnouncementsByUser(WebSecurity.CurrentUserId).Where(a => a.IsActive == true);
+            //ViewBag.SortModel = sortModel;
+            //ViewBag.Title = "Мои закладки";
+
+            //return View(announcements.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
+
+
+
+
+            ViewBag.UpTimeAnnouncement = int.Parse(_configRepository.ReadByName("UpTimeAnnouncement").Value);
+            ViewBag.SortModel = sortModel;
+            ViewBag.Title = "Объявления";
+            ViewBag.IsAdmin = false;
+            try
+            {
+                var user = _profileRepository.Read(WebSecurity.CurrentUserId);
+                if (user != null)
+                {
+                    ViewBag.UserName = user.Name;
+                    ViewBag.UserSurName = user.Surname;
+                    ViewBag.Site = user.Site;
+                    ViewBag.Skype = user.Skype;
+                    ViewBag.Icq = user.Icq;
+                }
+            }
+            catch { }
+            if (Roles.IsUserInRole(WebSecurity.CurrentUserName, "Administrator"))
+            {
+                ViewBag.IsAdmin = true;
+                var model = _announcementRepository.Read().OrderByDescending(x => x.CreatedAt);
+                return View("MyAnnouncements_", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
+            }
+            else
+            {
+                var model = _announcementRepository.Read().Where(x => x.UserId == WebSecurity.CurrentUserId).OrderByDescending(x => x.CreatedAt);
+                return View("MyAnnouncements_", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
+            }
+        }
+
         //
         // GET: /Bookmarks/Realty
 
@@ -97,12 +139,11 @@ namespace Reklama.Controllers
         }
 
 
-        public ActionResult MyAnnouncementsMobile(PagerSortModel sortModel = null)
+        public ActionResult MyRealty_(PagerSortModel sortModel = null)
         {
-            //var myAnnouncements = _announcementRepository.ReadByUser(_announcementRepository.Read(), WebSecurity.CurrentUserId);
             ViewBag.UpTimeAnnouncement = int.Parse(_configRepository.ReadByName("UpTimeAnnouncement").Value);
             ViewBag.SortModel = sortModel;
-            ViewBag.Title = "Мои объявления";
+            ViewBag.Title = "Недвижимость";
             ViewBag.IsAdmin = false;
             try
             {
@@ -120,11 +161,11 @@ namespace Reklama.Controllers
             {
                 ViewBag.IsAdmin = true;
                 var model = _realtyRepository.Read().OrderByDescending(x => x.CreatedAt);
-                return View("MyAnnouncementsMobile", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
+                return View("MyRealty_", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
             } else
             {
                 var model = _realtyRepository.Read().Where(x => x.UserId == WebSecurity.CurrentUserId).OrderByDescending(x => x.CreatedAt);
-                return View("MyAnnouncementsMobile", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
+                return View("MyRealty_", model.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
             }
         }
 

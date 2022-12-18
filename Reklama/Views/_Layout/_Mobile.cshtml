@@ -50,7 +50,7 @@
                                 </div>
                             </li>*@
                         <li class="@(ViewContext.RouteData.Values["Action"].ToString().ToLower() == "indexmobile" || ViewContext.RouteData.Values["Action"].ToString().ToLower() == "index" ? "active" : "")">
-                            <a href="@Url.Action("IndexMobile", "Home")"><i class="fa fa-home"></i> @Resources.Resource.MenuMain</a>
+                            <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> @Resources.Resource.MenuMain</a>
                         </li>
                         <li>
                             <a href="@Url.Action("LoginMobile","Account")"><i class="fa fa-tv"></i> @Resources.Resource.MenuDashboard</a>

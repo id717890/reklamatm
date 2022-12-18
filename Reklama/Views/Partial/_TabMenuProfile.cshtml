@@ -19,9 +19,9 @@
 <div class="tab-menu">
     @{ 
         var path = Request.Url.LocalPath;
-        var isRealty = path == "/";
-        var isAnnouncement = path.ToLower() == "/announcement";
+        var isRealty = path == "/Bookmarks/MyRealty_";
+        var isAnnouncement = path == "/Bookmarks/MyAnnouncements_";
     }
-    @Html.ActionLink("Недвижимость", "Index", "Home",null, new { @class = isRealty ? "active" : "" })
-    @Html.ActionLink("Объявления", "Index", "Announcement", null, new { @class = isAnnouncement ? "active" : "" })
+    @Html.ActionLink("Недвижимость", "MyRealty_", "Bookmarks", null, new { @class = isRealty ? "active" : "" })
+    @Html.ActionLink("Объявления", "MyAnnouncements_", "Bookmarks", null, new { @class = isAnnouncement ? "active" : "" })
 </div>

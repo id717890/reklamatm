@@ -1,6 +1,6 @@
 ﻿@using System.Globalization
 @using Reklama.Models.SortModels
-@model PagedList.IPagedList<Domain.Entity.Realty.Realty>
+@model PagedList.IPagedList<Domain.Entity.Announcements.Announcement>
 
 @{
     ViewBag.Title = "IndexMobile";
@@ -55,34 +55,21 @@
                 <a href="@Url.Action("LogOffAlternative", "Account")" class="btn btn-default btn-rounded mt-3"><i class="fa fa-sign-out-alt"></i> Выход</a>
             </div>
         </div>
+        @Html.Partial("~/VIews/Partial/_TabMenuProfile.cshtml")
         <div class="main-pub-items">
             @{var rnd = new Random(); }
-            @foreach (var realty in Model)
+            @foreach (var item in Model)
             {
                 <div class="item blue">
                     <div class="bg blue">&nbsp;</div>
 
-                    @*<div class="img">
-                        @if (realty.Photos.Count != 0)
-                        {
-                            <div class="icon-wrapper">
-                                <img data-toggle="modal" data-target="@("#item-modal-" + realty.Id)" src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["realty_thumb"], "/", realty.Photos.OrderBy(x => x.CreatedAt).First().Link)" />
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="icon-wrapper blue">
-                                <i class="fa fa-home fa-3x"></i>
-                            </div>
-                        }
-                    </div>*@
                     <div class="info pl-3">
                         <div class="announce-info">
                             <div class="name-ico mr-2">
-                                @if (realty.UserProfile.Name != string.Empty && realty.UserProfile.Name != null)
+                                @if (item.User.Name != string.Empty && item.User.Name != null)
                                 {
                                     <span>
-                                        @realty.UserProfile.Name.Substring(0, 1).ToUpper()
+                                        @item.User.Name.Substring(0, 1).ToUpper()
                                     </span>
                                 }
                                 else
@@ -91,9 +78,9 @@
                                 }
                             </div>
                             <div class="name mr-2">
-                                @if (realty.UserProfile.Name != string.Empty && realty.UserProfile.Name != null)
+                                @if (item.User.Name != string.Empty && item.User.Name != null)
                                 {
-                                    @realty.UserProfile.Name
+                                    @item.User.Name
                                 }
                                 else
                                 {
@@ -101,31 +88,22 @@
                                 }
                             </div>
                             <div class="dt">
-                                <i class="fa fa-calendar"></i> <span>@realty.CreatedAt.ToString("dd MMM")</span>
+                                <i class="fa fa-calendar"></i> <span>@item.CreatedAt.ToString("dd MMM")</span>
                             </div>
                         </div>
 
                         <div class="line">
                             <div class="icon">
-                                <i class="fa fa-map-marker"></i>
-                            </div>
-                            <div class="text">
-                                @realty.Address
-                            </div>
-                        </div>
-                        <div class="line">
-                            <div class="icon">
                                 <i class="fa fa-cube"></i>
                             </div>
                             <div class="text">
-                                @*@Html.Raw(realty.DescriptionView)*@
                                 @if (!string.IsNullOrEmpty(ViewBag.Language) && ViewBag.Language == "en")
                                 {
-                                    @Html.Raw(realty.DescriptionViewTm)
+                                    @Html.Raw(item.SmallDescription)
                                 }
                                 else
                                 {
-                                    @Html.Raw(realty.DescriptionView)
+                                    @Html.Raw(item.SmallDescription)
                                 }
                             </div>
                         </div>
@@ -136,50 +114,39 @@
                                 <i class="fa fa-shopping-cart"></i>
                             </div>
                             <div class="text">
-                                @if (realty.Currency != null && realty.Price != null)
+                                @if (item.Currency != null && item.Price != null)
                                 {
                                     var nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
                                     nfi.NumberGroupSeparator = " ";
-                                    @Math.Round(((decimal)realty.Currency.Rate * realty.Price.Value), 2).ToString("#,0", nfi)
-                                    @*@String.Format("{0:n0}", Math.Round(((decimal)Model.Currency.Rate * Model.Price.Value), 2))*@
-                                    //.ToString("0.#####", CultureInfo.CreateSpecificCulture("fr-CA"))
+                                    @Math.Round(((decimal)item.Currency.Rate * item.Price.Value), 2).ToString("#,0", nfi)
                                 }
                                 else
                                 {
                                     <span>0</span>
                                 }
-                                $ &nbsp;&nbsp;&nbsp;
-
-                                @if (WebSecurity.IsAuthenticated && realty.PriceForOneMeter != null)
-                                {
-                                    <span>
-                                        @String.Format("{0:n0}", realty.PriceForOneMeter)
-                                        $/@Html.Raw(Resources.Resource.FormM)
-                                    </span>
-                                }
                             </div>
                         </div>
                         <p style="color: black">
-                            <i class="fa fa-eye"></i> <span>@realty.Views</span>
+                            <i class="fa fa-eye"></i> <span>@item.ViewsCount</span>
 
                             <span class="float-right">
-                                <a href="@Url.Action("DeleteMobile", "Realty", new { id = realty.Id })">
+                                <a href="@Url.Action("Delete_", "Announcement", new { id = item.Id })">
                                     <i class="fa fa-trash-alt text-danger"></i>
                                 </a>
                             </span>
 
                             <span class="float-right mr-3">
-                                @if (realty.IsActive)
+                                @if (item.IsActive)
                                 {
-                                    <a href="@Url.Action("PlayStopMobile", "Realty", new { id = realty.Id })" class="text-primary" title="Приостановить"><i class="fa fa-pause"></i> </a>
+                                    <a href="@Url.Action("PlayStopMobile", "Realty", new { id = item.Id })" class="text-primary" title="Приостановить"><i class="fa fa-pause"></i> </a>
                                 }
                                 else
                                 {
-                                    <a href="@Url.Action("PlayStopMobile", "Realty", new { id = realty.Id })" class="text-success" title="Активировать"><i class="fa fa-play"></i> </a>
+                                    <a href="@Url.Action("PlayStopMobile", "Realty", new { id = item.Id })" class="text-success" title="Активировать"><i class="fa fa-play"></i> </a>
                                 }
                             </span>
                             <span class="float-right mr-3">
-                                <a href="@Url.Action("Update", "Realty", new { id = realty.Id })">
+                                <a href="@Url.Action("Update_", "Announcement", new { id = item.Id })">
                                     <i class="fa fa-pencil-alt text-primary"></i>
                                 </a>
                             </span>
@@ -200,7 +167,7 @@
 
                         @if (page == Model.PageNumber)
                         {
-                            @Html.ActionLink(page.ToString(), "MyAnnouncementsMobile", new
+                            @Html.ActionLink(page.ToString(), "MyAnnouncements_", new
                        {
                            CurrentPage = page,
                            PageSize = sortModel.PageSize
@@ -209,7 +176,7 @@
                         }
                         else
                         {
-                            @Html.ActionLink(page.ToString(), "MyAnnouncementsMobile", new
+                            @Html.ActionLink(page.ToString(), "MyAnnouncements_", new
                        {
                            CurrentPage = page,
                            PageSize = sortModel.PageSize
@@ -230,7 +197,7 @@
 
                         @if (page == Model.PageNumber)
                         {
-                            @Html.ActionLink(page.ToString(), "MyAnnouncementsMobile", new
+                            @Html.ActionLink(page.ToString(), "MyAnnouncements_", new
                        {
                            CurrentPage = page,
                            PageSize = sortModel.PageSize
@@ -239,7 +206,7 @@
                         }
                         else
                         {
-                            @Html.ActionLink(page.ToString(), "MyAnnouncementsMobile", new
+                            @Html.ActionLink(page.ToString(), "MyAnnouncements_", new
                        {
                            CurrentPage = page,
                            PageSize = sortModel.PageSize
@@ -260,7 +227,7 @@
 
                                 @if (page == Model.PageNumber)
                                 {
-                                    @Html.ActionLink(page.ToString(), "MyAnnouncementsMobile", new
+                                    @Html.ActionLink(page.ToString(), "MyAnnouncements_", new
                                {
                                    CurrentPage = page,
                                    PageSize = sortModel.PageSize
@@ -269,7 +236,7 @@
                                 }
                                 else
                                 {
-                                    @Html.ActionLink(page.ToString(), "MyAnnouncementsMobile", new
+                                    @Html.ActionLink(page.ToString(), "MyAnnouncements_", new
                                {
                                    CurrentPage = page,
                                    PageSize = sortModel.PageSize

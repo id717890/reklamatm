@@ -3506,7 +3506,7 @@
     <Content Include="webfonts\fa-solid-900.woff" />
     <Content Include="webfonts\fa-solid-900.woff2" />
     <Content Include="Views\Realty\CreateMobile.cshtml" />
-    <Content Include="Views\Bookmarks\MyAnnouncementsMobile.cshtml" />
+    <Content Include="Views\Bookmarks\MyRealty_.cshtml" />
     <Content Include="Views\Realty\DeleteMobile.cshtml" />
     <Content Include="Views\Realty\PlayStopMobile.cshtml" />
     <Content Include="Views\Partial\_RealtyItem.cshtml" />
@@ -3518,6 +3518,9 @@
     <Content Include="Views\Partial\_TabMenu.cshtml" />
     <Content Include="Views\Announcement\IndexMobile.cshtml" />
     <Content Include="Views\Partial\_AnnouncementItem.cshtml" />
+    <Content Include="Views\Bookmarks\MyAnnouncements_.cshtml" />
+    <Content Include="Views\Partial\_TabMenuProfile.cshtml" />
+    <Content Include="Views\Announcement\Delete_.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
