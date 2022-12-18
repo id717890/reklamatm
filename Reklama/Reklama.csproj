@@ -3084,7 +3084,7 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\IndexOld.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginMenuPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -3480,7 +3480,7 @@
     <Content Include="testmakeup\home1\img\.DS_Store" />
     <Content Include="Views\_Layout\_Mobile.cshtml" />
     <Content Include="Views\_Layout\_Desktop.cshtml" />
-    <Content Include="Views\Home\IndexMobile.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -3516,7 +3516,7 @@
     <Content Include="Views\Partial\_Language.cshtml" />
     <Content Include="Views\Announcement\New.cshtml" />
     <Content Include="Views\Partial\_TabMenu.cshtml" />
-    <Content Include="Views\Announcement\IndexMobile.cshtml" />
+    <Content Include="Views\Announcement\Index.cshtml" />
     <Content Include="Views\Partial\_AnnouncementItem.cshtml" />
     <Content Include="Views\Bookmarks\MyAnnouncements.cshtml" />
     <Content Include="Views\Partial\_TabMenuProfile.cshtml" />

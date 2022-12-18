@@ -3,7 +3,7 @@
 @model PagedList.IPagedList<Domain.Entity.Announcements.Announcement>
 
 @{
-    ViewBag.Title = "IndexMobile";
+    ViewBag.Title = "Мои объявления";
     Layout = "~/Views/_Layout/_Mobile.cshtml";
     var sortModel = (PagerSortModel)ViewBag.SortModel;
     var name = ViewBag.UserName;
@@ -91,7 +91,25 @@
                                 <i class="fa fa-calendar"></i> <span>@item.CreatedAt.ToString("dd MMM")</span>
                             </div>
                         </div>
-
+                        <div class="line">
+                            <div class="icon">
+                                <i class="fa fa-folder"></i>
+                            </div>
+                            <div class="text">
+                                @item.Category.Name
+                            </div>
+                        </div>
+                        @if (item.City != null)
+                        {
+                            <div class="line">
+                                <div class="icon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <div class="text">
+                                    @item.City.Name
+                                </div>
+                            </div>
+                        }
                         <div class="line">
                             <div class="icon">
                                 <i class="fa fa-cube"></i>

@@ -25,6 +25,7 @@ using WebMatrix.WebData;
 using PagedList;
 using Domain.Enums;
 using System.Globalization;
+using System.Net;
 
 namespace Reklama.Controllers
 {
@@ -106,11 +107,10 @@ namespace Reklama.Controllers
 
         public ActionResult Index()
         {
-            var model = _repository.Read().OrderByDescending(x => x.CreatedAt).Take(50).ToList();
-            return View("IndexMobile", model);
+            var model = _repository.Read().Where(x=>x.IsActive).OrderByDescending(x => x.CreatedAt).Take(50).ToList();
+            return View("Index", model);
         }
 
-        [CustomAnnouncementAuth]
         public ActionResult New()
         {
             var model = new Announcement();
@@ -239,6 +239,7 @@ namespace Reklama.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
+        [CustomAnnouncementAuth]
         public ActionResult Update(Announcement model, FormCollection collection)
         {
             var announcement = _repository.Read(model.Id);
@@ -669,6 +670,7 @@ namespace Reklama.Controllers
         }
 
         [HttpGet]
+        [CustomAnnouncementAuth]
         public ActionResult Delete(int id = 0)
         {
             var announcement = _repository.Read(id);
@@ -687,6 +689,7 @@ namespace Reklama.Controllers
         }
 
         [HttpPost]
+        [CustomAnnouncementAuth]
         public ActionResult DeleteConfirmed(int id)
         {
             var announcement = _repository.Read(id);
@@ -909,6 +912,18 @@ namespace Reklama.Controllers
             url += actionName ?? "";
             url += id == null ? "" : "/" + id;
             return Redirect(url);
+        }
+
+        [HttpPost]
+        public ActionResult IncreaseViews(int id)
+        {
+            var realty = _repository.Read(id);
+            if (realty != null)
+            {
+                realty.ViewsCount += 1;
+                _repository.SaveIgnoreCurrency(realty);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.OK);  // OK = 200
         }
     }
 }

@@ -18,8 +18,8 @@ using Reklama.Filters;
 
 namespace Reklama.Controllers
 {
-    //[Authorize, Culture]
-    [ Culture]
+    [Authorize, Culture]
+    //[ Culture]
     public class BookmarksController : _BaseController
     {
         private ReklamaContext rc = new ReklamaContext();
@@ -77,15 +77,6 @@ namespace Reklama.Controllers
 
         public ActionResult MyAnnouncements(PagerSortModel sortModel = null)
         {
-            //var announcements = _bookmarkRepository.ReadAnnouncementsByUser(WebSecurity.CurrentUserId).Where(a => a.IsActive == true);
-            //ViewBag.SortModel = sortModel;
-            //ViewBag.Title = "Мои закладки";
-
-            //return View(announcements.ToPagedList(sortModel.CurrentPage.Value, sortModel.PageSize));
-
-
-
-
             ViewBag.UpTimeAnnouncement = int.Parse(_configRepository.ReadByName("UpTimeAnnouncement").Value);
             ViewBag.SortModel = sortModel;
             ViewBag.Title = "Объявления";

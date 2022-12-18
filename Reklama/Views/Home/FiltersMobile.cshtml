@@ -2,7 +2,7 @@
 @model Reklama.ViewModels.Filters.FiltersViewModel
 
 @{
-    ViewBag.Title = "IndexMobile";
+    ViewBag.Title = "Фильтры";
     Layout = "~/Views/_Layout/_Mobile.cshtml";
 }
 
@@ -15,7 +15,7 @@
             @if (Model.IsFiltered)
             {
                 <div class="col-3">
-                    <a href="@Url.Action("IndexMobile", "Home")" class="btn btn-lg btn-outline-primary w-100"><i class="fa fa-home"></i></a>
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-lg btn-outline-primary w-100"><i class="fa fa-home"></i></a>
                 </div>
                 <div class="col-6 text-center px-0 mx-0">
                     <div class="alert alert-primary mb-2">@Resources.Resource.TotalFind: @(Model.Realties != null ? @Model.Realties.Count() : 0)</div>

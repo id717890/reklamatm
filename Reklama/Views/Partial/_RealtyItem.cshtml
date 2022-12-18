@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<div class="item blue item-short" id="@("item"+Model.Id)" data-id="@Model.Id">
+<div class="item blue item-short" id="@("item"+Model.Id)" data-id="@Model.Id" data-type="Realty">
     <div class="bg blue"></div>
 
     <div class="img">
@@ -89,9 +89,7 @@
                 {
                     var nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
                     nfi.NumberGroupSeparator = " ";
-                    @Math.Round(((decimal)Model.Currency.Rate * Model.Price.Value), 2).ToString("#,0", nfi)
-                    @*@String.Format("{0:n0}", Math.Round(((decimal)Model.Currency.Rate * Model.Price.Value), 2))*@
-                    //.ToString("0.#####", CultureInfo.CreateSpecificCulture("fr-CA"))
+                    @Math.Round(((decimal)Model.Currency.Rate * Model.Price.Value), 2).ToString("#,0", nfi)                   
                 }
                 else
                 {

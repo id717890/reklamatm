@@ -168,7 +168,7 @@ namespace Reklama.Controllers
 
 
 
-        [CustomRealtyAuth]
+        [HttpGet]
         public ActionResult New()
         {
             var model = new Realty();
@@ -457,6 +457,7 @@ namespace Reklama.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
+        [CustomRealtyEditAuth]
         public ActionResult Update(Realty model, FormCollection collection)
         {
             var realty = _realtyRepository.Read(model.Id);
@@ -663,6 +664,7 @@ namespace Reklama.Controllers
         }
 
         [HttpGet]
+        [CustomRealtyEditAuth]
         public ActionResult Delete(int id = 0)
         {
             var realty = _realtyRepository.Read(id);
@@ -680,6 +682,7 @@ namespace Reklama.Controllers
         }
 
         [HttpGet]
+        [CustomRealtyEditAuth]
         public ActionResult PlayStop(int id = 0)
         {
             var realty = _realtyRepository.Read(id);
@@ -697,6 +700,7 @@ namespace Reklama.Controllers
         }
 
         [HttpGet]
+        [CustomRealtyEditAuth]
         public ActionResult PlayStopConfirmed(int id)
         {
             var realty = _realtyRepository.Read(id);
@@ -724,6 +728,7 @@ namespace Reklama.Controllers
         }
 
         [HttpGet]
+        [CustomRealtyEditAuth]
         public ActionResult DeleteConfirmed(int id)
         {
             var announcement = _realtyRepository.Read(id);

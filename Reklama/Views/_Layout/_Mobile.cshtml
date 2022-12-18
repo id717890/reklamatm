@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                             </li>*@
-                        <li class="@(ViewContext.RouteData.Values["Action"].ToString().ToLower() == "indexmobile" || ViewContext.RouteData.Values["Action"].ToString().ToLower() == "index" ? "active" : "")">
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString().ToLower() == "index" || ViewContext.RouteData.Values["Action"].ToString().ToLower() == "index" ? "active" : "")">
                             <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> @Resources.Resource.MenuMain</a>
                         </li>
                         <li>
@@ -153,6 +153,7 @@
 
             $(".item-short").on("click", function () {
                 var id = $(this).data("id");
+                var type = $(this).data("type");
                 $("#item-details" + id).show("blind", "fast", function () {
                     $("#item" + id).hide("blind", "fast");
                     $(this).css("display", "flex");
@@ -160,7 +161,7 @@
                 });
                 //Увеличение кол-ва просмотров при клике и разворачивании объявления
                 $.ajax({
-                    url: '/Realty/IncreaseViews',
+                    url: '/' + type+'/IncreaseViews',
                     type: 'POST',
                     data: { id: id }
                 });
