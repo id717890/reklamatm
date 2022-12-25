@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Domain.Entity.Announcements;
@@ -18,7 +17,6 @@ using Reklama.Attributes;
 using Reklama.Core.UploadImages;
 using Reklama.Filters;
 using Reklama.Models;
-using Reklama.Models.SortModels;
 using Reklama.Models.ViewModels.Announcement;
 using Reklama.Services;
 using WebMatrix.WebData;
@@ -29,7 +27,8 @@ using System.Net;
 
 namespace Reklama.Controllers
 {
-    public class AnnouncementController : Controller
+    [Culture]
+    public class AnnouncementController : _BaseController
     {
         private readonly ReklamaContext rc = new ReklamaContext();
 

@@ -53,10 +53,10 @@
                             <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> @Resources.Resource.MenuMain</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Login","Account")"><i class="fa fa-tv"></i> @Resources.Resource.MenuDashboard</a>
+                            <a href="@Url.Action("Login", "Account")"><i class="fa fa-tv"></i> @Resources.Resource.MenuDashboard</a>
                         </li>
                         <li class="@(ViewContext.RouteData.Values["Action"].ToString().ToLower() == "filtersmobile" ? "active" : "")">
-                            <a href="@Url.Action("FiltersMobile","Home")"><i class="fa fa-filter"></i> @Resources.Resource.MenuFilters</a>
+                            <a href="@Url.Action("FiltersMobile", "Home")"><i class="fa fa-filter"></i> @Resources.Resource.MenuFilters</a>
                         </li>
                         <li>
                             <a href="/Page/Details/2"><i class="fa fa-toolbox"></i> @Resources.Resource.MenuContract</a>
@@ -64,7 +64,11 @@
                         <li>
                             <ul class="list-unstyled CTAs">
                                 <li>
-                                    <a href="/Realty/New" class="download" style="color: #7386D5 !important">
+                                    @{
+                                        var isAnnouncementUrl = Request.Url.LocalPath.ToLower().Contains("announcement");
+                                        var url = isAnnouncementUrl ? "/Announcement/New" : "/Realty/New";
+                                    }
+                                    <a href="@url" class="download" style="color: #7386D5 !important">
                                         @Resources.Resource.MenuAddAd
                                     </a>
                                 </li>
@@ -114,6 +118,9 @@
     @Scripts.Render("~/Scripts/jquery-ui-1.12.1.min.js")
     <script type="text/javascript">
         $(document).ready(function () {
+            $("input:radio[name=category-menu]").change(function (value) {
+                window.location.href = value.target.value;
+            });
             //jQuery_1_10_2("#sidebar").mCustomScrollbar({
             //    theme: "minimal"
             //});

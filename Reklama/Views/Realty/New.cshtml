@@ -1,6 +1,4 @@
-﻿@using System.Globalization
-@using Reklama
-@model Domain.Entity.Realty.Realty
+﻿@model Domain.Entity.Realty.Realty
 
 @{
     ViewBag.Title = "Создание нового объявления";
@@ -8,52 +6,11 @@
 }
 
 @section Scripts {
-    @*<script src="~/Scripts/jquery.validate.min.js"></script>*@
-    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
-
-
-
     @Scripts.Render("~/bundles/jqueryval")
-    @* @Scripts.Render("~/Scripts/ajaxupload.js")*@
     @Scripts.Render("~/Scripts/Realty.js")
     @Scripts.Render("~/Scripts/common.js")
     @Scripts.Render("~/Scripts/jquery-te-1.4.0.min.js")
     @Styles.Render("~/Content/jquery-te-1.4.0.css")
-
-
-
-    <script>
-        var desc = 'textarea.desc';
-        var limit = 100;
-
-        jQuery(document).ready(function () {
-            //jQuery(".removeImage1").on("click", function (e) {
-            //    console.log(1);
-            //});
-
-            //jQuery('.message').jqte({
-            //    change: function () {
-            //        var s = jQuery(".message-container .jqte_editor").html();
-            //        jQuery("#hfDesc").val(s);
-
-            //        if (!$(desc).hasClass('active')) {
-            //            //var s = $(this).val();
-            //            while (s.indexOf("\n") > -1)
-            //                s = s.replace("\n", " ");
-            //            s = $.removeTags(s);
-            //            $(desc).val(s);
-            //            var text = $(desc).val();
-            //            var chars = text.length;
-            //            if (chars > limit) {
-            //                var new_text = text.substr(0, limit);
-            //                $(desc).val(new_text);
-            //            }
-            //        }
-
-            //    }
-            //});
-        });
-    </script>
 
     <!-- 1. Add latest jQuery and fancybox files -->
 
@@ -144,14 +101,7 @@
     </div>
     <div class="main-container  px-3" style="padding-top: 65px">
         <form id="formCreate" action="/Realty/New" method="post">
-            <div class="form-group categories">
-                <div class="category">
-                    <input  id="announcement-category" name="category-from" type="radio" value="Announcement" /><label for="announcement-category">Объявление</label>
-                </div>
-                <div class="category">
-                    <input id="realty-category" name="category-from" type="radio" value="Realty" checked="checked" /><label for="realty-category">Недвижимость</label>
-                </div>
-            </div>
+            @Html.Partial("~/Views/Partial/_TabMenuForNew.cshtml")
 
             <div class="form-group">
                 <label for="city-field">@Resources.Resource.FormCity:</label>

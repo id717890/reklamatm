@@ -1,27 +1,9 @@
-﻿<style>
-    .tab-menu {
-        margin-bottom: 10px;
-    }
-
-        .tab-menu a {
-            text-decoration: none;
-            color: black;
-            opacity: 0.6;
-            margin-right: 8px;
-        }
-
-            .tab-menu a.active {
-                border-bottom: 1px dashed black;
-                opacity: 1;
-            }
-</style>
-
-<div class="tab-menu">
-    @{ 
-        var path = Request.Url.LocalPath;
-        var isRealty = path == "/";
-        var isAnnouncement = path.ToLower() == "/announcement";
-    }
-    @Html.ActionLink("Недвижимость", "Index", "Home",null, new { @class = isRealty ? "active" : "" })
-    @Html.ActionLink("Объявления", "Index", "Announcement", null, new { @class = isAnnouncement ? "active" : "" })
+﻿@{
+    var path = Request.Url.LocalPath;
+    var isRealty = path == "/";
+    var isAnnouncement = path.ToLower() == "/announcement";
+}
+<div class="category-menu">
+    <label> @Html.RadioButton("category-menu", "/", isRealty) Недвижимость</label>
+    <label> @Html.RadioButton("category-menu", "/Announcement", isAnnouncement) Объявления</label>
 </div>

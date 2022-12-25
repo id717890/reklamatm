@@ -1,0 +1,9 @@
+﻿@{
+    var path = Request.Url.LocalPath;
+    var isRealty = path.ToLower() == "/realty/new";
+    var isAnnouncement = path.ToLower() == "/announcement/new";
+}
+<div class="category-menu" style="margin-bottom: 0">
+    <label> @Html.RadioButton("category-menu", "/Realty/New", isRealty) Недвижимость</label>
+    <label> @Html.RadioButton("category-menu", "/Announcement/New", isAnnouncement) Объявления</label>
+</div>

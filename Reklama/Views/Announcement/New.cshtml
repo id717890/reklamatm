@@ -103,14 +103,8 @@
     </div>
     <div class="main-container  px-3" style="padding-top: 65px">
         <form id="formCreate" action="/Announcement/New" method="post">
-            <div class="form-group categories">
-                <div  class="category">
-                    <input  id="announcement-category" name="category-from" type="radio" value="Announcement" checked="checked" /><label for="announcement-category">Объявление</label>
-                </div>
-                <div  class="category">
-                    <input id="realty-category" name="category-from" type="radio"  value="Realty"   /><label for="realty-category">Недвижимость</label>
-                </div>
-            </div>
+            @Html.Partial("~/Views/Partial/_TabMenuForNew.cshtml")
+
             <div class="form-group">
                 <div class="label-container">@Html.LabelFor(n => n.Name)</div>
                 @Html.TextBoxFor(model => model.Name, new { @class = "form-control", id = "name-field" })

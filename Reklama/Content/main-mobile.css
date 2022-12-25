@@ -7,12 +7,13 @@
     min-height: 100%;
 }
 
-.categories {
+.category-menu {
     display: flex;
     margin-bottom: 10px;
+    justify-content: center;
 }
 
-    .categories .category {
+    .category-menu .category {
         margin-right: 20px;
         display: flex;
         align-items: center;

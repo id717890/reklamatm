@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Domain.Entity.Common;
 using Domain.Entity.Realty;
-using Domain.Entity.Shared;
-using Domain.Repository.Admin;
 using Domain.Repository.Other;
 using Domain.Repository.Realty;
 using Domain.Repository.Shared;
-using System.IO;
 using Domain.Utils;
 using Reklama.Attributes;
 using Reklama.Core.UploadImages;

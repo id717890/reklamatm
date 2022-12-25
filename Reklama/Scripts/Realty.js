@@ -1,9 +1,4 @@
 ﻿$(document).ready(function () {
-
-    $("input:radio[name=category-from]").change(function (value) {
-        window.location.href = "/" + value.target.value + "/New";
-    });
-	
 	$(".Personal").bind("mousedown", function () {
 		$("div#AgencyNameDiv").slideUp();
 		$("#AgencyName").val('');

@@ -1,9 +1,4 @@
 ﻿$(document).ready(function () {
-
-    $("input:radio[name=category-from]").change(function (value) {
-        window.location.href = "/" + value.target.value +"/New";
-    });
-
     $('.SectionList').change(function () {
         var selectedItemValue = $.attr(this, 'value');
         var url = "/AjaxServices/GetSubsections";

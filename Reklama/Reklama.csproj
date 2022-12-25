@@ -3524,6 +3524,7 @@
     <Content Include="Views\Announcement\Update.cshtml" />
     <Content Include="Views\Partial\_CategoryPicker.cshtml" />
     <Content Include="Views\Announcement\PlayStop.cshtml" />
+    <Content Include="Views\Partial\_TabMenuForNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
